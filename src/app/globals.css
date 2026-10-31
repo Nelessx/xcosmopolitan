@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f7f2ea;
+  --color-cream: #efe6d8;
+  --color-sand: #e2d4bf;
+  --color-ink: #14110f;
+  --color-stone: #5f5750;
+  --color-gold: #a88b65;
+  --color-gold-light: #cdb48c;
+  --color-gold-deep: #7d6140;
+}
+
+@theme inline {
+  --font-sans: var(--font-jost);
+  --font-display: var(--font-cormorant);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* Base button shape; each use adds its own display and colours. */
+@utility btn {
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  padding: 0.95rem 1.9rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in {
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Sections fade up as they scroll into view, in browsers with scroll-driven animations. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

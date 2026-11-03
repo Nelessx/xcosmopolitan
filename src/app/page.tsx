@@ -1,19 +1,18 @@
-import { Concerns } from "@/components/home/concerns";
-import { Experience } from "@/components/home/experience";
-import { Hero } from "@/components/home/hero";
-import { Membership } from "@/components/home/membership";
-import { Services } from "@/components/home/services";
-import { Visit } from "@/components/home/visit";
+const designs = [
+  { label: "Design 1", href: "/designs/design-1.html" },
+  { label: "Design 2", href: "/designs/design-2.html" },
+  { label: "Design 3", href: "/designs/design-3.html" },
+];
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <Concerns />
-      <Services />
-      <Experience />
-      <Membership />
-      <Visit />
-    </>
+    <ul>
+      {designs.map((design) => (
+        <li key={design.href}>
+          {/* Static HTML files in public/, so a plain anchor rather than next/link. */}
+          <a href={design.href}>{design.label}</a>
+        </li>
+      ))}
+    </ul>
   );
 }

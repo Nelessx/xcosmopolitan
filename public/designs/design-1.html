@@ -182,6 +182,7 @@ body.menu-open { overflow: hidden; }
 .hero-in { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.25rem, 3.5vh, 2.1rem); padding: 1.5rem; text-align: center; }
 .hero-in .h-giant { text-shadow: 0 2px 44px rgba(0, 0, 0, .5); }
 .hero-in .mlabel { color: var(--text); opacity: .85; }
+.hero-tag { max-width: 34rem; font-family: var(--thin); font-size: clamp(1.1rem, 1.9vw, 1.6rem); font-weight: 300; line-height: 1.35; letter-spacing: .02em; text-shadow: 0 2px 24px rgba(0, 0, 0, .5); }
 
 /* ---------- Marquee strip ---------- */
 .strip { overflow: hidden; border-top: 1px solid var(--line); padding-block: .95rem; }
@@ -807,7 +808,8 @@ body.hdr-away .bk-sum { top: 1.5rem; }
           <span class="ln">/ Skin, hair</span>
           <span class="ln"><em>&amp; nails</em></span>
         </h1>
-        <a href="#/services" class="obtn" data-reveal="pop" style="--d: 1000ms">Discover services</a>
+        <p class="hero-tag" data-reveal="fade" style="--d: 900ms">Feel Proud And Confident In Your Own Skin!</p>
+        <a href="#/services" class="obtn" data-reveal="pop" style="--d: 1050ms">Discover services</a>
       </div>
     </div>
   </section>

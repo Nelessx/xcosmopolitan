@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- Design 1: monochrome editorial. Pure black, white hairlines, heavy+thin caps headings
-     with a slash prefix, mono bracket labels, polaroid photo frames, split-photo hero. -->
+<!-- Design 1: image-led dark editorial. Warm black, hairlines, heavy+thin caps headings
+     with a slash prefix, mono bracket labels, large photos leading every section. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -19,14 +19,13 @@
   --bg: #0c0b0a;
   --bg-2: #151311;
   --text: #eee8df;
-  --paper: #f1ece4;
   --muted: rgba(238, 232, 223, .6);
   --soft: rgba(238, 232, 223, .38);
   --line: rgba(238, 232, 223, .14);
   --line-2: rgba(238, 232, 223, .38);
-  /* Every photo shares one warm black-and-white grade. */
-  --grade: grayscale(1) sepia(.16) brightness(.84) contrast(1.06);
-  --colour: brightness(.9) contrast(1.04) saturate(.85);
+  /* Photos share one soft colour grade, a little richer on hover. */
+  --grade: brightness(.92) contrast(1.04) saturate(.92);
+  --colour: brightness(1) contrast(1.03) saturate(1.02);
   --heavy: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --thin: "Raleway", ui-sans-serif, system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -74,7 +73,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 99; pointer-event
 .h-sec { font-size: clamp(1.45rem, 2.5vw, 2.15rem); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; line-height: 1.18; }
 .h-sec em { font-family: var(--thin); font-style: normal; font-weight: 200; letter-spacing: .04em; }
 .h-sec .ln { display: inline-block; }
-.h-sec .ln + .ln { margin-left: .3em; }
+.h-sec .ln:not(:last-child) { margin-right: .3em; }
 .ln { display: block; }
 .ln.push { padding-left: clamp(2rem, 14vw, 11rem); }
 .lead { max-width: 34rem; font-size: .9375rem; color: var(--muted); }
@@ -122,15 +121,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 99; pointer-event
 .slot[data-parallax] { --s: 1.1; }
 .group:hover .slot.zoom { --s: 1.06; }
 @media (hover: hover) {
-  :is(.group, .pol, .abt-card, .team li, .space .slot, .svc-media, .contact-photo, .opt):hover .photo { filter: var(--colour); }
+  :is(.group, .abt-card, .abt-hero, .split-media, .phero-media, .reel li, .team li, .space .slot, .svc-media, .story-media, .contact-photo, .opt):hover .photo { filter: var(--colour); }
 }
 .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1rem; text-align: center; background: var(--bg-2); transition: opacity .5s; }
 .ph img { height: 2rem; width: auto; opacity: .3; filter: grayscale(1) brightness(1.6); }
 .ph-note, .ph-file { font-family: var(--mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
 .slot-bare .ph { padding: 0; } .slot-bare .ph img { height: 38%; } .slot-bare :is(.ph-note, .ph-file) { display: none; }
-/* Polaroid: photo in a white paper frame. */
-.pol { background: var(--paper); padding: clamp(.55rem, .9vw, .8rem); padding-bottom: clamp(2rem, 3.6vw, 3.1rem); }
-.pol .slot { aspect-ratio: 3 / 4; }
 /* Legacy shape wrappers from the shared renderers, flattened. */
 .oval { aspect-ratio: 3 / 4; border-radius: 0; }
 .slice { position: relative; aspect-ratio: 3 / 4; }
@@ -180,8 +176,8 @@ body.menu-open { overflow: hidden; }
 .hero-stage { position: relative; display: grid; grid-template-columns: 1fr 1fr; height: calc(100svh - var(--hdr) - var(--gutter)); min-height: 32rem; max-height: 62rem; }
 .hero-ph { position: relative; overflow: hidden; }
 .hero-ph .slot { position: absolute; inset: 0; }
-.hero-ph .slot .photo { filter: grayscale(1) sepia(.16) brightness(.52) contrast(1.1); }
-.hero-ph.right .slot .photo { filter: grayscale(1) sepia(.16) brightness(.78) contrast(1.12); object-position: 50% 30%; }
+.hero-ph .slot .photo { filter: brightness(.55) contrast(1.05) saturate(.7); }
+.hero-ph.right .slot .photo { filter: brightness(.8) contrast(1.06) saturate(.78); object-position: 70% 18%; }
 .hero-ph::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(12, 11, 10, .38), transparent 36%, transparent 58%, rgba(12, 11, 10, .54)); }
 .hero-in { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.25rem, 3.5vh, 2.1rem); padding: 1.5rem; text-align: center; }
 .hero-in .h-giant { text-shadow: 0 2px 44px rgba(0, 0, 0, .5); }
@@ -208,67 +204,69 @@ body.menu-open { overflow: hidden; }
 .perks.bar .perk h3 { margin-top: .7rem; font-size: .8125rem; }
 .perks.bar .perk p { font-size: .8rem; }
 
-/* ---------- Home: numbered category rows ---------- */
-.crows { border-top: 1px solid var(--line); }
-.crow { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; padding: 1.35rem .25rem; border-bottom: 1px solid var(--line); transition: color .35s, padding-left .5s var(--ease); }
-.crow::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--text); translate: 0 101%; transition: translate .45s var(--ease); }
-.crow i { font-family: var(--mono); font-style: normal; font-size: .6875rem; letter-spacing: .13em; color: var(--soft); transition: color .35s; }
-.crow strong { font-size: clamp(1.05rem, 2vw, 1.5rem); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
-.crow small { display: block; margin-top: .1rem; font-size: .75rem; font-weight: 300; color: var(--muted); transition: color .35s; }
-.crow .i { width: 1.1rem; height: 1.1rem; translate: -.5rem 0; opacity: 0; transition: translate .45s var(--ease), opacity .35s; }
-.crow:hover { color: var(--bg); padding-left: 1rem; }
-.crow:hover::before { translate: none; }
-.crow:hover :is(i, small) { color: rgba(0, 0, 0, .55); }
-.crow:hover .i { translate: 0 0; opacity: 1; }
-/* Desktop: a photo of the category follows the cursor and the other rows dim. */
-.crow-preview { display: none; }
-@media (hover: hover) and (min-width: 900px) {
-  .crows.has-preview { position: relative; }
-  .crow-preview { display: block; position: absolute; top: 0; left: 0; z-index: 3; width: clamp(13rem, 17vw, 16.5rem); aspect-ratio: 4 / 5; pointer-events: none; opacity: 0; scale: .86; transition: opacity .35s ease, scale .6s var(--ease); }
-  .crows.previewing .crow-preview { opacity: 1; scale: 1; }
-  .crow-preview .slot { position: absolute; inset: 0; clip-path: inset(100% 0 0 0); transition: clip-path .7s var(--ease-io); }
-  .crow-preview .slot.on { clip-path: inset(0); }
-  .crow-preview .slot .photo { filter: var(--colour); }
-  .crows.has-preview .crow::before { display: none; }
-  .crows.previewing .crow { color: var(--soft); }
-  .crows.has-preview .crow:hover { color: var(--text); }
-  .crows.has-preview .crow:hover :is(i, small) { color: var(--muted); }
-}
+/* ---------- Home: category photo grid ---------- */
+.cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.5rem, 1vw, .9rem); }
+.cat { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4 / 5; padding: clamp(.85rem, 1.5vw, 1.35rem); }
+.cat > .slot { position: absolute; inset: 0; z-index: -2; }
+.cat::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(12, 11, 10, .4), transparent 28%, transparent 46%, rgba(12, 11, 10, .84)); }
+.cat i { font-family: var(--mono); font-style: normal; font-size: .6875rem; letter-spacing: .13em; transition: color .4s; }
+.cat strong { display: block; font-size: clamp(.875rem, 1.45vw, 1.2rem); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; line-height: 1.25; }
+.cat small { display: none; margin-top: .35rem; font-size: .75rem; line-height: 1.5; color: var(--muted); transition: color .4s; }
+.cat-go { position: absolute; top: clamp(.6rem, 1.2vw, 1.1rem); right: clamp(.6rem, 1.2vw, 1.1rem); display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--line-2); border-radius: 50%; rotate: -45deg; transition: rotate .5s var(--ease), background-color .4s, color .4s, border-color .4s; }
+.cat-go .i { width: .85rem; height: .85rem; }
+.cat:hover .cat-go { rotate: 0deg; background: var(--text); border-color: var(--text); color: var(--bg); }
+/* The last tile leads to the full menu instead of showing a photo. */
+.cat.more { border: 1px solid var(--line-2); background: var(--bg-2); transition: background-color .45s, color .45s; }
+.cat.more::after { display: none; }
+.cat-mark { position: absolute; inset: 0; z-index: -1; height: clamp(2.75rem, 5vw, 4.25rem); width: auto; margin: auto; opacity: .4; transition: opacity .45s, filter .45s; }
+.cat.more:hover .cat-mark { opacity: .7; filter: brightness(.35); }
+.cat.more:hover { background: var(--text); color: var(--bg); }
+.cat.more:hover :is(i, small) { color: rgba(12, 11, 10, .6); }
+.cat.more:hover .cat-go { background: var(--bg); border-color: var(--bg); color: var(--text); }
 
 /* ---------- Home: signature slider ---------- */
-.sig { display: grid; gap: 2rem; }
-.sig-side { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.sig-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.sig-head .sec-head { margin-bottom: 0; }
+.sig-side { display: flex; align-items: center; gap: 2rem; }
+.sig-side .small { max-width: 16rem; }
 .arrows { display: flex; gap: .6rem; }
-.sig-viewport { overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+/* The row starts in line with the page and runs out to the edge. */
+.sig-viewport { --lead: max(calc(var(--gutter) + var(--inset)), calc((100% - 82rem) / 2 + var(--gutter))); overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; padding-inline: var(--lead) var(--gutter); scroll-padding-inline: var(--lead); }
 .sig-viewport::-webkit-scrollbar { display: none; }
-.sig-track { display: flex; gap: 1px; width: max-content; background: var(--line); border-inline: 1px solid var(--line); }
-.sig-card { width: clamp(15rem, 23vw, 19.5rem); flex-shrink: 0; scroll-snap-align: start; background: var(--bg); }
-.sig-card a { display: block; padding: 1rem 1rem 1.4rem; transition: background-color .4s; }
-.sig-card a:hover { background: var(--bg-2); }
-.sig-card .slot { aspect-ratio: 4 / 5; }
-.sig-card h3 { margin-top: 1.1rem; font-size: .875rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.sig-track { display: flex; gap: clamp(.6rem, 1vw, 1rem); width: max-content; }
+.sig-card { width: clamp(15rem, 25vw, 23rem); flex-shrink: 0; scroll-snap-align: start; }
+.sig-card a { position: relative; display: block; }
+.sig-card .slot { aspect-ratio: 3 / 4; }
+.sig-cap { position: absolute; inset: auto 0 0; padding: 4.5rem 1.15rem 1.2rem; background: linear-gradient(transparent, rgba(12, 11, 10, .86)); }
+.sig-card h3 { font-size: .9375rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.3; }
 .sig-card .meta { margin-top: .35rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; color: var(--muted); }
 .sig-card .meta b { font-weight: 400; color: var(--text); }
 
 /* ---------- Home: type stack ---------- */
-.stack { position: relative; isolation: isolate; overflow-x: clip; padding-block: clamp(5rem, 16vh, 10rem); }
+.stack { position: relative; isolation: isolate; overflow-x: clip; padding-block: clamp(7rem, 22vh, 13rem); }
 .stack > .slot { position: absolute; inset: 0; z-index: -1; }
-.stack > .slot .photo { filter: grayscale(1) sepia(.16) brightness(.4) contrast(1.08); }
+.stack > .slot .photo { filter: brightness(.5) contrast(1.06) saturate(.85); }
 .stack-lines { text-align: center; text-transform: uppercase; line-height: 1.12; }
 .stack-lines .ln { font-size: clamp(1.55rem, 4.6vw, 4rem); font-weight: 800; letter-spacing: .01em; translate: var(--dx, 0) 0; }
 .stack-lines .ln:nth-child(even) { font-family: var(--thin); font-weight: 150; letter-spacing: .05em; }
 .stack .mlabel { display: block; margin-top: 2.2rem; text-align: center; }
 
-/* ---------- Home: asks / about / membership ---------- */
-.asks { display: grid; gap: 2.5rem; align-items: start; }
+/* ---------- Photo splits, home about & membership ---------- */
+/* Split: text on one side, a photo filling the other half out to the frame line. */
+.split { position: relative; }
+.split.sec { padding-top: 0; }
+.split-media { position: relative; overflow: hidden; aspect-ratio: 4 / 5; margin-bottom: clamp(2.5rem, 7vw, 3.5rem); }
+.split-media .slot { position: absolute; inset: 0; }
+
 .ask-list { border-top: 1px solid var(--line); }
 .ask-list li { display: flex; align-items: center; gap: 1rem; padding: 1.05rem .25rem; border-bottom: 1px solid var(--line); font-size: .95rem; font-weight: 500; letter-spacing: .04em; }
 .ask-list .star { color: var(--soft); }
 .asks .small { margin-top: 1.5rem; }
 .asks .obtn { margin-top: 1.75rem; }
-.asks-media { max-width: 24rem; }
 
-.abt { display: grid; gap: 3rem; align-items: start; }
+.abt { display: grid; gap: 2.5rem; }
+.abt-hero .slot { aspect-ratio: 4 / 5; }
+.abt-body { display: flex; flex-direction: column; justify-content: space-between; gap: 2.75rem; }
 .abt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
 .abt-card figcaption { margin-top: .7rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
 .abt-card:nth-child(2) { margin-top: 2.5rem; }
@@ -276,8 +274,6 @@ body.menu-open { overflow: hidden; }
 .abt .lead { margin-top: 1.4rem; }
 .abt .ulink { margin-top: 2rem; }
 
-.mem { display: grid; gap: 3rem; align-items: center; }
-.mem-media { max-width: 24rem; }
 .mem .lead { margin-top: 1.4rem; }
 .dots { margin-top: 1.6rem; border-top: 1px solid var(--line); }
 .dots li { display: flex; gap: .9rem; padding: .8rem .25rem; border-bottom: 1px solid var(--line); font-size: .875rem; color: var(--muted); }
@@ -285,9 +281,23 @@ body.menu-open { overflow: hidden; }
 .mem .note { margin-top: 1rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
 .mem .obtn { margin-top: 1.75rem; }
 
+/* ---------- Home: studio reel ---------- */
+.reel-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 3rem; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.reel-head .sec-head { margin-bottom: 0; }
+.reel { overflow: hidden; scrollbar-width: none; }
+.reel-track { display: flex; align-items: flex-start; width: max-content; animation: strip-run 80s linear infinite; }
+.reel:hover .reel-track { animation-play-state: paused; }
+.reel li { width: clamp(11rem, 18vw, 17rem); flex-shrink: 0; margin-right: clamp(.6rem, 1vw, 1rem); }
+.reel li:nth-child(even) { margin-top: clamp(1.5rem, 3vw, 2.75rem); }
+.reel .slot { aspect-ratio: 3 / 4; }
+.reel p { margin-top: .7rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .13em; text-transform: uppercase; color: var(--soft); }
+
 /* ---------- Home: ready + visit ---------- */
-.ready { display: grid; place-items: center; padding: clamp(5rem, 16vh, 9.5rem) var(--gutter); text-align: center; }
-.ready .h-giant { font-size: clamp(2.6rem, 8.4vw, 8rem); }
+.ready { position: relative; isolation: isolate; display: grid; place-items: center; min-height: clamp(32rem, 90vh, 54rem); padding: clamp(5rem, 16vh, 9.5rem) var(--gutter); text-align: center; }
+.ready > .slot { position: absolute; inset: 0; z-index: -1; }
+.ready > .slot .photo { filter: brightness(.45) contrast(1.06) saturate(.85); }
+.ready .h-giant { font-size: clamp(2.6rem, 8.4vw, 8rem); text-shadow: 0 2px 44px rgba(0, 0, 0, .45); }
+.ready .mlabel { color: var(--text); opacity: .85; }
 .ready-in { display: grid; justify-items: center; gap: 1.8rem; }
 .ready-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 
@@ -307,7 +317,7 @@ body.menu-open { overflow: hidden; }
 /* ---------- Map ---------- */
 .map-frame { position: relative; margin-top: 2.5rem; }
 .map { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 5; background: var(--bg-2); }
-.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; filter: grayscale(1) contrast(.92) brightness(1.04); transition: opacity .8s ease; }
+.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; transition: opacity .8s ease; }
 .map.loaded iframe { opacity: 1; }
 .map-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; background: var(--bg-2); font-family: var(--mono); font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--soft); }
 .map-ph img { height: 2rem; width: auto; opacity: .3; filter: grayscale(1) brightness(1.6); }
@@ -333,6 +343,10 @@ body.menu-open { overflow: hidden; }
 .phero .num { display: block; margin-bottom: 1.2rem; }
 .phero .lead { margin-top: 1.5rem; }
 .phero .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+/* A wide photo under the page heading. */
+.phero:has(.phero-media) { padding-bottom: 0; }
+.phero-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; margin-top: clamp(2rem, 6vh, 3.5rem); }
+.phero-media .slot { position: absolute; inset: 0; }
 .draft { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem; border: 1px solid var(--line); padding: .55rem 1rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------- Services page ---------- */
@@ -345,7 +359,8 @@ body.hdr-away .cat-bar-wrap { top: 0; }
 .cat-bar .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--text); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
 .svc-cat:last-child { border-bottom: 0; }
 .svc-cat { display: grid; gap: 2.5rem; padding-block: clamp(3rem, 8vh, 5.5rem); border-bottom: 1px solid var(--line); scroll-margin-top: 9rem; }
-.svc-media { align-self: start; max-width: 24rem; }
+.svc-media { align-self: start; }
+.svc-media :is(.oval, .slice) { aspect-ratio: 4 / 3; }
 .svc-body .num { display: block; margin-bottom: 1rem; }
 .svc-body .lead { margin-top: 1rem; }
 .svc-list { margin-top: 2rem; border-top: 1px solid var(--line); }
@@ -389,7 +404,7 @@ body.hdr-away .cat-bar-wrap { top: 0; }
 .gal-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
 
 .story { display: grid; gap: 3rem; align-items: center; }
-.story-media { max-width: 24rem; }
+.story-media .slot { aspect-ratio: 4 / 5; }
 .story-body .lead + .lead { margin-top: 1rem; }
 .story-body h2 { margin-bottom: 1.5rem; }
 .space { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
@@ -626,6 +641,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   .ct-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .steps3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .abt-cards { max-width: 34rem; }
+  .cat small { display: block; }
   .bk-prog-label { display: none; }
   .bk-prog button { display: flex; align-items: center; gap: .5rem; max-width: 100%; margin-top: .75rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); text-align: left; }
   .bk-prog button span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -643,7 +659,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   .hdr { padding-inline: calc(var(--gutter) + var(--inset) * .6); }
   :is(.page > section ~ section:not(.phero + section), .ft)::before,
   :is(.page > section ~ section:not(.phero + section), .ft)::after {
-    content: ""; position: absolute; top: -6px; width: 11px; height: 11px; pointer-events: none;
+    content: ""; position: absolute; top: -6px; z-index: 3; width: 11px; height: 11px; pointer-events: none;
     background: linear-gradient(var(--line-2), var(--line-2)) center / 100% 1px no-repeat, linear-gradient(var(--line-2), var(--line-2)) center / 1px 100% no-repeat;
   }
   :is(.page > section ~ section:not(.phero + section), .ft)::before { left: calc(var(--gutter) - 5px); }
@@ -652,17 +668,24 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   .perks .perk, .perks .perk:nth-child(odd) { border-bottom: 0 !important; border-left: 1px solid var(--line); padding-left: 1.5rem; }
   .perks .perk:first-child { border-left: 0; padding-left: .25rem; }
   .perks:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .sig { grid-template-columns: 15rem minmax(0, 1fr); align-items: end; }
-  .sig-side { flex-direction: column; align-items: flex-start; gap: 2rem; }
-  .asks { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 4rem; }
-  .abt { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; }
-  .mem { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 4rem; }
+  /* Category tiles step down in alternate columns. */
+  .cats { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+  .cat:nth-child(even) { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+  .sig-viewport { clip-path: inset(-1px var(--gutter)); padding-right: calc(var(--gutter) + var(--inset)); }
+  .split.sec { display: flex; align-items: center; min-height: clamp(36rem, 96vh, 56rem); padding-block: clamp(4rem, 12vh, 7.5rem); }
+  .split-media { position: absolute; top: 0; bottom: 0; right: var(--gutter); width: calc(50% - var(--gutter)); aspect-ratio: auto; margin: 0; }
+  .split.flip .split-media { right: auto; left: var(--gutter); }
+  .split-body { width: calc(50% - clamp(2.5rem, 5vw, 5rem)); }
+  .split.flip .split-body { margin-left: auto; }
+  .abt { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(3rem, 6vw, 6rem); }
+  .phero-media { aspect-ratio: auto; height: clamp(22rem, 60vh, 40rem); margin-inline: var(--gutter); }
   .story { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 4.5rem; }
   .faq-wrap { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 4rem; }
   .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
   .svc-cat { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 4rem; }
   .svc-cat.alt .svc-media { order: 2; }
   .svc-media { position: sticky; top: 10rem; }
+  .svc-media :is(.oval, .slice) { aspect-ratio: 4 / 5; }
   .map { aspect-ratio: 21 / 9; }
   .team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .info4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -684,9 +707,6 @@ body.hdr-away .bk-sum { top: 1.5rem; }
 @media (max-width: 899px) {
   .hero-ph.left { display: none; }
   .hero-stage { grid-template-columns: 1fr; }
-  /* One portrait on small screens: the words sit low so the face stays clear. */
-  .hero-in { justify-content: flex-end; padding-bottom: clamp(2.5rem, 9vh, 4.5rem); }
-  .hero-ph.right .slot .photo { object-position: 50% 20%; }
   .hdr .obtn { padding: .56rem 1rem; letter-spacing: .13em; }
   .ln.push { padding-left: clamp(1.25rem, 8vw, 4rem); }
 }
@@ -699,7 +719,8 @@ body.hdr-away .bk-sum { top: 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; }
-  .strip-track { animation: none; }
+  .strip-track, .reel-track { animation: none; }
+  .reel { overflow-x: auto; }
   .js [data-reveal] { opacity: 1; translate: none; clip-path: none; }
   .js [data-reveal="lines"] .lw { translate: none; }
 }
@@ -779,7 +800,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   <section class="hero">
     <div class="hero-stage">
       <div class="hero-ph left" data-reveal="img"><div class="slot" data-slot="homeExperience" data-eager data-parallax></div></div>
-      <div class="hero-ph right" data-reveal="img" style="--d: 150ms"><div class="slot" data-slot="darkSignature" data-eager data-parallax></div></div>
+      <div class="hero-ph right" data-reveal="img" style="--d: 150ms"><div class="slot" data-slot="categoryHairTreatments" data-eager data-parallax></div></div>
       <div class="hero-in">
         <p class="mlabel" data-reveal="fade" style="--d: 800ms">[ Strictly by appointment · Naxal, Kathmandu ]</p>
         <h1 class="h-giant" data-reveal="lines" style="--d: 400ms">
@@ -811,36 +832,36 @@ body.hdr-away .bk-sum { top: 1.5rem; }
         <p class="mlabel" data-reveal="fade">Pick a category</p>
         <h2 class="h-xl" data-reveal="lines"><span class="ln">/ Our</span><span class="ln push"><em>services</em></span></h2>
       </div>
-      <nav class="crows" aria-label="Service categories" data-stagger="60" data-preview>
-        <a class="crow" href="#/services/skin" data-reveal><i>[01]</i><span><strong>Skin &amp; facials</strong><small>Facials &amp; skin consultations</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/hair-styling" data-reveal><i>[02]</i><span><strong>Hair styling</strong><small>Cuts, blow-dries &amp; braids</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/hair-colour" data-reveal><i>[03]</i><span><strong>Hair colour</strong><small>Highlights, balayage &amp; global colour</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/hair-treatments" data-reveal><i>[04]</i><span><strong>Hair treatments</strong><small>Smoothing &amp; repair</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/mens" data-reveal><i>[05]</i><span><strong>Men's grooming</strong><small>Cuts, fades, beards &amp; grey coverage</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/nails" data-reveal><i>[06]</i><span><strong>Nails</strong><small>Manicures, pedicures &amp; nail art</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="crow" href="#/services/beauty" data-reveal><i>[07]</i><span><strong>Lashes, brows &amp; makeup</strong><small>Threading, waxing &amp; event makeup</small></span><svg class="i"><use href="#i-arrow"/></svg></a>
+      <nav class="cats" aria-label="Service categories" data-stagger="70">
+        <a class="cat group" href="#/services/skin" data-reveal="img"><div class="slot zoom" data-slot="homeHero"></div><i>[01]</i><span><strong>Skin &amp; facials</strong><small>Facials &amp; skin consultations</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-styling" data-reveal="img"><div class="slot zoom" data-slot="gallery11"></div><i>[02]</i><span><strong>Hair styling</strong><small>Cuts, blow-dries &amp; braids</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-colour" data-reveal="img"><div class="slot zoom" data-slot="gallery1"></div><i>[03]</i><span><strong>Hair colour</strong><small>Highlights, balayage &amp; global colour</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-treatments" data-reveal="img"><div class="slot zoom" data-slot="gallery7"></div><i>[04]</i><span><strong>Hair treatments</strong><small>Smoothing &amp; repair</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/mens" data-reveal="img"><div class="slot zoom" data-slot="gallery3"></div><i>[05]</i><span><strong>Men's grooming</strong><small>Cuts, fades, beards &amp; grey coverage</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/nails" data-reveal="img"><div class="slot zoom" data-slot="gallery4"></div><i>[06]</i><span><strong>Nails</strong><small>Manicures, pedicures &amp; nail art</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/beauty" data-reveal="img"><div class="slot zoom" data-slot="gallery6"></div><i>[07]</i><span><strong>Lashes, brows &amp; makeup</strong><small>Threading, waxing &amp; event makeup</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat more" href="#/services" data-reveal="img"><img class="cat-mark" src="assets/emblem.png" alt="" width="310" height="488"><i>[08]</i><span><strong>Full menu</strong><small>Prices, timings &amp; booking</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
       </nav>
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="mlabel" data-reveal="fade">Our most booked</p>
-        <h2 class="h-sec" data-reveal="lines"><span class="ln">Signature</span><span class="ln"><em>treatments</em></span></h2>
-      </div>
-      <div class="sig">
+      <div class="sig-head">
+        <div class="sec-head">
+          <p class="mlabel" data-reveal="fade">Our most booked</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">Signature</span><span class="ln"><em>treatments</em></span></h2>
+        </div>
         <div class="sig-side" data-reveal>
           <p class="small">Seven treatments clients come back for, month after month.</p>
           <div class="arrows">
             <button type="button" class="arrow prev" data-sig="-1" aria-label="Previous treatments"><svg class="i"><use href="#i-arrow"/></svg></button>
             <button type="button" class="arrow" data-sig="1" aria-label="Next treatments"><svg class="i"><use href="#i-arrow"/></svg></button>
           </div>
-          <a href="#/services" class="obtn">Full menu</a>
         </div>
-        <div class="sig-viewport" data-sig-viewport data-reveal style="--d: 120ms"><ul class="sig-track" data-render="signature"></ul></div>
       </div>
     </div>
+    <div class="sig-viewport" data-sig-viewport data-reveal style="--d: 120ms"><ul class="sig-track" data-render="signature"></ul></div>
   </section>
 
   <section class="stack">
@@ -856,9 +877,10 @@ body.hdr-away .bk-sum { top: 1.5rem; }
     </div>
   </section>
 
-  <section class="sec">
-    <div class="wrap asks">
-      <div>
+  <section class="sec split">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="darkSignature" data-parallax></div></div>
+    <div class="wrap">
+      <div class="split-body asks">
         <div class="sec-head">
           <p class="mlabel" data-reveal="fade">Free 20-minute consultation</p>
           <h2 class="h-sec" data-reveal="lines"><span class="ln">Not sure</span><span class="ln"><em>what to book?</em></span></h2>
@@ -867,32 +889,34 @@ body.hdr-away .bk-sum { top: 1.5rem; }
         <p class="small" data-reveal>Book a free 20-minute consultation. We'll look at your skin or hair, ask about your routine and suggest where to start, even if that means no treatment at all.</p>
         <a href="#/book?service=skin-consultation" class="obtn" data-reveal>Free consultation</a>
       </div>
-      <div class="asks-media pol" data-reveal="img"><div class="slot" data-slot="darkConcern"></div></div>
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap abt">
-      <div>
-        <div class="sec-head" style="margin-bottom: 0">
-          <p class="mlabel" data-reveal="fade">More than a salon</p>
-          <h2 class="h-sec" data-reveal="lines"><span class="ln">One team,</span><span class="ln"><em>every detail</em></span></h2>
+      <div class="abt-hero" data-reveal="img"><div class="slot" data-slot="aboutHero" data-parallax></div></div>
+      <div class="abt-body">
+        <div>
+          <div class="sec-head" style="margin-bottom: 0">
+            <p class="mlabel" data-reveal="fade">More than a salon</p>
+            <h2 class="h-sec" data-reveal="lines"><span class="ln">One team,</span><span class="ln"><em>every detail</em></span></h2>
+          </div>
+          <p class="lead" data-reveal>Our team covers skin, hair, colour, men's grooming, nails and makeup, so you can get more done in one visit, with specialists who each focus on what they do best.</p>
+          <p class="lead" data-reveal>Tell us what you'd like and we'll book you with the right person.</p>
+          <a href="#/about" class="ulink" data-reveal>Read our story <svg class="i"><use href="#i-arrow"/></svg></a>
         </div>
-        <p class="lead" data-reveal>Our team covers skin, hair, colour, men's grooming, nails and makeup, so you can get more done in one visit, with specialists who each focus on what they do best.</p>
-        <p class="lead" data-reveal>Tell us what you'd like and we'll book you with the right person.</p>
-        <a href="#/about" class="ulink" data-reveal>Read our story <svg class="i"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="abt-cards" data-stagger="120">
-        <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery1"></div><figcaption>[01] Hand-painted balayage</figcaption></figure>
-        <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery6"></div><figcaption>[02] Soft glam makeup</figcaption></figure>
+        <div class="abt-cards" data-stagger="120">
+          <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery9"></div><figcaption>[01] Skin consultation</figcaption></figure>
+          <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery10"></div><figcaption>[02] Beard shaping</figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="wrap mem">
-      <div class="mem-media pol" data-reveal="img"><div class="slot" data-slot="darkMembership" data-parallax></div></div>
-      <div>
+  <section class="sec split">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="darkMembership" data-parallax></div></div>
+    <div class="wrap">
+      <div class="split-body mem">
         <div class="sec-head" style="margin-bottom: 0">
           <p class="mlabel" data-reveal="fade">Membership</p>
           <h2 class="h-sec" data-reveal="lines"><span class="ln">One treatment,</span><span class="ln"><em>every month</em></span></h2>
@@ -905,7 +929,19 @@ body.hdr-away .bk-sum { top: 1.5rem; }
     </div>
   </section>
 
+  <section class="sec">
+    <div class="wrap reel-head">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">@xcosmopolitan.nepal</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">From</span><span class="ln"><em>the studio</em></span></h2>
+      </div>
+      <a href="#/gallery" class="ulink" data-reveal>View the gallery <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="reel" data-reveal="fade"><ul class="reel-track" data-render="reel"></ul></div>
+  </section>
+
   <section class="ready">
+    <div class="slot" data-slot="homeHeroWide" data-parallax></div>
     <div class="ready-in">
       <p class="mlabel" data-reveal="fade">[ Strictly by appointment ]</p>
       <h2 class="h-giant" data-reveal="lines"><span class="ln">/ Ready</span><span class="ln"><em>to book?</em></span></h2>
@@ -946,6 +982,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       </div>
       <p class="lead" data-reveal style="--d: 200ms">Facials, hair, colour, men's grooming, nails, lashes and makeup. Prices are a guide: anything marked &ldquo;From&rdquo; is confirmed with you before we start.</p>
     </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="servicesHero" data-parallax></div></div>
   </section>
   <div class="cat-bar-wrap"><div class="wrap"><nav class="cat-bar" aria-label="Service categories" data-catbar></nav></div></div>
   <div class="wrap" data-render="serviceSections"></div>
@@ -985,6 +1022,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
         <div class="actions" data-reveal style="--d: 300ms"><a data-wa="Hi Xcosmopolitan, I'd like to know more about the membership." target="_blank" rel="noopener noreferrer" class="obtn">Ask on WhatsApp</a></div>
       </div>
     </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="membershipHero" data-parallax></div></div>
   </section>
   <section class="sec">
     <div class="wrap">
@@ -995,14 +1033,17 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       <ol class="steps3" data-render="membershipSteps" data-stagger="110"></ol>
     </div>
   </section>
-  <section class="sec">
+  <section class="sec split flip">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="homeMembership" data-parallax></div></div>
     <div class="wrap">
-      <div class="sec-head">
-        <p class="mlabel" data-reveal="fade">Every membership includes</p>
-        <h2 class="h-sec" data-reveal="lines"><span class="ln">Member</span><span class="ln"><em>benefits</em></span></h2>
+      <div class="split-body">
+        <div class="sec-head">
+          <p class="mlabel" data-reveal="fade">Every membership includes</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">Member</span><span class="ln"><em>benefits</em></span></h2>
+        </div>
+        <p class="small" data-reveal>Ask us for current pricing at the salon or on WhatsApp.</p>
+        <ul class="benefits" data-render="memberBenefits" data-stagger="60"></ul>
       </div>
-      <p class="small" data-reveal>Ask us for current pricing at the salon or on WhatsApp.</p>
-      <ul class="benefits" data-render="memberBenefits" data-stagger="60"></ul>
     </div>
   </section>
   <section class="sec">
@@ -1023,6 +1064,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       </div>
       <p class="lead" data-reveal style="--d: 200ms">A look at recent work from our studio: colour, cuts, skin, nails and the space itself.</p>
     </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="galleryHero" data-parallax></div></div>
   </section>
   <section class="sec" style="padding-top: 1rem">
     <div class="wrap">
@@ -1043,10 +1085,11 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       </div>
       <p class="lead" data-reveal style="--d: 200ms">Xcosmopolitan is a unisex salon in Nagpokhari, Naxal, for skin, hair and nails. We work strictly by appointment, so the studio stays calm and nobody is rushed.</p>
     </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="salonInterior" data-parallax></div></div>
   </section>
   <section class="sec">
     <div class="wrap story">
-      <div class="story-media pol" data-reveal="img"><div class="slot" data-slot="aboutStory" data-parallax></div></div>
+      <div class="story-media" data-reveal="img"><div class="slot" data-slot="aboutStory" data-parallax></div></div>
       <div class="story-body">
         <h2 class="h-sec" data-reveal="lines"><span class="ln">Why we work</span><span class="ln"><em>by appointment</em></span></h2>
         <div data-reveal>
@@ -1101,6 +1144,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       </div>
       <p class="lead" data-reveal style="--d: 200ms">Find us in Nagpokhari, Naxal, Kathmandu, near Marriott Hotel. Strictly by appointment.</p>
     </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="homeVisit" data-parallax></div></div>
   </section>
   <section class="sec" style="padding-top: 1rem">
     <div class="wrap">
@@ -1232,6 +1276,11 @@ const image = (file, alt, note) => ({ file, alt, note });
 const images = {
   homeExperience: image("home-experience.jpg", "The Xcosmopolitan salon interior", "Hero left · wide"),
   homeHeroWide: image("home-hero-wide.jpg", "Client with a body polish on her shoulder, eyes closed", "Hero portrait · oval"),
+  homeHero: image("home-hero.jpg", "Face mask brushed on during a facial", "Skin & facials · 4:5"),
+  homeHeroDetail: image("home-hero-detail.jpg", "Clay mask brushed onto a client's cheek", "Skin · 4:5"),
+  homeMembership: image("home-membership.jpg", "Client relaxing during a scalp massage", "Membership · 4:5"),
+  homeVisit: image("home-visit.jpg", "Bright salon floor with tall mirrors and a chandelier", "Salon · wide"),
+  salonInterior: image("salon-interior.jpg", "Styling floor with gold arched mirrors and amber chairs", "Salon · wide"),
   darkHeroSlice: image("dark-hero-slice.jpg", "Woman with her eyes closed, face cupped in her hands", "Hero detail · square"),
   darkQuote1: image("dark-quote-1.jpg", "Stylist trimming hair with scissors", "Quote photo · 4:5"),
   darkQuote2: image("dark-quote-2.jpg", "Manicured hand with marbled almond nails", "Quote photo · 4:5"),
@@ -1651,6 +1700,20 @@ const perks = [
 
 // Treatments in the home page slider.
 const signature = ["anti-aging-facial", "highlights-balayage", "kera-box-smoothing", "skin-fade", "gel-polish", "lash-extensions", "hydrating-facial"];
+// Slider photos that differ from their category's, so no photo shows twice in the row.
+const signatureImages = { "hydrating-facial": "gallery2" };
+
+// Photos in the looping studio reel.
+const studioReel = [
+  { image: "darkQuote1", caption: "Precision cut" },
+  { image: "gallery8", caption: "Minimal nail art" },
+  { image: "darkHeroSlice", caption: "Skin" },
+  { image: "gallery5", caption: "The styling floor" },
+  { image: "darkQuote2", caption: "Marbled nails" },
+  { image: "homeHeroDetail", caption: "Clay mask facial" },
+  { image: "galleryHero", caption: "Makeup" },
+  { image: "gallery12", caption: "Reception" },
+];
 
 const concernQuestions = ["Fine lines starting to show?", "Uneven or dull skin tone?", "Breakouts that won't settle?", "Dry, frizzy or damaged hair?"];
 
@@ -1694,9 +1757,11 @@ const renderers = {
       return `
         <li class="sig-card">
           <a href="#/book?service=${slug}" class="group">
-            ${slot(category.image, "zoom")}
-            <h3>${service.name}</h3>
-            <p class="meta"><b>${formatPrice(service)}</b> · ${formatDuration(service.duration)}</p>
+            ${slot(signatureImages[slug] ?? category.image, "zoom")}
+            <div class="sig-cap">
+              <h3>${service.name}</h3>
+              <p class="meta"><b>${formatPrice(service)}</b> · ${formatDuration(service.duration)}</p>
+            </div>
           </a>
         </li>`;
     }).join(""),
@@ -1711,6 +1776,11 @@ const renderers = {
       </li>`).join(""),
 
   asks: () => concernQuestions.map((question) => `<li data-reveal>${star()}${question}</li>`).join(""),
+
+  // Listed twice so the reel can loop without a gap; the copy is hidden from screen readers.
+  reel: () =>
+    [false, true].map((copy) => studioReel.map((item) =>
+      `<li${copy ? ' aria-hidden="true"' : ""}>${slot(item.image)}<p>${item.caption}</p></li>`).join("")).join(""),
 
   memberTeaser: () => membershipBenefits.slice(0, 3).map((benefit) => `<li>${benefit.text}</li>`).join(""),
 
@@ -1770,8 +1840,6 @@ for (const el of $$("[data-map]")) {
     <iframe src="${site.mapEmbed}" title="Map showing ${site.name} in ${site.address}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
   $("iframe", el).addEventListener("load", () => el.classList.add("loaded"));
 }
-// Clicking into a map moves focus into Google's frame; the tint lifts then.
-addEventListener("blur", () => setTimeout(() => document.activeElement?.closest(".map")?.classList.add("live")));
 $("[data-year]").textContent = new Date().getFullYear();
 
 
@@ -1805,7 +1873,9 @@ const revealOnView = (entries, observer) => {
     observer.unobserve(entry.target);
   }
 };
-const revealObserver = new IntersectionObserver(revealOnView, { rootMargin: "0px 0px -8% 0px" });
+// The area reaches far above the screen, so anything already scrolled past (after a jump or a
+// reload part-way down) still reveals; masked photos otherwise only count once their top edge shows.
+const revealObserver = new IntersectionObserver(revealOnView, { rootMargin: "100000px 0px -8% 0px" });
 // The hero fills the first screen, so it reveals as soon as any of it shows.
 const heroRevealObserver = new IntersectionObserver(revealOnView);
 
@@ -1933,55 +2003,8 @@ const sigViewport = $("[data-sig-viewport]");
 for (const button of $$("[data-sig]")) {
   button.addEventListener("click", () => {
     const card = $(".sig-card", sigViewport);
-    const step = card ? card.offsetWidth + 20 : 280;
+    const step = card ? card.offsetWidth + (parseFloat(getComputedStyle(card.parentElement).columnGap) || 0) : 280;
     sigViewport.scrollBy({ left: step * Number(button.dataset.sig), behavior: reduceMotion ? "auto" : "smooth" });
-  });
-}
-
-// ---------- Home: category row preview ----------
-// On desktop, a photo of the category under the cursor follows it across the rows.
-const crowList = $("[data-preview]");
-if (crowList && finePointer && !reduceMotion) {
-  const rows = $$(".crow", crowList);
-  const preview = document.createElement("div");
-  preview.className = "crow-preview";
-  preview.setAttribute("aria-hidden", "true");
-  preview.innerHTML = rows.map((row) => slot(categories.find((category) => row.hash.endsWith(`/${category.slug}`)).image)).join("");
-  crowList.append(preview);
-  crowList.classList.add("has-preview");
-  fillSlots(preview);
-  const shots = $$(".slot", preview);
-  const goal = { x: 0, y: 0 };
-  let at = null;
-  let frame = 0;
-
-  // Eases towards the cursor and leans a little with the movement.
-  const follow = () => {
-    if (!at) return (frame = 0);
-    at.x += (goal.x - at.x) * 0.14;
-    at.y += (goal.y - at.y) * 0.14;
-    const lean = Math.max(-6, Math.min(6, (goal.x - at.x) * 0.035));
-    preview.style.translate = `${at.x.toFixed(1)}px ${at.y.toFixed(1)}px`;
-    preview.style.rotate = `${lean.toFixed(2)}deg`;
-    frame = Math.abs(goal.x - at.x) + Math.abs(goal.y - at.y) > 0.4 ? requestAnimationFrame(follow) : 0;
-  };
-
-  crowList.addEventListener("pointermove", (event) => {
-    const box = crowList.getBoundingClientRect();
-    const x = event.clientX - box.left;
-    const y = event.clientY - box.top;
-    // Sits to the right of the cursor, or to its left near the right edge.
-    goal.x = x + preview.offsetWidth + 48 > box.width ? x - preview.offsetWidth - 48 : x + 48;
-    goal.y = y - preview.offsetHeight / 2;
-    if (!at) at = { ...goal };
-    if (!frame) frame = requestAnimationFrame(follow);
-    const index = rows.indexOf(event.target.closest(".crow"));
-    shots.forEach((shot, i) => shot.classList.toggle("on", i === index));
-    crowList.classList.toggle("previewing", index > -1);
-  });
-  crowList.addEventListener("pointerleave", () => {
-    crowList.classList.remove("previewing");
-    at = null;
   });
 }
 

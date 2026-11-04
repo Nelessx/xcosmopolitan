@@ -1,0 +1,2799 @@
+<!doctype html>
+<!-- Design 1: image-led dark editorial. Warm black, hairlines, heavy+thin caps headings
+     with a slash prefix, mono bracket labels, large photos leading every section. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xcosmopolitan | Skin, Hair &amp; Nail Salon in Naxal, Kathmandu</title>
+<meta name="description" content="Facials, hair, colour, men's grooming and nails at a unisex salon in Nagpokhari, Naxal, Kathmandu. Strictly by appointment.">
+<meta name="theme-color" content="#0c0b0a">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Raleway:wght@100;200;300&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* ---------- Tokens & base ---------- */
+:root {
+  --bg: #0c0b0a;
+  --bg-2: #151311;
+  --text: #eee8df;
+  --muted: rgba(238, 232, 223, .6);
+  --soft: rgba(238, 232, 223, .38);
+  --line: rgba(238, 232, 223, .14);
+  --line-2: rgba(238, 232, 223, .38);
+  /* Photos share one soft colour grade, a little richer on hover. */
+  --grade: brightness(.92) contrast(1.04) saturate(.92);
+  --colour: brightness(1) contrast(1.03) saturate(1.02);
+  --heavy: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --thin: "Raleway", ui-sans-serif, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --ease-io: cubic-bezier(.77, 0, .18, 1);
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --hdr: 4rem;
+  --inset: 0px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+html { height: 100%; font-family: var(--heavy); }
+body { min-height: 100%; background: var(--bg); color: var(--text); font-weight: 300; font-size: .9375rem; line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+::selection { background: var(--text); color: var(--bg); }
+/* The browser's default focus ring disappears on the dark background. */
+:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
+img, svg, iframe { display: block; }
+a { color: inherit; text-decoration: none; }
+button { background: none; color: inherit; font: inherit; cursor: pointer; text-align: inherit; }
+input, textarea { background: none; color: inherit; font: inherit; }
+ul, ol { list-style: none; }
+.i { width: 1rem; height: 1rem; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.i-fill, .star { fill: currentColor; stroke: none; }
+.star { width: .55rem; height: .7rem; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.skip { position: fixed; top: -4rem; left: 1rem; z-index: 100; background: var(--text); color: var(--bg); padding: .6rem 1.2rem; font-size: .75rem; transition: top .3s; }
+.skip:focus { top: 1rem; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.wrap, .container { width: 100%; max-width: calc(82rem + var(--inset) * 2); margin-inline: auto; padding-inline: calc(var(--gutter) + var(--inset)); }
+.sec { padding-block: clamp(3.5rem, 9vh, 6.5rem); }
+/* Fine film grain over everything. */
+body::after { content: ""; position: fixed; inset: 0; z-index: 99; pointer-events: none; opacity: .055; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* Sections are divided by full-width hairlines (not straight after a page heading). */
+.page > section ~ section { position: relative; border-top: 1px solid var(--line); }
+.page > .phero + section { border-top: 0; }
+
+/* ---------- Type ---------- */
+.mlabel, .num, .eyebrow { font-family: var(--mono); font-size: .6875rem; font-weight: 400; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); }
+.h-giant, .h-xl, .h-lg, .h-md, .h-page { font-weight: 800; letter-spacing: .01em; text-transform: uppercase; line-height: 1.06; }
+:is(.h-giant, .h-xl, .h-lg, .h-md, .h-page) em { font-family: var(--thin); font-style: normal; font-weight: 150; letter-spacing: .04em; }
+.h-giant { font-size: clamp(2.35rem, 6.2vw, 5.9rem); }
+.h-page { font-size: clamp(2.5rem, 6vw, 5.25rem); }
+.h-xl { font-size: clamp(1.9rem, 4.2vw, 3.6rem); }
+.h-lg { font-size: clamp(1.6rem, 3vw, 2.6rem); }
+.h-md { font-size: clamp(1.2rem, 2vw, 1.7rem); }
+/* Section heading: one line, heavy + thin, kept smaller than the big moments. */
+.h-sec { font-size: clamp(1.45rem, 2.5vw, 2.15rem); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; line-height: 1.18; }
+.h-sec em { font-family: var(--thin); font-style: normal; font-weight: 200; letter-spacing: .04em; }
+.h-sec .ln { display: inline-block; }
+.h-sec .ln:not(:last-child) { margin-right: .3em; }
+.ln { display: block; }
+.ln.push { padding-left: clamp(2rem, 14vw, 11rem); }
+.lead { max-width: 34rem; font-size: .9375rem; color: var(--muted); }
+.small { max-width: 30rem; font-size: .875rem; color: var(--muted); }
+.sec-head { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.sec-head .mlabel::before { content: "[ "; } .sec-head .mlabel::after { content: " ]"; }
+.u-link { text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--line-2); text-decoration-thickness: 1px; transition: text-decoration-color .3s; }
+.u-link:hover { text-decoration-color: var(--text); }
+.ulink { position: relative; display: inline-flex; align-items: center; gap: .6rem; font-size: .6875rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; padding-bottom: .4rem; }
+.ulink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--text); transform-origin: left; transition: scale .5s var(--ease); }
+.ulink:hover::after { scale: 0 1; transform-origin: right; }
+.ulink .i { width: .8rem; height: .8rem; }
+
+/* ---------- Buttons ---------- */
+.obtn, .btn {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: .7rem;
+  border: 1px solid var(--line-2); padding: 1.02rem 2.3rem;
+  font-size: .6875rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap;
+  transition: color .4s, border-color .4s, opacity .3s;
+}
+:is(.obtn, .btn)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--text); translate: 0 101%; transition: translate .55s var(--ease); }
+:is(.obtn, .btn):hover { color: var(--bg); border-color: var(--text); }
+:is(.obtn, .btn):hover::before { translate: none; }
+.obtn.solid, .btn-ink { background: var(--text); border-color: var(--text); color: var(--bg); }
+:is(.obtn.solid, .btn-ink)::before { background: var(--bg); }
+:is(.obtn.solid, .btn-ink):hover { color: var(--text); }
+.btn .i { width: .85rem; height: .85rem; }
+.btn .arr { display: grid; place-items: center; transition: rotate .5s var(--ease); }
+.btn:hover .arr { rotate: 45deg; }
+.btn:disabled { cursor: not-allowed; opacity: .3; }
+.btn:disabled::before { display: none; }
+.btn.is-busy:disabled { cursor: wait; opacity: .85; }
+.btn-block { display: flex; width: 100%; }
+.arrow { display: grid; place-items: center; width: 3.1rem; height: 3.1rem; border-radius: 50%; border: 1px solid var(--line-2); transition: background-color .4s, color .4s, border-color .4s; }
+.arrow:hover { background: var(--text); border-color: var(--text); color: var(--bg); }
+.arrow.prev .i { rotate: 180deg; }
+
+/* ---------- Photo slots ---------- */
+.slot { position: relative; overflow: hidden; background: var(--bg-2); }
+.slot .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: var(--grade); translate: 0 var(--py, 0px); scale: var(--s, 1); transition: opacity .9s ease, scale 1.8s var(--ease), filter 1s ease; }
+.slot.has-photo .photo { opacity: 1; }
+.slot.no-fade .photo { transition: scale 1.8s var(--ease), filter 1s ease; }
+.slot.has-photo .ph { opacity: 0; }
+.slot[data-parallax] { --s: 1.1; }
+.group:hover .slot.zoom { --s: 1.06; }
+@media (hover: hover) {
+  :is(.group, .abt-card, .abt-hero, .split-media, .phero-media, .reel li, .team li, .space .slot, .svc-media, .story-media, .contact-photo, .opt):hover .photo { filter: var(--colour); }
+}
+.ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1rem; text-align: center; background: var(--bg-2); transition: opacity .5s; }
+.ph img { height: 2rem; width: auto; opacity: .3; filter: grayscale(1) brightness(1.6); }
+.ph-note, .ph-file { font-family: var(--mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+.slot-bare .ph { padding: 0; } .slot-bare .ph img { height: 38%; } .slot-bare :is(.ph-note, .ph-file) { display: none; }
+/* Legacy shape wrappers from the shared renderers, flattened. */
+.oval { aspect-ratio: 3 / 4; border-radius: 0; }
+.slice { position: relative; aspect-ratio: 3 / 4; }
+.slice .slot { position: absolute; inset: 0; }
+.slice-line { display: none; }
+
+/* ---------- Header ---------- */
+.hdr { position: sticky; top: 0; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: var(--hdr); padding-inline: var(--gutter); background: var(--bg); border-bottom: 1px solid var(--line); transition: translate .6s var(--ease); }
+.hdr.away { translate: 0 -100%; }
+.brand { display: inline-flex; align-items: center; gap: .7rem; justify-self: center; }
+.brand .emblem { height: 1.5rem; width: auto; }
+.brand .wordmark { height: .9rem; width: auto; fill: currentColor; }
+.hdr-r { display: flex; align-items: center; gap: 1rem; justify-self: end; }
+.hdr .obtn { padding: .62rem 1.35rem; }
+.burger { display: flex; flex-direction: column; justify-content: center; gap: 6px; width: 2.5rem; height: 2.5rem; margin-left: -.3rem; }
+.burger span { display: block; height: 1px; background: var(--text); transition: width .45s var(--ease); }
+.burger span:nth-child(1) { width: 26px; }
+.burger span:nth-child(2) { width: 15px; }
+.burger:hover span { width: 26px; }
+
+/* ---------- Full-screen menu ---------- */
+.mnav { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; background: var(--bg); visibility: hidden; clip-path: inset(0 0 100% 0); transition: clip-path .7s var(--ease-io), visibility 0s .7s; }
+.mnav.open { visibility: visible; clip-path: inset(0); transition: clip-path .7s var(--ease-io); }
+.mnav-top { display: flex; align-items: center; justify-content: space-between; height: var(--hdr); padding-inline: var(--gutter); border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.mnav-close { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; margin-right: -.6rem; transition: rotate .5s var(--ease); }
+.mnav-close:hover { rotate: 90deg; }
+.mnav-close .i { width: 1.35rem; height: 1.35rem; }
+.mnav-links { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-inline: var(--gutter); overflow-y: auto; }
+.mnav-links a { position: relative; display: flex; align-items: baseline; gap: 1.25rem; padding-block: clamp(.35rem, 1.5vh, .85rem); font-size: clamp(1.8rem, 5vh, 3.3rem); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; line-height: 1.1; color: var(--muted); transition: color .4s, padding-left .5s var(--ease); }
+.mnav-links a:hover, .mnav-links a.is-active { color: var(--text); padding-left: 1rem; }
+.mnav-links a i { font-family: var(--mono); font-style: normal; font-size: .6875rem; letter-spacing: .13em; color: var(--soft); }
+.mnav.open .mnav-links a { animation: menu-rise .7s var(--ease) both; animation-delay: calc(80ms + var(--i) * 55ms); }
+@keyframes menu-rise { from { opacity: 0; translate: 0 1.6rem; } }
+.mnav-foot { display: flex; flex-wrap: wrap; gap: .75rem 2.5rem; justify-content: space-between; padding: 1.3rem var(--gutter); border-top: 1px solid var(--line); }
+body.menu-open { overflow: hidden; }
+
+/* ---------- Opening ---------- */
+.intro { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: var(--bg); transition: clip-path .9s var(--ease-io); clip-path: inset(0); }
+.intro.leave { clip-path: inset(0 0 100% 0); }
+.intro-in { display: grid; justify-items: center; gap: 1.4rem; }
+.intro-in .wordmark { width: min(74vw, 30rem); height: auto; fill: var(--text); animation: intro-word 1s var(--ease) both; }
+.intro-in .mlabel { animation: intro-word 1s var(--ease) .25s both; }
+@keyframes intro-word { from { opacity: 0; translate: 0 1.2rem; } }
+
+/* ---------- Hero ---------- */
+.hero { padding: 0 var(--gutter) var(--gutter); }
+.hero-stage { position: relative; display: grid; grid-template-columns: 1fr 1fr; height: calc(100svh - var(--hdr) - var(--gutter)); min-height: 32rem; max-height: 62rem; }
+.hero-ph { position: relative; overflow: hidden; }
+.hero-ph .slot { position: absolute; inset: 0; }
+.hero-ph .slot .photo { filter: brightness(.55) contrast(1.05) saturate(.7); }
+.hero-ph.right .slot .photo { filter: brightness(.8) contrast(1.06) saturate(.78); object-position: 70% 18%; }
+.hero-ph::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(12, 11, 10, .38), transparent 36%, transparent 58%, rgba(12, 11, 10, .54)); }
+.hero-in { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.25rem, 3.5vh, 2.1rem); padding: 1.5rem; text-align: center; }
+/* Shadow on the whole heading: a text-shadow would be cut off by each line's reveal mask. */
+.hero-in .h-giant { filter: drop-shadow(0 2px 24px rgba(0, 0, 0, .45)); }
+.hero-in .mlabel { color: var(--text); opacity: .85; }
+.hero-tag { max-width: 34rem; font-family: var(--thin); font-size: clamp(1.1rem, 1.9vw, 1.6rem); font-weight: 300; line-height: 1.35; letter-spacing: .02em; text-shadow: 0 2px 24px rgba(0, 0, 0, .5); }
+
+/* ---------- Marquee strip ---------- */
+.strip { overflow: hidden; border-top: 1px solid var(--line); padding-block: .95rem; }
+.strip-track { display: flex; width: max-content; animation: strip-run 30s linear infinite; }
+.strip span { display: inline-flex; align-items: center; font-family: var(--mono); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); white-space: nowrap; }
+.strip span::after { content: "/"; margin-inline: 2.6rem; color: var(--line-2); }
+@keyframes strip-run { to { translate: -50% 0; } }
+
+/* ---------- Home: perks ---------- */
+.perks { counter-reset: perk; display: grid; border-block: 1px solid var(--line); }
+.perks .perk { counter-increment: perk; position: relative; padding: 1.75rem .25rem; border-bottom: 1px solid var(--line); }
+.perks .perk:last-child { border-bottom: 0; }
+.perk .star { display: none; }
+.perk::before { content: "[0" counter(perk) "]"; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; color: var(--soft); }
+.perk h3 { margin-top: .9rem; font-size: .9375rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.perk p { margin-top: .55rem; font-size: .84rem; line-height: 1.7; color: var(--muted); }
+/* Home: the four promises as one slim bar under the marquee. */
+.perks.bar { border-block: 0; }
+.perks.bar .perk { padding-block: 1.5rem 1.65rem; }
+.perks.bar .perk h3 { margin-top: .7rem; font-size: .8125rem; }
+.perks.bar .perk p { font-size: .8rem; }
+
+/* ---------- Home: category photo grid ---------- */
+.cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.5rem, 1vw, .9rem); }
+.cat { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4 / 5; padding: clamp(.85rem, 1.5vw, 1.35rem); }
+.cat > .slot { position: absolute; inset: 0; z-index: -2; }
+.cat::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(12, 11, 10, .4), transparent 28%, transparent 46%, rgba(12, 11, 10, .84)); }
+.cat i { font-family: var(--mono); font-style: normal; font-size: .6875rem; letter-spacing: .13em; transition: color .4s; }
+.cat strong { display: block; font-size: clamp(.875rem, 1.45vw, 1.2rem); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; line-height: 1.25; }
+.cat small { display: none; margin-top: .35rem; font-size: .75rem; line-height: 1.5; color: var(--muted); transition: color .4s; }
+.cat-go { position: absolute; top: clamp(.6rem, 1.2vw, 1.1rem); right: clamp(.6rem, 1.2vw, 1.1rem); display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--line-2); border-radius: 50%; rotate: -45deg; transition: rotate .5s var(--ease), background-color .4s, color .4s, border-color .4s; }
+.cat-go .i { width: .85rem; height: .85rem; }
+.cat:hover .cat-go { rotate: 0deg; background: var(--text); border-color: var(--text); color: var(--bg); }
+/* The last tile leads to the full menu instead of showing a photo. */
+.cat.more { border: 1px solid var(--line-2); background: var(--bg-2); transition: background-color .45s, color .45s; }
+.cat.more::after { display: none; }
+.cat-mark { position: absolute; inset: 0; z-index: -1; height: clamp(2.75rem, 5vw, 4.25rem); width: auto; margin: auto; opacity: .4; transition: opacity .45s, filter .45s; }
+.cat.more:hover .cat-mark { opacity: .7; filter: brightness(.35); }
+.cat.more:hover { background: var(--text); color: var(--bg); }
+.cat.more:hover :is(i, small) { color: rgba(12, 11, 10, .6); }
+.cat.more:hover .cat-go { background: var(--bg); border-color: var(--bg); color: var(--text); }
+
+/* ---------- Home: signature slider ---------- */
+.sig-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.sig-head .sec-head { margin-bottom: 0; }
+.sig-side { display: flex; align-items: center; gap: 2rem; }
+.sig-side .small { max-width: 16rem; }
+.arrows { display: flex; gap: .6rem; }
+/* The row starts in line with the page and runs out to the edge. */
+.sig-viewport { --lead: max(calc(var(--gutter) + var(--inset)), calc((100% - 82rem) / 2 + var(--gutter))); overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; padding-inline: var(--lead) var(--gutter); scroll-padding-inline: var(--lead); }
+.sig-viewport::-webkit-scrollbar { display: none; }
+.sig-track { display: flex; gap: clamp(.6rem, 1vw, 1rem); width: max-content; }
+.sig-card { width: clamp(15rem, 25vw, 23rem); flex-shrink: 0; scroll-snap-align: start; }
+.sig-card a { position: relative; display: block; }
+.sig-card .slot { aspect-ratio: 3 / 4; }
+.sig-cap { position: absolute; inset: auto 0 0; padding: 4.5rem 1.15rem 1.2rem; background: linear-gradient(transparent, rgba(12, 11, 10, .86)); }
+.sig-card h3 { font-size: .9375rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.3; }
+.sig-card .meta { margin-top: .35rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; color: var(--muted); }
+.sig-card .meta b { font-weight: 400; color: var(--text); }
+
+/* ---------- Home: type stack ---------- */
+.stack { position: relative; isolation: isolate; overflow-x: clip; padding-block: clamp(7rem, 22vh, 13rem); }
+.stack > .slot { position: absolute; inset: 0; z-index: -1; }
+.stack > .slot .photo { filter: brightness(.5) contrast(1.06) saturate(.85); }
+.stack-lines { text-align: center; text-transform: uppercase; line-height: 1.12; }
+.stack-lines .ln { font-size: clamp(1.55rem, 4.6vw, 4rem); font-weight: 800; letter-spacing: .01em; translate: var(--dx, 0) 0; }
+.stack-lines .ln:nth-child(even) { font-family: var(--thin); font-weight: 150; letter-spacing: .05em; }
+.stack .mlabel { display: block; margin-top: 2.2rem; text-align: center; }
+
+/* ---------- Photo splits, home about & membership ---------- */
+/* Split: text on one side, a photo filling the other half out to the frame line. */
+.split { position: relative; }
+.split.sec { padding-top: 0; }
+.split-media { position: relative; overflow: hidden; aspect-ratio: 4 / 5; margin-bottom: clamp(2.5rem, 7vw, 3.5rem); }
+.split-media .slot { position: absolute; inset: 0; }
+
+.ask-list { border-top: 1px solid var(--line); }
+.ask-list li { display: flex; align-items: center; gap: 1rem; padding: 1.05rem .25rem; border-bottom: 1px solid var(--line); font-size: .95rem; font-weight: 500; letter-spacing: .04em; }
+.ask-list .star { color: var(--soft); }
+.asks .small { margin-top: 1.5rem; }
+.asks .obtn { margin-top: 1.75rem; }
+
+.abt { display: grid; gap: 2.5rem; }
+.abt-hero .slot { aspect-ratio: 4 / 5; }
+.abt-body { display: flex; flex-direction: column; justify-content: space-between; gap: 2.75rem; }
+.abt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+.abt-card figcaption { margin-top: .7rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+.abt-card:nth-child(2) { margin-top: 2.5rem; }
+.abt-card .slot { aspect-ratio: 3 / 4; }
+.abt .lead { margin-top: 1.4rem; }
+.abt .ulink { margin-top: 2rem; }
+
+.mem .lead { margin-top: 1.4rem; }
+.dots { margin-top: 1.6rem; border-top: 1px solid var(--line); }
+.dots li { display: flex; gap: .9rem; padding: .8rem .25rem; border-bottom: 1px solid var(--line); font-size: .875rem; color: var(--muted); }
+.dots li::before { content: "[+]"; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; color: var(--soft); padding-top: .15rem; }
+.mem .note { margin-top: 1rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.mem .obtn { margin-top: 1.75rem; }
+
+/* ---------- Home: studio reel ---------- */
+.reel-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 3rem; margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+.reel-head .sec-head { margin-bottom: 0; }
+.reel { overflow: hidden; scrollbar-width: none; }
+.reel-track { display: flex; align-items: flex-start; width: max-content; animation: strip-run 80s linear infinite; }
+.reel:hover .reel-track { animation-play-state: paused; }
+.reel li { width: clamp(11rem, 18vw, 17rem); flex-shrink: 0; margin-right: clamp(.6rem, 1vw, 1rem); }
+.reel li:nth-child(even) { margin-top: clamp(1.5rem, 3vw, 2.75rem); }
+.reel .slot { aspect-ratio: 3 / 4; }
+.reel p { margin-top: .7rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .13em; text-transform: uppercase; color: var(--soft); }
+
+/* ---------- Home: ready + visit ---------- */
+.ready { position: relative; isolation: isolate; display: grid; place-items: center; min-height: clamp(32rem, 90vh, 54rem); padding: clamp(5rem, 16vh, 9.5rem) var(--gutter); text-align: center; }
+.ready > .slot { position: absolute; inset: 0; z-index: -1; }
+.ready > .slot .photo { filter: brightness(.45) contrast(1.06) saturate(.85); }
+.ready .h-giant { font-size: clamp(2.6rem, 8.4vw, 8rem); text-shadow: 0 2px 44px rgba(0, 0, 0, .45); }
+.ready .mlabel { color: var(--text); opacity: .85; }
+.ready-in { display: grid; justify-items: center; gap: 1.8rem; }
+.ready-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+
+.ct-cols { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.ct-col { background: var(--bg); padding: 1.75rem 1.5rem; }
+.ct-col .star { display: none; }
+.ct-col small { font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--soft); }
+.ct-col small::before { content: "/ "; }
+.ct-col p { margin-top: .8rem; font-size: .9375rem; line-height: 1.8; }
+.ct-col p a { display: block; width: fit-content; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--line-2); }
+.ct-col p a:hover { text-decoration-color: var(--text); }
+.socials-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 2.5rem; }
+.socials { display: flex; gap: .6rem; }
+.socials a { display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border: 1px solid var(--line-2); border-radius: 50%; transition: background-color .4s, color .4s; }
+.socials a:hover { background: var(--text); color: var(--bg); }
+
+/* ---------- Map ---------- */
+.map-frame { position: relative; margin-top: 2.5rem; }
+.map { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 5; background: var(--bg-2); }
+.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; transition: opacity .8s ease; }
+.map.loaded iframe { opacity: 1; }
+.map-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; background: var(--bg-2); font-family: var(--mono); font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--soft); }
+.map-ph img { height: 2rem; width: auto; opacity: .3; filter: grayscale(1) brightness(1.6); }
+
+/* ---------- Accordion ---------- */
+.faq-wrap { display: grid; gap: 2.5rem; }
+.acc { border-top: 1px solid var(--line); }
+.acc-item { border-bottom: 1px solid var(--line); }
+.acc-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.3rem; font-size: .95rem; font-weight: 500; letter-spacing: .04em; transition: color .3s; }
+.acc-btn:hover { color: var(--muted); }
+.pm { position: relative; width: .9rem; height: .9rem; flex-shrink: 0; }
+.pm::before, .pm::after { content: ""; position: absolute; inset: 50% 0 auto; height: 1px; background: currentColor; transition: rotate .45s var(--ease); }
+.pm::after { rotate: 90deg; }
+.acc-item.open .pm::after { rotate: 0deg; }
+.acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
+.acc-panel > div { overflow: hidden; }
+.acc-item.open .acc-panel { grid-template-rows: 1fr; }
+.acc-panel p { max-width: 40rem; padding-bottom: 1.4rem; font-size: .9rem; line-height: 1.8; color: var(--muted); }
+.faq-media { max-width: 26rem; }
+
+/* ---------- Inner page hero ---------- */
+.phero { padding: clamp(2.5rem, 8vh, 5rem) 0 clamp(2rem, 6vh, 3.5rem); }
+.phero .num { display: block; margin-bottom: 1.2rem; }
+.phero .lead { margin-top: 1.5rem; }
+.phero .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+/* A wide photo under the page heading. */
+.phero:has(.phero-media) { padding-bottom: 0; }
+.phero-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; margin-top: clamp(2rem, 6vh, 3.5rem); }
+.phero-media .slot { position: absolute; inset: 0; }
+.draft { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem; border: 1px solid var(--line); padding: .55rem 1rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Services page ---------- */
+.cat-bar-wrap { position: sticky; top: var(--hdr); z-index: 30; background: var(--bg); border-block: 1px solid var(--line); transition: top .6s var(--ease); }
+body.hdr-away .cat-bar-wrap { top: 0; }
+.cat-bar { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; }
+.cat-bar::-webkit-scrollbar { display: none; }
+.cat-bar a { flex-shrink: 0; padding-block: .95rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.cat-bar a:hover, .cat-bar a.is-active { color: var(--text); }
+.cat-bar .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--text); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
+.svc-cat:last-child { border-bottom: 0; }
+.svc-cat { display: grid; gap: 2.5rem; padding-block: clamp(3rem, 8vh, 5.5rem); border-bottom: 1px solid var(--line); scroll-margin-top: 9rem; }
+.svc-media { align-self: start; }
+.svc-media :is(.oval, .slice) { aspect-ratio: 4 / 3; }
+.svc-body .num { display: block; margin-bottom: 1rem; }
+.svc-body .lead { margin-top: 1rem; }
+.svc-list { margin-top: 2rem; border-top: 1px solid var(--line); }
+.svc-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: center; padding-block: 1.3rem; border-bottom: 1px solid var(--line); }
+.svc-row h3 { font-size: .95rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+.svc-row p { margin-top: .35rem; max-width: 30rem; font-size: .84rem; color: var(--muted); }
+.svc-row .meta { margin-top: .55rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; color: var(--muted); }
+.svc-row .meta b { font-weight: 500; color: var(--text); }
+.row-book { display: inline-flex; align-items: center; gap: .55rem; font-size: .625rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; border: 1px solid var(--line-2); padding: .65rem 1.2rem; transition: background-color .4s, color .4s, border-color .4s; }
+.row-book:hover { background: var(--text); border-color: var(--text); color: var(--bg); }
+.row-book .i { width: .75rem; height: .75rem; }
+.consult { display: grid; justify-items: center; gap: 1.3rem; border: 1px solid var(--line); padding: clamp(2.5rem, 7vw, 4.5rem) 1.5rem; text-align: center; }
+.consult .star { color: var(--soft); width: .8rem; height: 1rem; }
+.consult .small { max-width: 34rem; }
+
+/* ---------- Membership / gallery / about / contact / policies ---------- */
+.steps3 { counter-reset: step; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.step3 { background: var(--bg); padding: 2rem 1.5rem 2.25rem; }
+.step3 .n { font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; color: var(--soft); }
+.step3 .n::before { content: "[ "; } .step3 .n::after { content: " ]"; }
+.step3 h3 { margin-top: 1.1rem; font-size: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.step3 p { margin-top: .6rem; font-size: .875rem; color: var(--muted); }
+.benefits { display: grid; border-top: 1px solid var(--line); margin-top: 2rem; }
+.benefits li { display: flex; align-items: center; gap: 1rem; padding: 1rem .25rem; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.benefits .star { color: var(--soft); }
+
+.filters { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; border-block: 1px solid var(--line); margin-bottom: 2rem; }
+.filters::-webkit-scrollbar { display: none; }
+.filters button { flex-shrink: 0; padding-block: .95rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.filters button:hover, .filters button[aria-pressed="true"] { color: var(--text); }
+.filters .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--text); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
+.gal { columns: 2; gap: 1.25rem; }
+.gal li { break-inside: avoid; margin-bottom: 1.25rem; }
+.gal .slot { aspect-ratio: 3 / 4; }
+.gal .shape-square .photo, .gal .slot { aspect-ratio: initial; }
+.gal .slot { display: block; position: relative; }
+.gal .slot .photo { position: relative; inset: auto; height: auto; aspect-ratio: 3/4; object-fit: cover; }
+.gal .shape-square .photo { aspect-ratio: 1; }
+.gal .shape-landscape .photo { aspect-ratio: 4 / 3; }
+.gal figcaption { margin-top: .7rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .13em; text-transform: uppercase; color: var(--soft); }
+.gal-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
+
+.story { display: grid; gap: 3rem; align-items: center; }
+.story-media .slot { aspect-ratio: 4 / 5; }
+.story-body .lead + .lead { margin-top: 1rem; }
+.story-body h2 { margin-bottom: 1.5rem; }
+.space { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+.space .slot { aspect-ratio: 4 / 3; }
+.team { display: grid; gap: 2rem 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 2.5rem; }
+.team .slot { aspect-ratio: 3 / 4; }
+.team h3 { margin-top: 1rem; font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.team p { margin-top: .3rem; font-size: .8rem; color: var(--muted); }
+
+.info4 { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.contact-grid { display: grid; gap: 2.5rem; margin-top: 2.5rem; }
+.form-card { border: 1px solid var(--line); padding: clamp(1.5rem, 4vw, 2.5rem); }
+.form-card .small { margin-top: .75rem; }
+.form-stack { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.field label { display: block; margin-bottom: .45rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+.input { display: block; width: 100%; border-bottom: 1px solid var(--line-2); border-radius: 0; padding: .7rem 0; font-size: 1rem; outline: none; transition: border-color .3s; }
+.input::placeholder { color: var(--soft); }
+.input:focus { border-color: var(--text); }
+textarea.input { min-height: 6rem; resize: vertical; }
+.contact-photo { align-self: start; }
+.contact-photo .slot { aspect-ratio: 4 / 5; }
+
+.policy-grid { display: grid; gap: 2rem; }
+.policy-nav { display: none; }
+.policy-card { scroll-margin-top: 8rem; border-bottom: 1px solid var(--line); padding-block: 2.5rem; }
+.policy-card .num { display: block; margin-bottom: .75rem; }
+.policy-card ul { margin-top: 1.25rem; display: grid; gap: 1rem; }
+.policy-card li { display: flex; gap: .9rem; font-size: .9rem; line-height: 1.8; color: var(--muted); }
+.policy-card li .star { margin-top: .5rem; color: var(--soft); }
+
+.nf { display: grid; place-items: center; min-height: 60vh; padding-block: 4rem; text-align: center; }
+.nf .h-page { font-size: clamp(5rem, 20vw, 12rem); }
+.nf .lead { margin: 1.5rem auto 0; max-width: 26rem; }
+.nf .obtn { margin-top: 2rem; }
+
+/* ---------- Footer ---------- */
+.ft { position: relative; border-top: 1px solid var(--line); }
+.ft-top { display: grid; gap: 2.5rem; padding-block: clamp(2.5rem, 6vh, 4rem); }
+.ft-brand p { margin-top: 1.25rem; max-width: 20rem; font-size: .84rem; color: var(--muted); }
+.ft-links { display: grid; gap: .55rem; align-content: start; }
+.ft-links .eyebrow { margin-bottom: .5rem; }
+.ft-links .eyebrow::before { content: "/ "; }
+.ft-links a { width: fit-content; font-size: .875rem; color: var(--muted); transition: color .3s; }
+.ft-links a:hover { color: var(--text); }
+.ft-links span { font-size: .875rem; color: var(--muted); }
+.ft-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding-block: 1.3rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.ft-bottom nav { display: flex; gap: 1.5rem; }
+.ft-bottom a:hover { color: var(--text); }
+.to-top { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid var(--line-2); border-radius: 50%; transition: background-color .4s, color .4s; }
+.to-top:hover { background: var(--text); color: var(--bg); }
+.to-top .i { rotate: -90deg; }
+
+/* ---------- Mobile book bar ---------- */
+.mbar { position: fixed; left: 1rem; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 40; transition: translate .6s var(--ease), opacity .4s; }
+.mbar.away { translate: 0 160%; opacity: 0; pointer-events: none; }
+.mbar a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--text); color: var(--bg); padding: 1rem 1.4rem; font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .9); }
+.mbar .i { width: .85rem; height: .85rem; }
+
+/* ---------- Booking ---------- */
+.booking { padding-bottom: 5rem; }
+.bk { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-top: 1rem; }
+.bk-aside { display: none; }
+.bk-prog-label { font-family: var(--mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.bk-prog-label b { font-weight: 500; color: var(--text); }
+.bk-prog ol { margin-top: .75rem; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; }
+.bk-prog .bar { display: block; height: 1px; overflow: hidden; background: var(--line); }
+.bk-prog .bar span { display: block; width: 0; height: 100%; background: var(--text); }
+.bk-prog .done .bar span, .bk-prog .active .bar span { width: 100%; }
+.bk-prog .bar span.grow { animation: grow .9s var(--ease) both; }
+@keyframes grow { from { width: 0; } }
+.bk-prog button { display: none; }
+.bk-sum-mini { margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid var(--line); padding: .9rem 1.1rem; font-size: .875rem; }
+.bk-sum-mini strong { display: block; font-weight: 600; letter-spacing: .03em; }
+.bk-sum-mini span { font-size: .8125rem; color: var(--muted); }
+.bk-sum-mini .price { flex-shrink: 0; font-family: var(--mono); font-size: .8125rem; }
+.notice { margin-top: 1.25rem; display: flex; align-items: center; gap: .6rem; border-left: 2px solid var(--text); background: var(--bg-2); padding: .9rem 1.1rem; font-size: .875rem; }
+.bk-step { margin-top: 2rem; }
+.bk-step.fwd { animation: step-in .7s var(--ease) both; }
+.bk-step.back { animation: step-back .7s var(--ease) both; }
+@keyframes step-in { from { opacity: 0; transform: translateX(28px); } }
+@keyframes step-back { from { opacity: 0; transform: translateX(-28px); } }
+.bk-h h2 { font-size: clamp(1.7rem, 3.6vw, 2.7rem); font-weight: 800; letter-spacing: .01em; text-transform: uppercase; line-height: 1.08; }
+.bk-h p { margin-top: .6rem; font-size: .9rem; color: var(--muted); }
+.pill-row { margin-top: 1.75rem; display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+.pill-row::-webkit-scrollbar { display: none; }
+.pill { flex-shrink: 0; border: 1px solid var(--line-2); padding: .6rem 1.15rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; color: var(--muted); transition: color .3s, border-color .3s, background-color .3s; }
+.pill:hover { color: var(--text); border-color: var(--text); }
+.pill[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: var(--bg); }
+.opt-grid { display: grid; gap: .75rem; }
+.gap-top { margin-top: 1.25rem; }
+.opt { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; width: 100%; height: 100%; border: 1px solid var(--line); padding: 1.25rem 3.5rem 1.25rem 1.25rem; transition: border-color .3s, background-color .3s; }
+.opt:hover { border-color: var(--line-2); }
+.opt[aria-pressed="true"] { border-color: var(--text); background: var(--bg-2); }
+.opt-check { position: absolute; top: 1.1rem; right: 1.1rem; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 1px solid var(--line-2); color: transparent; transition: background-color .3s, border-color .3s, color .3s; }
+.opt-check .i { width: .8rem; height: .8rem; stroke-width: 2; }
+.opt[aria-pressed="true"] .opt-check { border-color: var(--text); background: var(--text); color: var(--bg); }
+.opt-title { font-size: .95rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; line-height: 1.3; }
+.opt-text { font-size: .8125rem; line-height: 1.6; color: var(--muted); }
+.opt-meta { margin-top: .4rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.tagpill { border: 1px solid var(--line); padding: .25rem .7rem; font-family: var(--mono); font-size: .6563rem; letter-spacing: .08em; }
+.tagpill.soft { color: var(--muted); }
+.person { display: flex; align-items: center; gap: 1rem; }
+.person .slot, .avatar-any { width: 3.25rem; height: 3.25rem; flex-shrink: 0; border-radius: 50%; }
+.person .slot { overflow: hidden; }
+.avatar-any { display: grid; place-items: center; border: 1px solid var(--line-2); }
+.avatar-any img { height: 1.5rem; width: auto; opacity: .6; }
+.days { margin-top: 1.75rem; display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); padding-bottom: .25rem; }
+.days::-webkit-scrollbar { display: none; }
+.day { display: flex; flex-direction: column; align-items: center; width: 4.3rem; flex-shrink: 0; scroll-snap-align: start; border: 1px solid var(--line); padding-block: .9rem; transition: background-color .3s, border-color .3s; }
+.day .wd { font-family: var(--mono); font-size: .5625rem; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+.day .dn { margin-top: .3rem; font-size: 1.5rem; font-weight: 700; line-height: 1; }
+.day .mo { margin-top: .3rem; font-family: var(--mono); font-size: .625rem; color: var(--muted); }
+.day:hover:not(:disabled) { border-color: var(--line-2); }
+.day[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: var(--bg); }
+.day[aria-pressed="true"] :is(.wd, .mo) { color: rgba(0, 0, 0, .55); }
+.day:disabled { opacity: .3; }
+.days-bar { margin-top: 1.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.days-range { font-family: var(--mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.days-arrows { display: flex; gap: .5rem; }
+.days-bar.fits .days-arrows { display: none; }
+.days-nav { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--line-2); transition: background-color .35s, color .35s, border-color .35s, opacity .3s; }
+.days-nav:hover:not(:disabled) { background: var(--text); border-color: var(--text); color: var(--bg); }
+.days-nav:disabled { opacity: .28; cursor: not-allowed; }
+.days-nav.prev .i { rotate: 180deg; }
+.days { margin-top: 1rem; scroll-padding-inline: var(--gutter); }
+@media (min-width: 640px) { .days { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; } }
+.day-detail { margin-top: 2rem; display: grid; gap: 1.5rem; }
+.day-title { font-size: 1.1rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+.times { margin-top: .75rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.time { border: 1px solid var(--line); padding-block: .7rem; font-family: var(--mono); font-size: .75rem; letter-spacing: .05em; transition: background-color .3s, border-color .3s; }
+.time:hover { border-color: var(--line-2); }
+.time[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: var(--bg); }
+.tz-note { display: flex; align-items: center; gap: .5rem; font-size: .8125rem; color: var(--muted); }
+.full-note { margin-top: 2rem; color: var(--muted); }
+.form-grid { margin-top: 1.75rem; display: grid; gap: 1.5rem; }
+.phone { display: flex; align-items: flex-end; }
+.phone .prefix { border-bottom: 1px solid var(--line-2); padding: .7rem .75rem .7rem 0; color: var(--muted); }
+.phone .input { flex: 1; }
+.err { margin-top: .45rem; font-size: .8125rem; color: #f2b8bd; }
+.agree { margin-top: 1.75rem; display: flex; align-items: flex-start; gap: .75rem; cursor: pointer; }
+.agree input { width: 1.05rem; height: 1.05rem; flex-shrink: 0; margin-top: .2rem; accent-color: var(--text); }
+.agree span { font-size: .875rem; color: var(--muted); }
+.hold { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .75rem; border: 1px solid var(--line); padding: .6rem 1.1rem; font-size: .8125rem; color: var(--muted); }
+.hold .clock { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--text); }
+.pulse { position: relative; width: .45rem; height: .45rem; flex-shrink: 0; border-radius: 50%; background: var(--text); }
+.pulse::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--text); animation: ping 2s var(--ease) infinite; }
+@keyframes ping { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(3); opacity: 0; } }
+.pay-total { margin-top: 2rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; border-block: 1px solid var(--line); padding-block: 1.4rem; }
+.pay-total span { color: var(--muted); }
+.pay-total strong { font-size: 1.6rem; font-weight: 700; letter-spacing: .02em; }
+.from-note, .demo-note { margin-top: .9rem; font-size: .8125rem; color: var(--muted); }
+.demo-note { color: var(--soft); }
+.bk-nav { margin-top: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding-top: 1.75rem; }
+.back-btn { display: inline-flex; align-items: center; gap: .5rem; font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.back-btn:hover { color: var(--text); }
+.back-btn .i { rotate: 180deg; }
+.spinner { width: 1rem; height: 1rem; border-radius: 50%; border: 1.5px solid rgba(0, 0, 0, .3); border-top-color: var(--bg); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pop { animation: pop .35s var(--ease); }
+@keyframes pop { 40% { transform: scale(.97); } }
+.bk-sum { position: sticky; top: 7rem; border: 1px solid var(--line); background: var(--bg-2); transition: top .6s var(--ease); }
+body.hdr-away .bk-sum { top: 1.5rem; }
+.bk-sum-img, .bk-sum-empty { aspect-ratio: 16 / 10; }
+.bk-sum-img { position: relative; }
+.bk-sum-empty { display: grid; place-items: center; background: var(--bg-2); }
+.bk-sum-empty img { height: 2.5rem; width: auto; opacity: .3; }
+.bk-sum-body { padding: 1.5rem; }
+.bk-sum-body dl { margin-top: 1rem; font-size: .875rem; }
+.bk-sum-body dl div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding-block: .6rem; }
+.bk-sum-body dt { color: var(--muted); }
+.bk-sum-body dd { text-align: right; }
+.bk-sum-body dd.empty { color: var(--soft); }
+.total { margin-top: 1.1rem; display: flex; align-items: baseline; justify-content: space-between; }
+.total span { font-size: .875rem; color: var(--muted); }
+.total strong { font-size: 1.35rem; font-weight: 700; }
+.secure { margin-top: 1rem; display: flex; gap: .5rem; font-size: .75rem; line-height: 1.5; color: var(--soft); }
+.done-wrap { padding-block: 2rem 1rem; }
+.done { max-width: 38rem; margin-inline: auto; text-align: center; }
+.done-badge { display: grid; place-items: center; width: 5.5rem; height: 5.5rem; margin: 0 auto; border-radius: 50%; border: 1px solid var(--line-2); animation: badge .8s var(--ease) both; }
+.done-badge svg { width: 2.4rem; height: 2.4rem; fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; animation: draw .7s var(--ease) .35s forwards; }
+@keyframes badge { from { scale: .4; opacity: 0; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.done .eyebrow { display: block; margin-top: 1.75rem; }
+.done h2 { margin-top: .75rem; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 800; text-transform: uppercase; line-height: 1.05; }
+.done h2 b { font-family: var(--thin); font-weight: 150; }
+.done .lead { margin: 1rem auto 0; max-width: 28rem; }
+.ref { margin-top: 1.75rem; display: inline-flex; align-items: center; gap: .75rem; border: 1px solid var(--line-2); padding: .5rem .5rem .5rem 1.2rem; font-family: var(--mono); font-size: .8125rem; letter-spacing: .06em; }
+.ref button { background: var(--text); color: var(--bg); padding: .4rem .9rem; font-size: .6875rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.done dl { margin-top: 1.75rem; border-block: 1px solid var(--line); text-align: left; font-size: .9rem; }
+.done dl div { display: flex; justify-content: space-between; gap: 1.5rem; padding-block: .85rem; }
+.done dl div + div { border-top: 1px solid var(--line); }
+.done dt { color: var(--muted); }
+.done dd { text-align: right; }
+.done .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.done .again { margin-top: 1.75rem; font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-decoration: underline; text-underline-offset: 6px; transition: color .3s; }
+.done .again:hover { color: var(--text); }
+.rise-in { animation: rise .8s var(--ease) both; animation-delay: var(--d); }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* ---------- Motion ---------- */
+.js [data-reveal] { opacity: 0; translate: 0 1.75rem; transition: opacity 1s var(--ease), translate 1.2s var(--ease), clip-path 1.4s var(--ease-io); transition-delay: var(--d, 0ms); }
+.js [data-reveal].in { opacity: 1; translate: none; }
+.js [data-reveal="fade"] { translate: none; }
+/* Headings rise line by line from behind a mask. */
+.js [data-reveal="lines"] { opacity: 1; translate: none; }
+.js [data-reveal="lines"] .ln { clip-path: inset(-.2em -.5em -.12em -.5em); }
+.js [data-reveal="lines"] .lw { display: inline-block; translate: 0 118%; transition: translate 1.25s var(--ease); transition-delay: calc(var(--d, 0ms) + var(--li, 0) * 110ms); }
+.js [data-reveal="lines"].in .lw { translate: none; }
+/* Photos wipe open from the top. */
+.js :is([data-reveal="img"], [data-reveal="oval"], [data-reveal="slice"]) { opacity: 1; translate: none; clip-path: inset(0 0 100% 0); }
+.js :is([data-reveal="img"], [data-reveal="oval"], [data-reveal="slice"]).in { clip-path: inset(0); }
+.js [data-reveal="pop"] { translate: 0 1.1rem; }
+[data-float] { transform: translateY(var(--fy, 0px)); }
+
+::view-transition-old(root) { animation: vt-out .3s var(--ease) both; }
+::view-transition-new(root) { animation: vt-in .6s var(--ease) both; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+
+/* ---------- Breakpoints ---------- */
+@media (min-width: 640px) {
+  .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .perks .perk { border-bottom: 0; border-left: 1px solid var(--line); padding-inline: 1.5rem; }
+  .perks .perk:nth-child(odd) { border-left: 0; padding-left: .25rem; }
+  .perks .perk:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .opt-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .form-grid .span-2 { grid-column: span 2; }
+  .times { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .space { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .space .s1 { grid-column: span 3; aspect-ratio: 21 / 9; }
+  .gal { columns: 3; }
+  .ct-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .steps3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .abt-cards { max-width: 34rem; }
+  .cat small { display: block; }
+  .bk-prog-label { display: none; }
+  .bk-prog button { display: flex; align-items: center; gap: .5rem; max-width: 100%; margin-top: .75rem; font-family: var(--mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); text-align: left; }
+  .bk-prog button span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bk-prog .n { display: grid; place-items: center; width: 1.4rem; height: 1.4rem; flex-shrink: 0; border: 1px solid var(--line-2); font-size: .625rem; }
+  .bk-prog .n .i { width: .7rem; height: .7rem; }
+  .bk-prog .active button { color: var(--text); }
+  .bk-prog .active .n { border-color: var(--text); background: var(--text); color: var(--bg); }
+  .bk-prog .done button { color: var(--muted); }
+  .bk-prog .done button:hover { color: var(--text); }
+}
+@media (min-width: 900px) {
+  /* Thin frame lines down both sides; section rules cross them with a small mark. */
+  :root { --inset: clamp(1.5rem, 3vw, 3rem); }
+  body::before { content: ""; position: fixed; inset: 0 var(--gutter); z-index: 52; pointer-events: none; border-inline: 1px solid var(--line); }
+  .hdr { padding-inline: calc(var(--gutter) + var(--inset) * .6); }
+  :is(.page > section ~ section:not(.phero + section), .ft)::before,
+  :is(.page > section ~ section:not(.phero + section), .ft)::after {
+    content: ""; position: absolute; top: -6px; z-index: 3; width: 11px; height: 11px; pointer-events: none;
+    background: linear-gradient(var(--line-2), var(--line-2)) center / 100% 1px no-repeat, linear-gradient(var(--line-2), var(--line-2)) center / 1px 100% no-repeat;
+  }
+  :is(.page > section ~ section:not(.phero + section), .ft)::before { left: calc(var(--gutter) - 5px); }
+  :is(.page > section ~ section:not(.phero + section), .ft)::after { right: calc(var(--gutter) - 5px); }
+  .perks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .perks .perk, .perks .perk:nth-child(odd) { border-bottom: 0 !important; border-left: 1px solid var(--line); padding-left: 1.5rem; }
+  .perks .perk:first-child { border-left: 0; padding-left: .25rem; }
+  .perks:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Category tiles step down in alternate columns. */
+  .cats { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+  .cat:nth-child(even) { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+  .sig-viewport { clip-path: inset(-1px var(--gutter)); padding-right: calc(var(--gutter) + var(--inset)); }
+  .split.sec { display: flex; align-items: center; min-height: clamp(36rem, 96vh, 56rem); padding-block: clamp(4rem, 12vh, 7.5rem); }
+  .split-media { position: absolute; top: 0; bottom: 0; right: var(--gutter); width: calc(50% - var(--gutter)); aspect-ratio: auto; margin: 0; }
+  .split.flip .split-media { right: auto; left: var(--gutter); }
+  .split-body { width: calc(50% - clamp(2.5rem, 5vw, 5rem)); }
+  .split.flip .split-body { margin-left: auto; }
+  .abt { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(3rem, 6vw, 6rem); }
+  .phero-media { aspect-ratio: auto; height: clamp(22rem, 60vh, 40rem); margin-inline: var(--gutter); }
+  .story { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 4.5rem; }
+  .faq-wrap { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 4rem; }
+  .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+  .svc-cat { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 4rem; }
+  .svc-cat.alt .svc-media { order: 2; }
+  .svc-media { position: sticky; top: 10rem; }
+  .svc-media :is(.oval, .slice) { aspect-ratio: 4 / 5; }
+  .map { aspect-ratio: 21 / 9; }
+  .team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .info4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ft-top { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; }
+  .policy-grid { grid-template-columns: 15rem minmax(0, 1fr); gap: 4rem; }
+  .policy-nav { display: grid; gap: .8rem; align-content: start; position: sticky; top: 8rem; }
+  .policy-nav a { font-family: var(--mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+  .policy-nav a:hover { color: var(--text); }
+  .mbar { display: none; }
+}
+@media (min-width: 1024px) {
+  .bk { grid-template-columns: minmax(0, 1fr) 22rem; gap: 4rem; }
+  .bk-aside { display: block; }
+  .bk-sum-mini { display: none; }
+  .times { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .gal { columns: 3; }
+  .phero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 3rem; align-items: end; }
+}
+@media (max-width: 899px) {
+  .hero-ph.left { display: none; }
+  .hero-stage { grid-template-columns: 1fr; }
+  .hdr .obtn { padding: .56rem 1rem; letter-spacing: .13em; }
+  .ln.push { padding-left: clamp(1.25rem, 8vw, 4rem); }
+}
+@media (max-width: 639px) {
+  /* Hero label breaks into two even lines instead of leaving one word behind. */
+  .hero-in .mlabel { max-width: 17rem; text-wrap: balance; }
+  .hero-tag { max-width: 17rem; text-wrap: balance; }
+  /* The honesty band: each line sized to fit the screen, without the sideways drift. */
+  .stack { padding-block: clamp(5.5rem, 16vh, 8rem); }
+  .stack-lines .ln { font-size: 5.4vw; translate: none; }
+  .stack-lines .ln:nth-child(even) { letter-spacing: .03em; }
+  /* Footer: navigation and social side by side, visit details below. */
+  .ft-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.5rem; }
+  .ft-brand, .ft-links[aria-label="Visit"] { grid-column: 1 / -1; }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gal { columns: 2; gap: .75rem; }
+  .gal li { margin-bottom: .75rem; }
+  .ready-btns { width: 100%; flex-direction: column; }
+  .ready-btns .obtn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; }
+  .strip-track, .reel-track { animation: none; }
+  .reel { overflow-x: auto; }
+  .js [data-reveal] { opacity: 1; translate: none; clip-path: none; }
+  .js [data-reveal="lines"] .lw { translate: none; }
+}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="wordmark" viewBox="0 0 346 49"><path d="M48.1648 25.7539L41.2508 34.5234C40.9904 34.8359 40.7365 35.1615 40.4891 35.5C40.2417 35.8255 40.0203 36.1445 39.825 36.457C39.6297 36.7695 39.4669 37.0625 39.3367 37.3359C39.2195 37.5964 39.1609 37.8177 39.1609 38H35.3719V37.9219C35.6583 37.6745 36.062 37.2969 36.5828 36.7891C37.1167 36.2812 37.6831 35.6432 38.282 34.875L46.8758 24.0742L38.0477 12.4727C37.5659 11.8477 37.0906 11.3268 36.6219 10.9102C36.1531 10.4805 35.8016 10.2005 35.5672 10.0703V9.99219H41.6805C41.6805 10.1484 41.7 10.3503 41.7391 10.5977C41.7911 10.8451 41.8823 11.138 42.0125 11.4766C42.1427 11.8021 42.3185 12.1667 42.5398 12.5703C42.7742 12.974 43.0737 13.4102 43.4383 13.8789L49.0828 21.2812L55.3133 13.4883C55.5477 13.2018 55.7755 12.8893 55.9969 12.5508C56.2312 12.2122 56.4331 11.8867 56.6023 11.5742C56.7846 11.2487 56.9279 10.9492 57.032 10.6758C57.1492 10.4023 57.2078 10.1745 57.2078 9.99219H60.9969V10.0703C60.8667 10.1745 60.7234 10.2982 60.5672 10.4414C60.4109 10.5846 60.2286 10.7604 60.0203 10.9688C59.825 11.1771 59.6036 11.4245 59.3562 11.7109C59.1089 11.9974 58.8289 12.3359 58.5164 12.7266L50.3719 23L59.4734 34.9141C60.0984 35.7214 60.6779 36.3919 61.2117 36.9258C61.7586 37.4466 62.1557 37.7786 62.4031 37.9219V38H56.3289C56.3289 37.7005 56.2052 37.2057 55.9578 36.5156C55.7104 35.8255 55.2482 35.0247 54.5711 34.1133L48.1648 25.7539ZM83.5393 20.2168L83.4074 20.2754C82.6457 19.5723 81.7277 19.0107 80.6535 18.5908C79.5891 18.1709 78.4172 17.9609 77.1379 17.9609C75.9074 17.9609 74.7795 18.1562 73.7541 18.5469C72.7287 18.9277 71.8449 19.4844 71.1027 20.2168C70.3703 20.9492 69.799 21.8477 69.3889 22.9121C68.9787 23.9766 68.7736 25.1875 68.7736 26.5449C68.7736 28.0391 68.9689 29.4355 69.3596 30.7344C69.7502 32.0234 70.3312 33.1416 71.1027 34.0889C71.8742 35.0361 72.8361 35.7832 73.9885 36.3301C75.1506 36.8672 76.5031 37.1357 78.0461 37.1357C78.6027 37.1357 79.1594 37.0771 79.716 36.96C80.2727 36.8428 80.8049 36.6719 81.3127 36.4473C81.8303 36.2129 82.3137 35.9346 82.7629 35.6123C83.2219 35.2803 83.6369 34.9043 84.008 34.4844L84.1691 34.5869L82.9973 37.5752C82.2648 37.8584 81.4543 38.0732 80.5656 38.2197C79.6867 38.376 78.798 38.4541 77.8996 38.4541C76.093 38.4541 74.4377 38.1953 72.9338 37.6777C71.4396 37.1504 70.1506 36.4082 69.0666 35.4512C67.9924 34.4941 67.1525 33.3467 66.5471 32.0088C65.9514 30.6611 65.6535 29.167 65.6535 27.5264C65.6535 26.5986 65.7707 25.6855 66.0051 24.7871C66.2492 23.8887 66.6008 23.0342 67.0598 22.2236C67.5187 21.4131 68.0852 20.6709 68.759 19.9971C69.4328 19.3135 70.1994 18.7227 71.0588 18.2246C71.9279 17.7266 72.8801 17.3408 73.9152 17.0674C74.9602 16.7842 76.0881 16.6426 77.299 16.6426C79.1838 16.6426 80.9318 16.9307 82.5432 17.5068L83.5393 20.2168ZM97.6299 16.6426C99.2607 16.6426 100.765 16.9111 102.142 17.4482C103.528 17.9756 104.725 18.7227 105.73 19.6895C106.736 20.6465 107.522 21.7988 108.089 23.1465C108.655 24.4941 108.938 25.9834 108.938 27.6143C108.938 28.542 108.831 29.4551 108.616 30.3535C108.401 31.252 108.084 32.1016 107.664 32.9023C107.254 33.7031 106.746 34.4453 106.141 35.1289C105.535 35.8027 104.842 36.3887 104.061 36.8867C103.289 37.375 102.435 37.7559 101.497 38.0293C100.56 38.3125 99.5488 38.4541 98.4648 38.4541C96.834 38.4541 95.3252 38.1953 93.9385 37.6777C92.5615 37.1504 91.3701 36.4082 90.3643 35.4512C89.3584 34.4941 88.5723 33.3467 88.0059 32.0088C87.4395 30.6611 87.1562 29.167 87.1562 27.5264C87.1562 26.5986 87.2637 25.6855 87.4785 24.7871C87.6934 23.8887 88.0059 23.0342 88.416 22.2236C88.8359 21.4131 89.3438 20.6709 89.9395 19.9971C90.5449 19.3135 91.2334 18.7227 92.0049 18.2246C92.7861 17.7266 93.6455 17.3408 94.583 17.0674C95.5303 16.7842 96.5459 16.6426 97.6299 16.6426ZM98.4648 37.1357C99.5488 37.1357 100.54 36.9404 101.438 36.5498C102.337 36.1592 103.108 35.5928 103.753 34.8506C104.407 34.1084 104.915 33.2051 105.276 32.1406C105.638 31.0664 105.818 29.8506 105.818 28.4932C105.818 26.9893 105.643 25.5977 105.291 24.3184C104.949 23.0293 104.437 21.916 103.753 20.9785C103.069 20.0312 102.215 19.2939 101.189 18.7666C100.174 18.2295 98.9873 17.9609 97.6299 17.9609C96.5459 17.9609 95.5547 18.1562 94.6562 18.5469C93.7578 18.9277 92.9814 19.4844 92.3271 20.2168C91.6826 20.9492 91.1797 21.8477 90.8184 22.9121C90.457 23.9766 90.2764 25.1875 90.2764 26.5449C90.2764 28.0391 90.4473 29.4355 90.7891 30.7344C91.1309 32.0234 91.6436 33.1416 92.3271 34.0889C93.0107 35.0361 93.8652 35.7832 94.8906 36.3301C95.916 36.8672 97.1074 37.1357 98.4648 37.1357ZM122.209 20.334H121.887C121.808 20.1094 121.681 19.8555 121.506 19.5723C121.34 19.2891 121.115 19.0254 120.832 18.7812C120.558 18.5273 120.221 18.3174 119.821 18.1514C119.43 17.9854 118.967 17.9023 118.429 17.9023C117.951 17.9023 117.526 17.9756 117.155 18.1221C116.784 18.2686 116.471 18.4736 116.218 18.7373C115.973 19.001 115.788 19.3135 115.661 19.6748C115.534 20.0361 115.471 20.4365 115.471 20.876C115.471 21.5791 115.666 22.2529 116.056 22.8975C116.457 23.5322 116.955 24.1621 117.551 24.7871C118.146 25.4121 118.791 26.0371 119.484 26.6621C120.178 27.2871 120.822 27.9365 121.418 28.6104C122.013 29.2842 122.507 29.9922 122.897 30.7344C123.298 31.4668 123.498 32.2578 123.498 33.1074C123.498 33.7422 123.386 34.3818 123.161 35.0264C122.946 35.6611 122.609 36.2324 122.15 36.7402C121.691 37.248 121.1 37.6631 120.378 37.9854C119.655 38.2979 118.796 38.4541 117.8 38.4541C117.243 38.4541 116.711 38.4004 116.203 38.293C115.705 38.1953 115.241 38.0732 114.811 37.9268C114.391 37.7705 114.011 37.6045 113.669 37.4287C113.337 37.2529 113.063 37.0918 112.848 36.9453L113.185 33.708H113.552C113.659 34.167 113.835 34.6064 114.079 35.0264C114.323 35.4365 114.621 35.8027 114.972 36.125C115.334 36.4375 115.744 36.6914 116.203 36.8867C116.662 37.0723 117.165 37.165 117.712 37.165C118.21 37.165 118.654 37.0918 119.045 36.9453C119.445 36.7891 119.787 36.5791 120.07 36.3154C120.353 36.042 120.568 35.7197 120.715 35.3486C120.871 34.9775 120.949 34.5723 120.949 34.1328C120.949 33.5176 120.837 32.9512 120.612 32.4336C120.387 31.9062 120.09 31.4082 119.719 30.9395C119.357 30.4707 118.942 30.0166 118.473 29.5771C118.014 29.1377 117.541 28.6982 117.053 28.2588C116.564 27.8096 116.086 27.3506 115.617 26.8818C115.158 26.4131 114.743 25.915 114.372 25.3877C114.011 24.8506 113.718 24.2793 113.493 23.6738C113.268 23.0586 113.156 22.3848 113.156 21.6523C113.156 20.8809 113.303 20.1875 113.596 19.5723C113.898 18.9473 114.294 18.415 114.782 17.9756C115.28 17.5361 115.842 17.1992 116.467 16.9648C117.092 16.7305 117.736 16.6133 118.4 16.6133C118.888 16.6133 119.338 16.6523 119.748 16.7305C120.158 16.8086 120.524 16.9014 120.846 17.0088C121.179 17.1162 121.467 17.2236 121.711 17.3311C121.955 17.4385 122.155 17.5264 122.311 17.5947L122.209 20.334ZM127.261 37.9414C127.369 37.7852 127.491 37.5557 127.628 37.2529C127.764 36.9404 127.872 36.5498 127.95 36.0811C128.057 35.3975 128.174 34.6309 128.301 33.7812C128.438 32.9219 128.575 32.0234 128.712 31.0859C128.858 30.1484 129 29.1914 129.136 28.2148C129.283 27.2285 129.42 26.2617 129.546 25.3145C129.683 24.3574 129.81 23.4395 129.927 22.5605C130.054 21.6719 130.167 20.8613 130.264 20.1289C130.362 19.3965 130.44 18.7617 130.499 18.2246C130.567 17.6777 130.616 17.2676 130.645 16.9941H132.505L141.719 34.2207L150.86 16.9941H152.252L154.654 34.3965C154.722 34.9434 154.796 35.4121 154.874 35.8027C154.952 36.1934 155.03 36.5303 155.108 36.8135C155.186 37.0869 155.259 37.3164 155.328 37.502C155.406 37.6777 155.479 37.8242 155.547 37.9414V38H151.856V37.9414C151.905 37.834 151.949 37.6582 151.988 37.4141C152.037 37.1699 152.061 36.877 152.061 36.5352C152.061 36.4082 152.056 36.2812 152.046 36.1543C152.037 36.0176 152.022 35.8711 152.003 35.7148L150.142 21.6816L141.5 37.9414L140.489 37.8242L131.788 21.5352C131.446 23.8496 131.148 25.9883 130.894 27.9512C130.787 28.791 130.679 29.6309 130.572 30.4707C130.464 31.3008 130.367 32.0771 130.279 32.7998C130.201 33.5225 130.137 34.1621 130.088 34.7188C130.04 35.2656 130.015 35.6709 130.015 35.9346C130.015 36.2666 130.025 36.5596 130.045 36.8135C130.064 37.0674 130.084 37.2822 130.103 37.458C130.132 37.6631 130.162 37.8438 130.191 38H127.261V37.9414ZM169.638 16.6426C171.269 16.6426 172.773 16.9111 174.15 17.4482C175.537 17.9756 176.733 18.7227 177.739 19.6895C178.745 20.6465 179.531 21.7988 180.097 23.1465C180.663 24.4941 180.947 25.9834 180.947 27.6143C180.947 28.542 180.839 29.4551 180.624 30.3535C180.41 31.252 180.092 32.1016 179.672 32.9023C179.262 33.7031 178.754 34.4453 178.149 35.1289C177.543 35.8027 176.85 36.3887 176.069 36.8867C175.297 37.375 174.443 37.7559 173.505 38.0293C172.568 38.3125 171.557 38.4541 170.473 38.4541C168.842 38.4541 167.333 38.1953 165.947 37.6777C164.57 37.1504 163.378 36.4082 162.372 35.4512C161.367 34.4941 160.58 33.3467 160.014 32.0088C159.448 30.6611 159.164 29.167 159.164 27.5264C159.164 26.5986 159.272 25.6855 159.487 24.7871C159.702 23.8887 160.014 23.0342 160.424 22.2236C160.844 21.4131 161.352 20.6709 161.948 19.9971C162.553 19.3135 163.242 18.7227 164.013 18.2246C164.794 17.7266 165.654 17.3408 166.591 17.0674C167.538 16.7842 168.554 16.6426 169.638 16.6426ZM170.473 37.1357C171.557 37.1357 172.548 36.9404 173.447 36.5498C174.345 36.1592 175.117 35.5928 175.761 34.8506C176.415 34.1084 176.923 33.2051 177.285 32.1406C177.646 31.0664 177.827 29.8506 177.827 28.4932C177.827 26.9893 177.651 25.5977 177.299 24.3184C176.957 23.0293 176.445 21.916 175.761 20.9785C175.078 20.0312 174.223 19.2939 173.198 18.7666C172.182 18.2295 170.996 17.9609 169.638 17.9609C168.554 17.9609 167.563 18.1562 166.664 18.5469C165.766 18.9277 164.99 19.4844 164.335 20.2168C163.691 20.9492 163.188 21.8477 162.827 22.9121C162.465 23.9766 162.285 25.1875 162.285 26.5449C162.285 28.0391 162.455 29.4355 162.797 30.7344C163.139 32.0234 163.652 33.1416 164.335 34.0889C165.019 35.0361 165.873 35.7832 166.899 36.3301C167.924 36.8672 169.116 37.1357 170.473 37.1357ZM188.548 28.6982C189.505 28.874 190.379 28.8936 191.17 28.7568C191.971 28.6104 192.654 28.3076 193.221 27.8486C193.797 27.3799 194.241 26.75 194.554 25.959C194.876 25.168 195.037 24.2012 195.037 23.0586C195.037 22.2676 194.954 21.5498 194.788 20.9053C194.622 20.251 194.373 19.6992 194.041 19.25C193.719 18.791 193.309 18.4395 192.811 18.1953C192.313 17.9414 191.732 17.8145 191.068 17.8145C190.648 17.8145 190.281 17.834 189.969 17.873C189.656 17.9023 189.393 17.9365 189.178 17.9756C188.924 18.0244 188.714 18.0781 188.548 18.1367V28.6982ZM185.457 16.9941C185.653 17.0137 185.858 17.0332 186.072 17.0527C186.258 17.0723 186.463 17.0869 186.688 17.0967C186.922 17.0967 187.161 17.0967 187.405 17.0967C187.786 17.0967 188.299 17.0527 188.944 16.9648C189.598 16.8672 190.428 16.8184 191.434 16.8184C192.371 16.8184 193.236 16.9551 194.027 17.2285C194.827 17.502 195.521 17.9023 196.107 18.4297C196.693 18.957 197.147 19.6016 197.469 20.3633C197.801 21.1152 197.967 21.9746 197.967 22.9414C197.967 24.2402 197.708 25.3633 197.191 26.3105C196.673 27.2578 195.98 28.0244 195.111 28.6104C194.241 29.1963 193.24 29.5967 192.108 29.8115C190.975 30.0166 189.788 30.0264 188.548 29.8408V32.2725C188.548 33.1025 188.558 33.8301 188.577 34.4551C188.607 35.0703 188.636 35.6025 188.665 36.0518C188.704 36.501 188.748 36.877 188.797 37.1797C188.856 37.4824 188.914 37.7363 188.973 37.9414V38H185.457V37.9414C185.516 37.7363 185.57 37.4824 185.618 37.1797C185.677 36.877 185.726 36.501 185.765 36.0518C185.804 35.6025 185.833 35.0703 185.853 34.4551C185.872 33.8301 185.882 33.1025 185.882 32.2725V22.7363C185.882 21.9062 185.872 21.1836 185.853 20.5684C185.833 19.9434 185.804 19.4062 185.765 18.957C185.726 18.498 185.677 18.1172 185.618 17.8145C185.57 17.5117 185.516 17.2578 185.457 17.0527V16.9941ZM211.618 16.6426C213.249 16.6426 214.753 16.9111 216.13 17.4482C217.517 17.9756 218.713 18.7227 219.719 19.6895C220.725 20.6465 221.511 21.7988 222.077 23.1465C222.644 24.4941 222.927 25.9834 222.927 27.6143C222.927 28.542 222.819 29.4551 222.604 30.3535C222.39 31.252 222.072 32.1016 221.652 32.9023C221.242 33.7031 220.734 34.4453 220.129 35.1289C219.523 35.8027 218.83 36.3887 218.049 36.8867C217.277 37.375 216.423 37.7559 215.485 38.0293C214.548 38.3125 213.537 38.4541 212.453 38.4541C210.822 38.4541 209.313 38.1953 207.927 37.6777C206.55 37.1504 205.358 36.4082 204.353 35.4512C203.347 34.4941 202.561 33.3467 201.994 32.0088C201.428 30.6611 201.145 29.167 201.145 27.5264C201.145 26.5986 201.252 25.6855 201.467 24.7871C201.682 23.8887 201.994 23.0342 202.404 22.2236C202.824 21.4131 203.332 20.6709 203.928 19.9971C204.533 19.3135 205.222 18.7227 205.993 18.2246C206.774 17.7266 207.634 17.3408 208.571 17.0674C209.519 16.7842 210.534 16.6426 211.618 16.6426ZM212.453 37.1357C213.537 37.1357 214.528 36.9404 215.427 36.5498C216.325 36.1592 217.097 35.5928 217.741 34.8506C218.396 34.1084 218.903 33.2051 219.265 32.1406C219.626 31.0664 219.807 29.8506 219.807 28.4932C219.807 26.9893 219.631 25.5977 219.279 24.3184C218.938 23.0293 218.425 21.916 217.741 20.9785C217.058 20.0312 216.203 19.2939 215.178 18.7666C214.162 18.2295 212.976 17.9609 211.618 17.9609C210.534 17.9609 209.543 18.1562 208.645 18.5469C207.746 18.9277 206.97 19.4844 206.315 20.2168C205.671 20.9492 205.168 21.8477 204.807 22.9121C204.445 23.9766 204.265 25.1875 204.265 26.5449C204.265 28.0391 204.436 29.4355 204.777 30.7344C205.119 32.0234 205.632 33.1416 206.315 34.0889C206.999 35.0361 207.854 35.7832 208.879 36.3301C209.904 36.8672 211.096 37.1357 212.453 37.1357ZM230.528 36.7109C231.68 36.7109 232.74 36.6621 233.707 36.5645C234.674 36.4668 235.518 36.3545 236.241 36.2275C237.081 36.0908 237.847 35.9297 238.541 35.7441L238.116 38.1172C237.999 38.1074 237.823 38.0977 237.589 38.0879C237.354 38.0781 237.091 38.0684 236.798 38.0586C236.514 38.0488 236.212 38.0391 235.889 38.0293C235.577 38.0293 235.279 38.0244 234.996 38.0146C234.713 38.0146 234.459 38.0098 234.234 38C234.019 38 233.863 38 233.765 38H227.437V37.9414C227.496 37.7363 227.55 37.4824 227.598 37.1797C227.657 36.877 227.706 36.501 227.745 36.0518C227.784 35.6025 227.813 35.0703 227.833 34.4551C227.852 33.8301 227.862 33.1025 227.862 32.2725V22.7363C227.862 21.9062 227.852 21.1836 227.833 20.5684C227.813 19.9434 227.784 19.4062 227.745 18.957C227.706 18.498 227.657 18.1172 227.598 17.8145C227.55 17.5117 227.496 17.2578 227.437 17.0527V16.9941H230.953V17.0527C230.894 17.2578 230.836 17.5117 230.777 17.8145C230.728 18.1172 230.684 18.498 230.645 18.957C230.616 19.4062 230.587 19.9434 230.557 20.5684C230.538 21.1836 230.528 21.9062 230.528 22.7363V36.7109ZM242.568 37.9414C242.627 37.7363 242.68 37.4824 242.729 37.1797C242.778 36.877 242.822 36.501 242.861 36.0518C242.9 35.6025 242.929 35.0703 242.949 34.4551C242.968 33.8301 242.978 33.1025 242.978 32.2725V22.7363C242.978 21.9062 242.968 21.1836 242.949 20.5684C242.929 19.9434 242.9 19.4062 242.861 18.957C242.822 18.498 242.778 18.1172 242.729 17.8145C242.68 17.5117 242.627 17.2578 242.568 17.0527V16.9941H246.069V17.0527C246.01 17.2578 245.952 17.5117 245.893 17.8145C245.844 18.1172 245.8 18.498 245.761 18.957C245.732 19.4062 245.703 19.9434 245.673 20.5684C245.654 21.1836 245.644 21.9062 245.644 22.7363V32.2725C245.644 33.1025 245.654 33.8301 245.673 34.4551C245.703 35.0703 245.732 35.6025 245.761 36.0518C245.8 36.501 245.844 36.877 245.893 37.1797C245.952 37.4824 246.01 37.7363 246.069 37.9414V38H242.568V37.9414ZM257.127 18.2832C255.975 18.2832 254.935 18.3369 254.007 18.4443C253.079 18.542 252.279 18.6494 251.605 18.7666C250.824 18.9131 250.125 19.0742 249.51 19.25L249.935 16.877C250.052 16.8867 250.228 16.8965 250.462 16.9062C250.697 16.916 250.955 16.9258 251.239 16.9355C251.532 16.9453 251.834 16.9551 252.147 16.9648C252.469 16.9648 252.772 16.9697 253.055 16.9795C253.338 16.9795 253.587 16.9844 253.802 16.9941C254.027 16.9941 254.188 16.9941 254.286 16.9941H262.65C262.747 16.9941 262.904 16.9941 263.119 16.9941C263.343 16.9844 263.597 16.9795 263.88 16.9795C264.163 16.9697 264.461 16.9648 264.774 16.9648C265.096 16.9551 265.399 16.9453 265.682 16.9355C265.975 16.9258 266.239 16.916 266.473 16.9062C266.707 16.8965 266.883 16.8867 267 16.877L267.425 19.25C266.8 19.0742 266.097 18.9131 265.316 18.7666C264.642 18.6494 263.841 18.542 262.913 18.4443C261.986 18.3369 260.946 18.2832 259.793 18.2832V32.2725C259.793 33.1025 259.803 33.8301 259.823 34.4551C259.852 35.0703 259.881 35.6025 259.911 36.0518C259.95 36.501 259.994 36.877 260.042 37.1797C260.101 37.4824 260.16 37.7363 260.218 37.9414V38H256.717V37.9414C256.776 37.7363 256.829 37.4824 256.878 37.1797C256.927 36.877 256.971 36.501 257.01 36.0518C257.049 35.6025 257.079 35.0703 257.098 34.4551C257.118 33.8301 257.127 33.1025 257.127 32.2725V18.2832ZM283.772 38V37.9414C283.791 37.8926 283.806 37.8193 283.816 37.7217C283.825 37.624 283.83 37.5361 283.83 37.458C283.83 37.1553 283.786 36.8232 283.698 36.4619C283.62 36.0908 283.464 35.6318 283.23 35.085L281.457 31.1006C280.91 31.0811 280.183 31.0713 279.275 31.0713C278.366 31.0713 277.385 31.0713 276.33 31.0713C275.559 31.0713 274.812 31.0713 274.089 31.0713C273.376 31.0713 272.732 31.0811 272.155 31.1006L270.471 34.9678C270.324 35.3291 270.168 35.7246 270.002 36.1543C269.836 36.584 269.753 37.0186 269.753 37.458C269.753 37.585 269.763 37.6924 269.782 37.7803C269.802 37.8584 269.821 37.9121 269.841 37.9414V38H266.853V37.9414C267.029 37.7559 267.248 37.4287 267.512 36.96C267.776 36.4814 268.064 35.8857 268.376 35.1729L276.77 16.5547H277.942L285.896 34.4551C286.081 34.875 286.272 35.2852 286.467 35.6855C286.672 36.0762 286.862 36.4277 287.038 36.7402C287.214 37.0527 287.37 37.3164 287.507 37.5312C287.644 37.7461 287.737 37.8828 287.785 37.9414V38H283.772ZM274.279 29.8115C274.846 29.8115 275.427 29.8115 276.023 29.8115C276.618 29.8018 277.199 29.7969 277.766 29.7969C278.342 29.7871 278.894 29.7822 279.421 29.7822C279.948 29.7725 280.427 29.7627 280.857 29.7529L276.74 20.4512L272.697 29.8115H274.279ZM291.622 16.9941L306.71 33.0488V22.7363C306.71 21.9062 306.7 21.1836 306.681 20.5684C306.661 19.9434 306.632 19.4062 306.593 18.957C306.554 18.498 306.505 18.1172 306.446 17.8145C306.397 17.5117 306.344 17.2578 306.285 17.0527V16.9941H308.893V17.0527C308.834 17.2578 308.78 17.5117 308.731 17.8145C308.683 18.1172 308.639 18.498 308.6 18.957C308.561 19.4062 308.531 19.9434 308.512 20.5684C308.492 21.1836 308.482 21.9062 308.482 22.7363V38.293H307.97L292.882 22.2529V32.2725C292.882 33.1025 292.892 33.8301 292.911 34.4551C292.931 35.0703 292.96 35.6025 292.999 36.0518C293.038 36.501 293.082 36.877 293.131 37.1797C293.18 37.4824 293.233 37.7363 293.292 37.9414V38H290.685V37.9414C290.743 37.7363 290.797 37.4824 290.846 37.1797C290.904 36.877 290.953 36.501 290.992 36.0518C291.031 35.6025 291.061 35.0703 291.08 34.4551C291.1 33.8301 291.109 33.1025 291.109 32.2725V22.7363C291.109 21.9062 291.1 21.1836 291.08 20.5684C291.061 19.9434 291.031 19.4062 290.992 18.957C290.953 18.498 290.904 18.1172 290.846 17.8145C290.797 17.5117 290.743 17.2578 290.685 17.0527V16.9941H291.622Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5A.8.8 0 0 0 8 5.2Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9Z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 2c.7 5.2 2.8 7.3 8 8-5.2.7-7.3 2.8-8 8-.7-5.2-2.8-7.3-8-8 5.2-.7 7.3-2.8 8-8Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-4 6-6 9-8"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8c-1.5-3-5-4-5-1.5S10 8 12 8Zm0 0c1.5-3 5-4 5-1.5S14 8 12 8Z"/></symbol>
+  <symbol id="i-star4" viewBox="0 0 24 30"><path d="M12 0C12.9 9.6 14.4 13.8 21 15C14.4 16.2 12.9 20.4 12 30C11.1 20.4 9.6 16.2 3 15C9.6 13.8 11.1 9.6 12 0Z"/></symbol>
+</svg>
+
+<div class="intro" aria-hidden="true">
+  <div class="intro-in">
+    <svg class="wordmark" viewBox="0 0 346 49"><use href="#wordmark"/></svg>
+    <span class="mlabel">[ Nagpokhari, Naxal · Kathmandu ]</span>
+  </div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="hdr-l">
+    <button type="button" class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <a href="#/" class="brand" aria-label="Xcosmopolitan home">
+    <img class="emblem" src="assets/emblem.png" alt="" width="310" height="488">
+    <svg class="wordmark" viewBox="0 0 346 49" role="img" aria-label="Xcosmopolitan"><use href="#wordmark"/></svg>
+  </a>
+  <div class="hdr-r">
+    <a href="#/book" class="obtn solid">Book now</a>
+  </div>
+</header>
+
+<div class="mnav" id="mnav" inert>
+  <div class="mnav-top">
+    <span class="mlabel">[ Nagpokhari, Naxal · Kathmandu ]</span>
+    <button type="button" class="mnav-close" aria-label="Close menu"><svg class="i"><use href="#i-close"/></svg></button>
+  </div>
+  <nav class="mnav-links" aria-label="Main">
+    <a href="#/" data-nav="home" style="--i: 0"><i>[01]</i>Home</a>
+    <a href="#/services" data-nav="services" style="--i: 1"><i>[02]</i>Services</a>
+    <a href="#/membership" data-nav="membership" style="--i: 2"><i>[03]</i>Membership</a>
+    <a href="#/gallery" data-nav="gallery" style="--i: 3"><i>[04]</i>Gallery</a>
+    <a href="#/about" data-nav="about" style="--i: 4"><i>[05]</i>About</a>
+    <a href="#/contact" data-nav="contact" style="--i: 5"><i>[06]</i>Contact</a>
+    <a href="#/book" style="--i: 6"><i>[07]</i>Book now</a>
+  </nav>
+  <div class="mnav-foot">
+    <span class="mlabel">[ Strictly by appointment ]</span>
+    <span class="mlabel">+977 985-1362553</span>
+    <span class="mlabel">@xcosmopolitan.nepal</span>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= Home ================= -->
+<div class="page" data-page="home" data-title="Xcosmopolitan | Skin, Hair &amp; Nail Salon in Naxal, Kathmandu">
+  <section class="hero">
+    <div class="hero-stage">
+      <div class="hero-ph left" data-reveal="img"><div class="slot" data-slot="homeExperience" data-eager data-parallax></div></div>
+      <div class="hero-ph right" data-reveal="img" style="--d: 150ms"><div class="slot" data-slot="categoryHairTreatments" data-eager data-parallax></div></div>
+      <div class="hero-in">
+        <p class="mlabel" data-reveal="fade" style="--d: 800ms">[ Strictly by appointment · Naxal, Kathmandu ]</p>
+        <h1 class="h-giant" data-reveal="lines" style="--d: 400ms">
+          <span class="ln">/ Skin, hair</span>
+          <span class="ln"><em>&amp; nails</em></span>
+        </h1>
+        <p class="hero-tag" data-reveal="fade" style="--d: 900ms">Feel Proud And Confident In Your Own Skin!</p>
+        <a href="#/services" class="obtn" data-reveal="pop" style="--d: 1050ms">Discover services</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track">
+      <span>Skin &amp; facials</span><span>Hair styling</span><span>Hair colour</span><span>Hair treatments</span><span>Men's grooming</span><span>Nails</span><span>Lashes, brows &amp; makeup</span>
+      <span>Skin &amp; facials</span><span>Hair styling</span><span>Hair colour</span><span>Hair treatments</span><span>Men's grooming</span><span>Nails</span><span>Lashes, brows &amp; makeup</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2 class="vh">What to expect</h2>
+      <ul class="perks bar" data-render="perks" data-stagger="90"></ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">Pick a category</p>
+        <h2 class="h-xl" data-reveal="lines"><span class="ln">/ Our</span><span class="ln push"><em>services</em></span></h2>
+      </div>
+      <nav class="cats" aria-label="Service categories" data-stagger="70">
+        <a class="cat group" href="#/services/skin" data-reveal="img"><div class="slot zoom" data-slot="homeHero"></div><i>[01]</i><span><strong>Skin &amp; facials</strong><small>Facials &amp; skin consultations</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-styling" data-reveal="img"><div class="slot zoom" data-slot="gallery11"></div><i>[02]</i><span><strong>Hair styling</strong><small>Cuts, blow-dries &amp; braids</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-colour" data-reveal="img"><div class="slot zoom" data-slot="gallery1"></div><i>[03]</i><span><strong>Hair colour</strong><small>Highlights, balayage &amp; global colour</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/hair-treatments" data-reveal="img"><div class="slot zoom" data-slot="gallery7"></div><i>[04]</i><span><strong>Hair treatments</strong><small>Smoothing &amp; repair</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/mens" data-reveal="img"><div class="slot zoom" data-slot="gallery3"></div><i>[05]</i><span><strong>Men's grooming</strong><small>Cuts, fades, beards &amp; grey coverage</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/nails" data-reveal="img"><div class="slot zoom" data-slot="gallery4"></div><i>[06]</i><span><strong>Nails</strong><small>Manicures, pedicures &amp; nail art</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat group" href="#/services/beauty" data-reveal="img"><div class="slot zoom" data-slot="gallery6"></div><i>[07]</i><span><strong>Lashes, brows &amp; makeup</strong><small>Threading, waxing &amp; event makeup</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="cat more" href="#/services" data-reveal="img"><img class="cat-mark" src="assets/emblem.png" alt="" width="310" height="488"><i>[08]</i><span><strong>Full menu</strong><small>Prices, timings &amp; booking</small></span><span class="cat-go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span></a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sig-head">
+        <div class="sec-head">
+          <p class="mlabel" data-reveal="fade">Our most booked</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">Signature</span><span class="ln"><em>treatments</em></span></h2>
+        </div>
+        <div class="sig-side" data-reveal>
+          <p class="small">Seven treatments clients come back for, month after month.</p>
+          <div class="arrows">
+            <button type="button" class="arrow prev" data-sig="-1" aria-label="Previous treatments"><svg class="i"><use href="#i-arrow"/></svg></button>
+            <button type="button" class="arrow" data-sig="1" aria-label="Next treatments"><svg class="i"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sig-viewport" data-sig-viewport data-reveal style="--d: 120ms"><ul class="sig-track" data-render="signature"></ul></div>
+  </section>
+
+  <section class="stack">
+    <div class="slot" data-slot="darkBand" data-parallax></div>
+    <div class="wrap">
+      <div class="stack-lines" data-drift data-reveal="lines">
+        <span class="ln">We'll tell you honestly</span>
+        <span class="ln">what a treatment can do</span>
+        <span class="ln">and when you don't</span>
+        <span class="ln">need one at all</span>
+      </div>
+      <span class="mlabel" data-reveal="fade" style="--d: 400ms">[ With care — the Xcosmopolitan team ]</span>
+    </div>
+  </section>
+
+  <section class="sec split">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="darkSignature" data-parallax></div></div>
+    <div class="wrap">
+      <div class="split-body asks">
+        <div class="sec-head">
+          <p class="mlabel" data-reveal="fade">Free 20-minute consultation</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">Not sure</span><span class="ln"><em>what to book?</em></span></h2>
+        </div>
+        <ul class="ask-list" data-render="asks" data-stagger="80"></ul>
+        <p class="small" data-reveal>Book a free 20-minute consultation. We'll look at your skin or hair, ask about your routine and suggest where to start, even if that means no treatment at all.</p>
+        <a href="#/book?service=skin-consultation" class="obtn" data-reveal>Free consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap abt">
+      <div class="abt-hero" data-reveal="img"><div class="slot" data-slot="aboutHero" data-parallax></div></div>
+      <div class="abt-body">
+        <div>
+          <div class="sec-head" style="margin-bottom: 0">
+            <p class="mlabel" data-reveal="fade">More than a salon</p>
+            <h2 class="h-sec" data-reveal="lines"><span class="ln">One team,</span><span class="ln"><em>every detail</em></span></h2>
+          </div>
+          <p class="lead" data-reveal>Our team covers skin, hair, colour, men's grooming, nails and makeup, so you can get more done in one visit, with specialists who each focus on what they do best.</p>
+          <p class="lead" data-reveal>Tell us what you'd like and we'll book you with the right person.</p>
+          <a href="#/about" class="ulink" data-reveal>Read our story <svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="abt-cards" data-stagger="120">
+          <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery9"></div><figcaption>[01] Skin consultation</figcaption></figure>
+          <figure class="abt-card" data-reveal="img"><div class="slot zoom" data-slot="gallery10"></div><figcaption>[02] Beard shaping</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec split">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="darkMembership" data-parallax></div></div>
+    <div class="wrap">
+      <div class="split-body mem">
+        <div class="sec-head" style="margin-bottom: 0">
+          <p class="mlabel" data-reveal="fade">Membership</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">One treatment,</span><span class="ln"><em>every month</em></span></h2>
+        </div>
+        <p class="lead" data-reveal>Facials and hair treatments work best when they're regular. Membership books one in each month and adds a few useful extras.</p>
+        <ul class="dots" data-render="memberTeaser" data-reveal></ul>
+        <p class="note" data-reveal>4-month commitment · renews monthly</p>
+        <a href="#/membership" class="obtn" data-reveal>Explore membership</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap reel-head">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">@xcosmopolitan.nepal</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">From</span><span class="ln"><em>the studio</em></span></h2>
+      </div>
+      <a href="#/gallery" class="ulink" data-reveal>View the gallery <svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="reel" data-reveal="fade"><ul class="reel-track" data-render="reel"></ul></div>
+  </section>
+
+  <section class="ready">
+    <div class="slot" data-slot="homeHeroWide" data-parallax></div>
+    <div class="ready-in">
+      <p class="mlabel" data-reveal="fade">[ Strictly by appointment ]</p>
+      <h2 class="h-giant" data-reveal="lines"><span class="ln">/ Ready</span><span class="ln"><em>to book?</em></span></h2>
+      <div class="ready-btns" data-reveal="pop" style="--d: 300ms">
+        <a href="#/book" class="obtn solid">Book now</a>
+        <a data-wa="Hi Xcosmopolitan, I'd like to book an appointment." target="_blank" rel="noopener noreferrer" class="obtn">WhatsApp us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">Nagpokhari, Naxal</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">Find</span><span class="ln"><em>us</em></span></h2>
+      </div>
+      <div class="ct-cols" data-render="contactCols" data-stagger="90"></div>
+      <div class="socials-row" data-reveal>
+        <span class="mlabel">[ Follow us ]</span>
+        <div class="socials">
+          <a href="https://www.instagram.com/xcosmopolitan.nepal/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="i"><use href="#i-instagram"/></svg></a>
+          <a href="https://www.facebook.com/xcosmopolitan.nepal/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="i"><use href="#i-facebook"/></svg></a>
+          <a data-wa="Hi Xcosmopolitan, I'd like to book an appointment." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="i"><use href="#i-chat"/></svg></a>
+        </div>
+      </div>
+      <div class="map-frame" data-reveal="img"><div class="map" data-map></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Services ================= -->
+<div class="page" data-page="services" hidden data-title="Services & treatments | Xcosmopolitan" data-description="Facials, hair styling, colour and treatments, men's grooming, nails, lashes and makeup at Xcosmopolitan in Naxal, Kathmandu.">
+  <section class="phero">
+    <div class="wrap phero-grid">
+      <div>
+        <span class="num" data-reveal="fade">[ 01 — Our menu ]</span>
+        <h1 class="h-page" data-reveal="lines"><span class="ln">/ Services</span><span class="ln push"><em>&amp; prices</em></span></h1>
+      </div>
+      <p class="lead" data-reveal style="--d: 200ms">Facials, hair, colour, men's grooming, nails, lashes and makeup. Prices are a guide: anything marked &ldquo;From&rdquo; is confirmed with you before we start.</p>
+    </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="servicesHero" data-parallax></div></div>
+  </section>
+  <div class="cat-bar-wrap"><div class="wrap"><nav class="cat-bar" aria-label="Service categories" data-catbar></nav></div></div>
+  <div class="wrap" data-render="serviceSections"></div>
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">After your</span><span class="ln"><em>appointment</em></span></h2>
+        <p class="small" data-reveal style="margin-top: 1.25rem">A little care at home helps results last. Your specialist will add anything specific to you.</p>
+      </div>
+      <div data-reveal data-render="aftercare"></div>
+    </div>
+  </section>
+  <section class="sec" style="padding-top: clamp(3rem, 8vh, 5rem)">
+    <div class="wrap">
+      <div class="consult" data-reveal>
+        <svg class="star" aria-hidden="true"><use href="#i-star4"/></svg>
+        <h2 class="h-lg">/ Not sure <em>where to start?</em></h2>
+        <p class="small">Book a free 20-minute consultation. &ldquo;From&rdquo; prices depend on hair length and the treatment plan agreed at your consultation.</p>
+        <a href="#/book?service=skin-consultation" class="obtn">Free consultation</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Book ================= -->
+<div class="page" data-page="book" hidden data-title="Book an appointment | Xcosmopolitan" data-description="Book a facial, hair, nail or grooming appointment at Xcosmopolitan in Naxal, Kathmandu.">
+  <section class="phero" style="padding-bottom: 1rem">
+    <div class="wrap">
+      <span class="num" data-reveal="fade">[ Online booking ]</span>
+      <h1 class="h-page" data-reveal="lines"><span class="ln">/ Book your</span><span class="ln push"><em>appointment</em></span></h1>
+    </div>
+  </section>
+  <div id="booking" class="booking"></div>
+</div>
+
+<!-- ================= Membership ================= -->
+<div class="page" data-page="membership" hidden data-title="Membership | Xcosmopolitan" data-description="Monthly treatments, priority booking and member perks with the Xcosmopolitan membership.">
+  <section class="phero">
+    <div class="wrap phero-grid">
+      <div>
+        <span class="num" data-reveal="fade">[ 02 — Membership ]</span>
+        <h1 class="h-page" data-reveal="lines"><span class="ln">/ One treatment,</span><span class="ln push"><em>every month</em></span></h1>
+      </div>
+      <div>
+        <p class="lead" data-reveal style="--d: 200ms">If you look after your skin or hair regularly, membership makes it simpler: one treatment each month, priority booking and a few extras along the way.</p>
+        <div class="actions" data-reveal style="--d: 300ms"><a data-wa="Hi Xcosmopolitan, I'd like to know more about the membership." target="_blank" rel="noopener noreferrer" class="obtn">Ask on WhatsApp</a></div>
+      </div>
+    </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="membershipHero" data-parallax></div></div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">How it works</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">Three</span><span class="ln"><em>steps</em></span></h2>
+      </div>
+      <ol class="steps3" data-render="membershipSteps" data-stagger="110"></ol>
+    </div>
+  </section>
+  <section class="sec split flip">
+    <div class="split-media" data-reveal="img"><div class="slot" data-slot="homeMembership" data-parallax></div></div>
+    <div class="wrap">
+      <div class="split-body">
+        <div class="sec-head">
+          <p class="mlabel" data-reveal="fade">Every membership includes</p>
+          <h2 class="h-sec" data-reveal="lines"><span class="ln">Member</span><span class="ln"><em>benefits</em></span></h2>
+        </div>
+        <p class="small" data-reveal>Ask us for current pricing at the salon or on WhatsApp.</p>
+        <ul class="benefits" data-render="memberBenefits" data-stagger="60"></ul>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <h2 class="h-sec" data-reveal="lines"><span class="ln">Membership</span><span class="ln"><em>questions</em></span></h2>
+      <div data-reveal data-render="membershipFaq"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Gallery ================= -->
+<div class="page" data-page="gallery" hidden data-title="Gallery | Xcosmopolitan" data-description="Hair, skin, nail and grooming work from the Xcosmopolitan studio in Naxal.">
+  <section class="phero">
+    <div class="wrap phero-grid">
+      <div>
+        <span class="num" data-reveal="fade">[ 03 — Gallery ]</span>
+        <h1 class="h-page" data-reveal="lines"><span class="ln">/ Our work,</span><span class="ln push"><em>up close</em></span></h1>
+      </div>
+      <p class="lead" data-reveal style="--d: 200ms">A look at recent work from our studio: colour, cuts, skin, nails and the space itself.</p>
+    </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="galleryHero" data-parallax></div></div>
+  </section>
+  <section class="sec" style="padding-top: 1rem">
+    <div class="wrap">
+      <div class="filters" role="group" aria-label="Filter the gallery" data-gallery-filters></div>
+      <ul class="gal" data-gallery-grid></ul>
+      <div class="gal-cta" data-reveal><a href="https://www.instagram.com/xcosmopolitan.nepal/" target="_blank" rel="noopener noreferrer" class="obtn">More on Instagram</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= About ================= -->
+<div class="page" data-page="about" hidden data-title="About us | Xcosmopolitan" data-description="Xcosmopolitan is a unisex salon in Naxal, Kathmandu, for skin, hair and nail care. Strictly by appointment.">
+  <section class="phero">
+    <div class="wrap phero-grid">
+      <div>
+        <span class="num" data-reveal="fade">[ 04 — Our story ]</span>
+        <h1 class="h-page" data-reveal="lines"><span class="ln">/ Beauty,</span><span class="ln push"><em>unhurried</em></span></h1>
+      </div>
+      <p class="lead" data-reveal style="--d: 200ms">Xcosmopolitan is a unisex salon in Nagpokhari, Naxal, for skin, hair and nails. We work strictly by appointment, so the studio stays calm and nobody is rushed.</p>
+    </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="salonInterior" data-parallax></div></div>
+  </section>
+  <section class="sec">
+    <div class="wrap story">
+      <div class="story-media" data-reveal="img"><div class="slot" data-slot="aboutStory" data-parallax></div></div>
+      <div class="story-body">
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">Why we work</span><span class="ln"><em>by appointment</em></span></h2>
+        <div data-reveal>
+          <p class="lead">Walk-in salons often mean waiting around, and a stylist with one eye on the door. Working by appointment lets us plan each visit properly: who you'll see, how long it takes and what you'd like done.</p>
+          <p class="lead">Our team covers skin, hair, colour, men's grooming, nails and makeup, so you can get more done in one visit. And if a treatment won't help, we'd rather tell you than sell it to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">How we look after you</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">What you</span><span class="ln">can <em>expect</em></span></h2>
+      </div>
+      <ul class="perks" data-render="values" data-stagger="100"></ul>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">A studio that stays quiet</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">Inside</span><span class="ln"><em>the studio</em></span></h2>
+      </div>
+      <p class="small" data-reveal>Warm lighting, arched gold mirrors and comfortable chairs, in a studio that stays quiet because it's never crowded.</p>
+      <div class="space" data-stagger="100">
+        <div class="slot s1" data-slot="aboutSpace1" data-reveal="img"></div>
+        <div class="slot" data-slot="aboutSpace2" data-reveal="img"></div>
+        <div class="slot" data-slot="aboutSpace3" data-reveal="img"></div>
+        <div class="slot" data-slot="gallery5" data-reveal="img"></div>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="mlabel" data-reveal="fade">Who you'll be seeing</p>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">Meet</span><span class="ln"><em>the team</em></span></h2>
+      </div>
+      <ul class="team" data-render="team" data-stagger="80"></ul>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Contact ================= -->
+<div class="page" data-page="contact" hidden data-title="Contact & visit | Xcosmopolitan" data-description="Visit Xcosmopolitan at Nagpokhari, Naxal, Kathmandu. Strictly by appointment.">
+  <section class="phero">
+    <div class="wrap phero-grid">
+      <div>
+        <span class="num" data-reveal="fade">[ 05 — Contact &amp; visit ]</span>
+        <h1 class="h-page" data-reveal="lines"><span class="ln">/ We'd love</span><span class="ln push"><em>to see you</em></span></h1>
+      </div>
+      <p class="lead" data-reveal style="--d: 200ms">Find us in Nagpokhari, Naxal, Kathmandu, near Marriott Hotel. Strictly by appointment.</p>
+    </div>
+    <div class="phero-media" data-reveal="img"><div class="slot" data-slot="homeVisit" data-parallax></div></div>
+  </section>
+  <section class="sec" style="padding-top: 1rem">
+    <div class="wrap">
+      <div class="info4" data-render="infoCols" data-stagger="80"></div>
+      <div class="map-frame" data-reveal="img"><div class="map" data-map></div></div>
+      <div class="contact-grid">
+        <!-- Without a backend, the message is handed to WhatsApp, ready to send. -->
+        <form class="form-card" data-contact-form data-reveal>
+          <h2 class="h-md">/ Ask us <em>anything</em></h2>
+          <p class="small">We'll reply on WhatsApp, usually within the day.</p>
+          <div class="form-stack">
+            <div class="field">
+              <label for="contact-name">Your name</label>
+              <input id="contact-name" class="input" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="contact-message">How can we help?</label>
+              <textarea id="contact-message" class="input" name="message" required rows="4"></textarea>
+            </div>
+            <div><button type="submit" class="btn btn-ink"><svg class="i"><use href="#i-chat"/></svg>Send on WhatsApp</button></div>
+          </div>
+        </form>
+        <div class="contact-photo" data-reveal="img"><div class="slot" data-slot="contactMap" data-parallax></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <h2 class="h-sec" data-reveal="lines"><span class="ln">Before your</span><span class="ln"><em>visit</em></span></h2>
+      <div data-reveal data-render="contactFaq"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Policies ================= -->
+<div class="page" data-page="policies" hidden data-title="Policies | Xcosmopolitan" data-description="Booking, payment, cancellation and privacy policies for Xcosmopolitan.">
+  <section class="phero">
+    <div class="wrap">
+      <span class="num" data-reveal="fade">[ 06 — Policies ]</span>
+      <h1 class="h-page" data-reveal="lines"><span class="ln">/ Booking</span><span class="ln push">&amp; <em>privacy</em></span></h1>
+      <p class="draft" data-reveal style="--d: 250ms"><span class="pulse" aria-hidden="true"></span>Draft for review: final policies to be confirmed by Xcosmopolitan.</p>
+    </div>
+  </section>
+  <section class="sec" style="padding-top: 1.5rem">
+    <div class="wrap policy-grid">
+      <nav class="policy-nav" aria-label="Policies" data-render="policyNav"></nav>
+      <div data-render="policyBody"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 404 ================= -->
+<div class="page" data-page="404" hidden data-title="Page not found | Xcosmopolitan">
+  <section class="nf">
+    <div class="wrap">
+      <span class="num" data-reveal="fade">[ Page not found ]</span>
+      <h1 class="h-page" data-reveal="lines"><span class="ln">404</span></h1>
+      <p class="lead" data-reveal>The page you're looking for doesn't exist or has moved.</p>
+      <a href="#/" class="obtn" data-reveal="pop">Back to home</a>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#/" class="brand" style="justify-self: start" aria-label="Xcosmopolitan home">
+          <img class="emblem" src="assets/emblem.png" alt="" width="310" height="488">
+          <svg class="wordmark" viewBox="0 0 346 49" aria-hidden="true"><use href="#wordmark"/></svg>
+        </a>
+        <p>A unisex salon for skin, hair and nails in Nagpokhari, Naxal, Kathmandu. Strictly by appointment.</p>
+      </div>
+      <nav class="ft-links" aria-label="Footer">
+        <p class="eyebrow">Navigation</p>
+        <a href="#/services">Services</a>
+        <a href="#/membership">Membership</a>
+        <a href="#/gallery">Gallery</a>
+        <a href="#/about">About</a>
+        <a href="#/book">Book online</a>
+      </nav>
+      <nav class="ft-links" aria-label="Social">
+        <p class="eyebrow">Social</p>
+        <a href="https://www.instagram.com/xcosmopolitan.nepal/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/xcosmopolitan.nepal/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a data-wa="Hi Xcosmopolitan, I'd like to book an appointment." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+      <nav class="ft-links" aria-label="Visit">
+        <p class="eyebrow">Visit</p>
+        <span>Nagpokhari, Naxal, Kathmandu</span>
+        <span>Strictly by appointment</span>
+        <a href="tel:+9779851362553">+977 985-1362553</a>
+        <a data-maps target="_blank" rel="noopener noreferrer">Directions</a>
+      </nav>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span data-year></span> Xcosmopolitan</span>
+      <nav aria-label="Legal"><a href="#/policies">Policies</a><a href="#/policies/privacy">Privacy</a></nav>
+      <a href="#/" class="to-top" data-top aria-label="Back to top"><svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar"><a href="#/book">Book an appointment <svg class="i"><use href="#i-up"/></svg></a></div>
+
+<script>
+// ---------- Business details ----------
+// Address, phone and hours come from the salon's Instagram and still need to be
+// confirmed with the client.
+const site = {
+  name: "Xcosmopolitan",
+  address: "Nagpokhari, Naxal, Kathmandu",
+  landmark: "Near Marriott Hotel",
+  hours: "Strictly by appointment",
+  phone: { display: "+977 985-1362553", href: "tel:+9779851362553" },
+  whatsapp: "https://wa.me/9779851362553",
+  instagram: { handle: "@xcosmopolitan.nepal", href: "https://www.instagram.com/xcosmopolitan.nepal/" },
+  mapsHref: "https://www.google.com/maps?cid=607934011727262484",
+  mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4080.857654020388!2d85.32361564624982!3d27.713224371641715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc4c9bf2908608cb%3A0x86fd0c33fe1b314!2sXcosmopolitan!5e0!3m2!1sen!2snp!4v1793614763650!5m2!1sen!2snp",
+};
+const whatsappLink = (message) => `${site.whatsapp}?text=${encodeURIComponent(message)}`;
+
+// ---------- Photos ----------
+// Every photo on the site, from the shared assets folder. To change one, save the
+// new photo in the assets folder under the same file name.
+const image = (file, alt, note) => ({ file, alt, note });
+const images = {
+  homeExperience: image("home-experience.jpg", "The Xcosmopolitan salon interior", "Hero left · wide"),
+  homeHeroWide: image("home-hero-wide.jpg", "Client with a body polish on her shoulder, eyes closed", "Hero portrait · oval"),
+  homeHero: image("home-hero.jpg", "Face mask brushed on during a facial", "Skin & facials · 4:5"),
+  homeHeroDetail: image("home-hero-detail.jpg", "Clay mask brushed onto a client's cheek", "Skin · 4:5"),
+  homeMembership: image("home-membership.jpg", "Client relaxing during a scalp massage", "Membership · 4:5"),
+  homeVisit: image("home-visit.jpg", "Bright salon floor with tall mirrors and a chandelier", "Salon · wide"),
+  salonInterior: image("salon-interior.jpg", "Styling floor with gold arched mirrors and amber chairs", "Salon · wide"),
+  darkHeroSlice: image("dark-hero-slice.jpg", "Woman with her eyes closed, face cupped in her hands", "Hero detail · square"),
+  darkQuote1: image("dark-quote-1.jpg", "Stylist trimming hair with scissors", "Quote photo · 4:5"),
+  darkQuote2: image("dark-quote-2.jpg", "Manicured hand with marbled almond nails", "Quote photo · 4:5"),
+  darkBand: image("services-hero.jpg", "Folded towel and candles in a treatment room", "Wide band · 16:9"),
+  darkSignature: image("dark-signature.jpg", "Woman with glowing skin, eyes closed in warm light", "Signature facial · 4:5"),
+  darkConcern: image("dark-concern.jpg", "Amber serum bottle resting on stacked stones", "Skincare · square"),
+  darkMembership: image("dark-membership.jpg", "Client relaxing during a face massage by candlelight", "Membership · 4:5"),
+  darkTeam: image("dark-team.jpg", "Makeup artist preparing her palettes", "Specialist · 4:5"),
+  darkContact: image("dark-contact.jpg", "Gold oval mirror reflecting a candle", "Salon detail · square"),
+
+  categorySkin: image("category-skin.jpg", "Facial treatment in progress", "Skin & facials · 4:5"),
+  categoryHairStyling: image("category-hair-styling.jpg", "Stylist finishing a blow-dry", "Hair styling · 4:5"),
+  categoryHairColour: image("category-hair-colour.jpg", "Fresh balayage hair colour", "Hair colour · 4:5"),
+  categoryHairTreatments: image("category-hair-treatments.jpg", "Glossy hair after a smoothing treatment", "Hair treatments · 4:5"),
+  categoryMens: image("category-mens.jpg", "Barber shaping a skin fade", "Men's grooming · 4:5"),
+  categoryNails: image("category-nails.jpg", "Manicure with nude gel polish", "Nails · 4:5"),
+  categoryBeauty: image("category-beauty.jpg", "Lash extensions and soft glam makeup", "Lashes & makeup · 4:5"),
+
+  servicesHero: image("services-hero.jpg", "Treatment room at Xcosmopolitan", "Services · oval"),
+  membershipHero: image("membership-hero.jpg", "Relaxing treatment for a member", "Membership · oval"),
+  galleryHero: image("gallery-hero.jpg", "Collage of hair, skin and nail work", "Gallery · square"),
+  aboutHero: image("about-hero.jpg", "The Xcosmopolitan team in the salon", "About · oval"),
+  contactMap: image("contact-map.jpg", "Reception at Xcosmopolitan in Naxal", "Reception · 4:5"),
+
+  aboutStory: image("about-story.jpg", "Founder of Xcosmopolitan in the salon", "Founder portrait · oval"),
+  aboutSpace1: image("about-space-1.jpg", "Styling stations with gold arched mirrors", "The space · wide"),
+  aboutSpace2: image("about-space-2.jpg", "Shampoo lounge", "The space · oval"),
+  aboutSpace3: image("about-space-3.jpg", "Product shelf detail", "The space · square"),
+
+  teamHair: image("team-hair.jpg", "Senior hair stylist", "Team portrait · oval"),
+  teamColour: image("team-colour.jpg", "Colour specialist", "Team portrait · oval"),
+  teamSkin: image("team-skin.jpg", "Skin therapist", "Team portrait · oval"),
+  teamMens: image("team-mens.jpg", "Men's grooming specialist", "Team portrait · oval"),
+  teamNails: image("team-nails.jpg", "Nail artist", "Team portrait · oval"),
+  teamBeauty: image("team-beauty.jpg", "Makeup and lash artist", "Team portrait · oval"),
+
+  gallery1: image("gallery-1.jpg", "Caramel balayage", "Hair colour"),
+  gallery2: image("gallery-2.jpg", "Hydrating facial", "Skin"),
+  gallery3: image("gallery-3.jpg", "Textured crop and fade", "Men's grooming"),
+  gallery4: image("gallery-4.jpg", "Nude gel manicure", "Nails"),
+  gallery5: image("gallery-5.jpg", "Gold arched mirrors in the salon", "Salon"),
+  gallery6: image("gallery-6.jpg", "Soft glam makeup", "Makeup"),
+  gallery7: image("gallery-7.jpg", "Smooth, glossy hair after Kera Box", "Hair treatment"),
+  gallery8: image("gallery-8.jpg", "Minimal nail art", "Nails"),
+  gallery9: image("gallery-9.jpg", "Skin consultation", "Skin"),
+  gallery10: image("gallery-10.jpg", "Beard shaping", "Men's grooming"),
+  gallery11: image("gallery-11.jpg", "Braided style", "Hair styling"),
+  gallery12: image("gallery-12.jpg", "Reception and lounge", "Salon"),
+};
+
+// ---------- Services ----------
+// Menu built from the salon's Instagram and current website. Prices (NPR) and
+// durations (minutes) are samples until the client sends their real menu.
+const categories = [
+  {
+    slug: "skin", name: "Skin & facials", tagline: "Facials & skin consultations", image: "categorySkin",
+    description: "Facials chosen for your skin after a short consultation, whether the concern is congestion, dryness, sensitivity or uneven tone.",
+    services: [
+      { slug: "skin-consultation", name: "Skin consultation", description: "We look at your skin, ask about your routine and suggest what's worth doing, and what isn't.", duration: 20, price: 0 },
+      { slug: "anti-aging-facial", name: "Anti-aging facial", description: "Massage, exfoliation and a firming mask to soften the look of fine lines. Works best as a course.", duration: 75, price: 4500 },
+      { slug: "deep-cleansing-facial", name: "Deep-cleansing facial", description: "Steam, extractions and a clay mask for oily or congested skin.", duration: 60, price: 3500 },
+      { slug: "hydrating-facial", name: "Hydrating facial", description: "Gentle exfoliation and layers of hydration for skin that feels tight or flaky.", duration: 60, price: 3500 },
+      { slug: "skin-repair-facial", name: "Skin-repair facial", description: "A calming facial for skin that's red, reactive or easily irritated.", duration: 60, price: 4000 },
+      { slug: "brightening-facial", name: "Brightening facial", description: "Exfoliation and brightening serums for dullness and uneven tone. Results build over a few sessions.", duration: 60, price: 4000 },
+    ],
+  },
+  {
+    slug: "hair-styling", name: "Hair styling", tagline: "Cuts, blow-dries & braids", image: "categoryHairStyling",
+    description: "Cuts, blow-dries and braids. Your stylist talks through what you want, and what will suit your hair, before starting.",
+    services: [
+      { slug: "womens-haircut", name: "Women's haircut & style", description: "Wash, cut and blow-dry, starting with a chat about how you wear your hair.", duration: 60, price: 1500, priceFrom: true },
+      { slug: "blow-dry", name: "Blow-dry & styling", description: "Wash and blow-dry: sleek, bouncy or soft waves.", duration: 45, price: 1000, priceFrom: true },
+      { slug: "braids", name: "Braids", description: "From a simple plait to an updo for a wedding or event.", duration: 60, price: 1500, priceFrom: true },
+      { slug: "hair-extensions", name: "Hair extensions", description: "Extra length and volume, matched to your colour. Price depends on how much you need.", duration: 120, price: 8000, priceFrom: true },
+    ],
+  },
+  {
+    slug: "hair-colour", name: "Hair colour", tagline: "Highlights, balayage & global colour", image: "categoryHairColour",
+    description: "From grey coverage to balayage. We check your hair's condition first, and tell you if a shade will take more than one session.",
+    services: [
+      { slug: "global-colour", name: "Global colour", description: "One even colour from root to tip, including grey coverage.", duration: 120, price: 4500, priceFrom: true },
+      { slug: "highlights-balayage", name: "Highlights & balayage", description: "Hand-painted lightness that grows out softly, so you can go longer between visits.", duration: 180, price: 7000, priceFrom: true },
+      { slug: "root-touch-up", name: "Root touch-up", description: "Colour on the regrowth only, usually every four to six weeks.", duration: 75, price: 2500 },
+    ],
+  },
+  {
+    slug: "hair-treatments", name: "Hair treatments", tagline: "Smoothing & repair", image: "categoryHairTreatments",
+    description: "Smoothing and protein treatments for frizz, dryness and damage from colour, heat or Kathmandu's hard water.",
+    services: [
+      { slug: "kera-box-smoothing", name: "Kera Box smoothing", description: "Cuts down frizz and drying time. Results usually last a few months with the right shampoo.", duration: 150, price: 8000, priceFrom: true },
+      { slug: "maximum-protein", name: "Maximum Protein treatment", description: "Protein repair for hair that's dry or breaking after colour, straightening or heat styling.", duration: 90, price: 5000, priceFrom: true },
+      { slug: "hair-spa", name: "Hair spa", description: "Scalp massage, steam and a deep-conditioning mask. A good monthly reset.", duration: 60, price: 2000 },
+    ],
+  },
+  {
+    slug: "mens", name: "Men's grooming", tagline: "Cuts, fades & beards", image: "categoryMens",
+    description: "Haircuts, fades, beard shaping and grey coverage, booked ahead so there's no waiting around.",
+    services: [
+      { slug: "mens-haircut", name: "Men's haircut", description: "Cut, wash and style, classic or modern.", duration: 45, price: 800 },
+      { slug: "skin-fade", name: "Skin fade & style", description: "Taken down to the skin and blended smoothly, finished with styling.", duration: 45, price: 1000 },
+      { slug: "beard-trim", name: "Beard trim & shape", description: "Trim, shape and a sharp line-up.", duration: 30, price: 600 },
+      { slug: "mens-colour", name: "Men's hair colour", description: "Grey blending or full coverage that doesn't look dyed.", duration: 60, price: 2000, priceFrom: true },
+    ],
+  },
+  {
+    slug: "nails", name: "Nails", tagline: "Manicures, pedicures & nail art", image: "categoryNails",
+    description: "Manicures, pedicures, gel polish and nail art, with tools cleaned and sanitised between clients.",
+    services: [
+      { slug: "classic-manicure", name: "Classic manicure", description: "Shaping, cuticle care, hand massage and polish.", duration: 45, price: 1200 },
+      { slug: "spa-pedicure", name: "Spa pedicure", description: "Soak, scrub, nail and cuticle care, foot massage and polish.", duration: 60, price: 1800 },
+      { slug: "gel-polish", name: "Gel polish", description: "Cured under a lamp, so it stays glossy and chip-free for around two to three weeks.", duration: 45, price: 1500 },
+      { slug: "nail-art", name: "Nail art", description: "Bring a picture or ask for ideas. Priced by design.", duration: 60, price: 1500, priceFrom: true },
+    ],
+  },
+  {
+    slug: "beauty", name: "Lashes, brows & makeup", tagline: "Threading, waxing & event makeup", image: "categoryBeauty",
+    description: "Lash extensions, threading, waxing, and makeup for weddings, parties and festivals.",
+    services: [
+      { slug: "lash-extensions", name: "Lash extensions", description: "Individual lashes applied to your own, natural or full. Refills every two to three weeks.", duration: 90, price: 4000, priceFrom: true },
+      { slug: "eyebrow-threading", name: "Eyebrow threading", description: "Shaping and tidying with thread. Upper lip and face also available.", duration: 15, price: 300 },
+      { slug: "waxing", name: "Waxing", description: "Arms, legs, underarms and more. Priced by area.", duration: 30, price: 800, priceFrom: true },
+      { slug: "party-makeup", name: "Party makeup & makeover", description: "Makeup and hair for parties, receptions and festivals. Book early in wedding season.", duration: 90, price: 5000, priceFrom: true },
+    ],
+  },
+];
+
+// Listed by role until the client shares their team's names and photos.
+const specialists = [
+  { id: "senior-stylist", role: "Senior hair stylist", bio: "Precision cuts, styling and hair treatments.", categories: ["hair-styling", "hair-colour", "hair-treatments"], image: "teamHair" },
+  { id: "colour-specialist", role: "Colour specialist", bio: "Balayage, highlights and colour correction.", categories: ["hair-colour", "hair-treatments"], image: "teamColour" },
+  { id: "skin-therapist", role: "Skin therapist", bio: "Facials, skin consultations and aftercare advice.", categories: ["skin"], image: "teamSkin" },
+  { id: "grooming-specialist", role: "Men's grooming specialist", bio: "Cuts, fades and beard grooming.", categories: ["mens"], image: "teamMens" },
+  { id: "nail-artist", role: "Nail artist", bio: "Manicures, pedicures and nail art.", categories: ["nails"], image: "teamNails" },
+  { id: "beauty-artist", role: "Makeup & lash artist", bio: "Lash extensions, brows and makeup.", categories: ["beauty"], image: "teamBeauty" },
+];
+
+// From the membership terms on the salon's current website.
+const membershipSteps = [
+  { title: "Join", text: "Sign up at the salon or message us. Membership starts with a 4-month commitment." },
+  { title: "Book monthly", text: "Book your treatment on any day that month, with priority on busy slots." },
+  { title: "Use the extras", text: "A free skin consultation, a guest pass for a friend, samples to try at home and invites to member events." },
+];
+const membershipBenefits = [
+  { text: "One treatment every month", icon: "calendar" },
+  { text: "Extra treatments that month at a member price", icon: "sparkle" },
+  { text: "Priority booking", icon: "clock" },
+  { text: "Free skincare consultation", icon: "sparkle" },
+  { text: "One guest pass each membership year", icon: "user" },
+  { text: "Complimentary samples with every visit", icon: "gift" },
+  { text: "15% off products bought at the salon (20% off when you join)", icon: "gift" },
+  { text: "Invitations to member events", icon: "star" },
+  { text: "Rewards for referring friends", icon: "leaf" },
+];
+const membershipFaqs = [
+  { question: "How long is the commitment?", answer: "Membership starts with a 4-month commitment, after which it continues month to month." },
+  { question: "When does my membership renew?", answer: "Membership renews on the 1st of each month." },
+  { question: "When can I use my monthly treatment?", answer: "Book your treatment any time within the month. Just mention your membership when you book." },
+  { question: "Can I bring a friend?", answer: "Yes. Every membership year includes one guest pass." },
+  { question: "What if I want more than one treatment a month?", answer: "Book as many as you like. Extra treatments that month are charged at a member price, and we'll confirm it when you book." },
+];
+const contactFaqs = [
+  { question: "Do I need an appointment?", answer: "Yes. We work strictly by appointment so every client gets our full attention. Book online or message us on WhatsApp." },
+  { question: "How early should I arrive?", answer: "About 10 minutes before your time, especially on your first visit, so we can go through a few questions first." },
+  { question: "Will I need a patch test?", answer: "For hair colour and lash extensions, yes, if it's your first time with us. It only takes a few minutes and should be done at least 48 hours before your appointment." },
+  { question: "How can I pay?", answer: "Pay online with eSewa or Khalti when you book, or pay at the salon on the day." },
+  { question: "Can I reschedule or cancel?", answer: "Yes. Please let us know at least 24 hours before your appointment so we can offer the time to someone else." },
+  { question: "Is Xcosmopolitan for men too?", answer: "Yes. We're a unisex salon with a full men's menu: cuts, fades, beard shaping and grey coverage." },
+];
+
+// General care after common treatments; the specialist adds anything specific to the client.
+const aftercare = [
+  { question: "Facials", answer: "Skip makeup for the rest of the day if you can, and wear sunscreen every morning. Leave out scrubs, retinol and strong acids for two days. If your skin stays red or stings for more than a day, message us." },
+  { question: "Hair colour", answer: "Wait two days before the first wash so the colour can settle. Use a colour-safe, sulphate-free shampoo and lukewarm water, and protect your hair from heat. Roots usually need a touch-up every four to six weeks." },
+  { question: "Kera Box smoothing", answer: "Your stylist will tell you when you can first wash and tie your hair, as it depends on the treatment used. After that, a sulphate-free shampoo keeps the results going longer. Pools and sea water fade it faster." },
+  { question: "Lash extensions", answer: "Keep them dry for the first 24 hours and avoid oil-based removers around the eyes. Brush them gently each morning and try not to rub or pull them. Book a refill every two to three weeks." },
+  { question: "Gel polish", answer: "Wear gloves for cleaning and washing up, and try not to use your nails as tools. Don't peel the gel off, as it takes layers of nail with it; come in and we'll remove it properly. It usually lasts two to three weeks." },
+  { question: "Waxing & threading", answer: "For the next 24 hours, skip hot showers, saunas, direct sun and tight clothing on waxed areas, and avoid perfumed lotions. A couple of days later, gentle exfoliation helps prevent ingrown hairs." },
+];
+
+const values = [
+  { title: "Honest advice", text: "We'll explain what a treatment can and can't do, and tell you when you don't need one.", icon: "chat" },
+  { title: "Clean and careful", text: "Fresh towels for every client, tools cleaned between appointments and patch tests before colour.", icon: "shield" },
+  { title: "Time for you", text: "Appointments are booked with room to spare, so nobody cuts corners to stay on schedule.", icon: "clock" },
+];
+
+const galleryFilters = [
+  { id: "all", label: "All" },
+  { id: "hair", label: "Hair" },
+  { id: "skin", label: "Skin" },
+  { id: "nails", label: "Nails" },
+  { id: "men", label: "Men" },
+  { id: "salon", label: "The salon" },
+];
+const galleryItems = [
+  { image: "gallery1", filter: "hair", shape: "portrait" },
+  { image: "gallery2", filter: "skin", shape: "square" },
+  { image: "gallery3", filter: "men", shape: "portrait" },
+  { image: "gallery5", filter: "salon", shape: "landscape" },
+  { image: "gallery4", filter: "nails", shape: "square" },
+  { image: "gallery6", filter: "skin", shape: "portrait" },
+  { image: "gallery7", filter: "hair", shape: "square" },
+  { image: "gallery9", filter: "skin", shape: "landscape" },
+  { image: "gallery8", filter: "nails", shape: "portrait" },
+  { image: "gallery10", filter: "men", shape: "square" },
+  { image: "gallery11", filter: "hair", shape: "portrait" },
+  { image: "gallery12", filter: "salon", shape: "landscape" },
+];
+
+const policies = [
+  {
+    id: "booking", title: "Booking & appointments",
+    points: [
+      "We work strictly by appointment. Bookings can be made online, by phone or on WhatsApp.",
+      "Please arrive 10 minutes early. If you arrive late, your treatment may be shortened so the next client isn't kept waiting.",
+      "Some treatments, such as colour and extensions, may need a consultation or patch test first.",
+    ],
+  },
+  {
+    id: "payments", title: "Payments",
+    points: [
+      "You can pay online with eSewa or Khalti when you book, or pay at the salon on the day.",
+      "“From” prices are a starting point. Your final price is confirmed at your consultation, before any work begins.",
+      "All prices are in Nepali rupees (NPR).",
+    ],
+  },
+  {
+    id: "cancellations", title: "Cancellations & rescheduling",
+    points: [
+      "Please let us know at least 24 hours before your appointment if you need to cancel or reschedule.",
+      "Online payments for appointments cancelled in time are refunded to the original wallet, or kept as credit for your next visit.",
+      "Late cancellations and missed appointments may not be refunded.",
+    ],
+  },
+  {
+    id: "privacy", title: "Privacy",
+    points: [
+      "We collect only the details needed to manage your booking: your name, mobile number and, if you share it, your email.",
+      "Your details are used to confirm and manage your appointments and are never sold.",
+      `To see, change or delete your details, contact us on ${site.phone.display}.`,
+    ],
+  },
+];
+
+function findService(slug) {
+  for (const category of categories) {
+    const service = category.services.find((item) => item.slug === slug);
+    if (service) return { service, category };
+  }
+  return undefined;
+}
+
+const findCategory = (slug) => categories.find((category) => category.slug === slug);
+
+function formatPrice(service) {
+  if (service.price === 0) return "Complimentary";
+  const amount = `NPR ${service.price.toLocaleString("en-IN")}`;
+  return service.priceFrom ? `From ${amount}` : amount;
+}
+
+function formatDuration(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  if (!hours) return `${rest} min`;
+  return rest ? `${hours} hr ${rest} min` : `${hours} hr`;
+}
+
+// ---------- Booking helpers ----------
+// Opening hours are a sample until the client confirms them, and "booked" slots
+// are simulated so the calendar looks realistic. Everything runs in Nepal time
+// (UTC+5:45, no daylight saving).
+const bookingHours = { open: 10 * 60, close: 19 * 60, interval: 30, leadMinutes: 60, closedWeekdays: [] };
+const NEPAL_OFFSET_MINUTES = 5 * 60 + 45;
+
+function nepalNow() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kathmandu",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).formatToParts(new Date());
+  const part = (type) => parts.find((item) => item.type === type)?.value ?? "0";
+  return {
+    date: `${part("year")}-${part("month")}-${part("day")}`,
+    minutes: Number(part("hour")) * 60 + Number(part("minute")),
+  };
+}
+
+function toUtcDate(iso) {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day, 12));
+}
+
+function addDays(iso, days) {
+  const date = toUtcDate(iso);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+const formatDate = (iso, options) =>
+  new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "UTC" }).format(toUtcDate(iso));
+
+function formatTime(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const mins = String(minutes % 60).padStart(2, "0");
+  return `${hours % 12 || 12}:${mins} ${hours < 12 ? "AM" : "PM"}`;
+}
+
+// Stable pseudo-random number in [0, 1) so the same slots always look booked.
+function seeded(input) {
+  let hash = 2166136261;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0) / 4294967296;
+}
+
+function availableTimes(iso, duration, now) {
+  if (bookingHours.closedWeekdays.includes(toUtcDate(iso).getUTCDay())) return [];
+  const times = [];
+  for (let start = bookingHours.open; start + duration <= bookingHours.close; start += bookingHours.interval) {
+    const tooSoon = iso === now.date && start < now.minutes + bookingHours.leadMinutes;
+    if (!tooSoon && seeded(`${iso}-${start}`) >= 0.3) times.push(start);
+  }
+  return times;
+}
+
+function upcomingDays(count, duration) {
+  const now = nepalNow();
+  return Array.from({ length: count }, (_, index) => {
+    const iso = addDays(now.date, index);
+    return { iso, times: availableTimes(iso, duration, now) };
+  });
+}
+
+const bookingReference = () => `XC-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+
+function calendarFile(event) {
+  const [year, month, day] = event.date.split("-").map(Number);
+  const startUtc = Date.UTC(year, month - 1, day, 0, event.start) - NEPAL_OFFSET_MINUTES * 60000;
+  const stamp = (ms) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const escapeText = (text) => text.replace(/[\\,;]/g, (char) => `\\${char}`).replace(/\n/g, "\\n");
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Xcosmopolitan//Booking//EN",
+    "BEGIN:VEVENT",
+    `UID:${startUtc}-${event.title.length}@xcosmopolitan.com`,
+    `DTSTAMP:${stamp(Date.now())}`,
+    `DTSTART:${stamp(startUtc)}`,
+    `DTEND:${stamp(startUtc + event.duration * 60000)}`,
+    `SUMMARY:${escapeText(event.title)}`,
+    `LOCATION:${escapeText(event.location)}`,
+    `DESCRIPTION:${escapeText(event.description)}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+}
+
+// ---------- Rendering helpers ----------
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const pad = (n) => String(n).padStart(2, "0");
+const escapeHtml = (value) =>
+  String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+const icon = (name, className = "") =>
+  `<svg class="i ${name === "star" || name === "sparkle" ? "i-fill " : ""}${className}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const slot = (key, className = "", attrs = "") => `<div class="slot ${className}" data-slot="${key}"${attrs ? ` ${attrs}` : ""}></div>`;
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// Photos that already loaded once show instantly when a section re-renders.
+const loadedFiles = new Set();
+
+// Shows a placeholder until the photo with the slot's file name loads.
+function fillSlots(root = document) {
+  for (const el of $$("[data-slot]:not([data-ready])", root)) {
+    const { file, alt, note } = images[el.dataset.slot];
+    el.dataset.ready = "";
+    if (alt) {
+      el.setAttribute("role", "img");
+      el.setAttribute("aria-label", alt);
+    }
+    el.innerHTML = `<span class="ph" aria-hidden="true"><img src="assets/emblem.png" alt=""><span class="ph-note">${note}</span><span class="ph-file">${file}</span></span>`;
+
+    const photo = new Image();
+    photo.className = "photo";
+    photo.alt = alt;
+    photo.decoding = "async";
+    if (loadedFiles.has(file)) el.classList.add("has-photo", "no-fade");
+    else if (!el.hasAttribute("data-eager")) photo.loading = "lazy";
+    photo.onload = () => {
+      loadedFiles.add(file);
+      el.classList.add("has-photo");
+      el.removeAttribute("role");
+      el.removeAttribute("aria-label");
+    };
+    photo.onerror = () => {
+      photo.remove();
+      el.classList.remove("has-photo", "no-fade");
+    };
+    photo.src = `assets/${file}`;
+    el.append(photo);
+  }
+}
+
+const accordion = (items) => `<div class="acc">${items.map((item, index) => `
+  <div class="acc-item">
+    <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-${item.question.length}-${index}">${item.question}<span class="pm" aria-hidden="true"></span></button>
+    <div class="acc-panel" id="acc-${item.question.length}-${index}" role="region"><div><p>${item.answer}</p></div></div>
+  </div>`).join("")}</div>`;
+
+const infoRows = () => [
+  { icon: "pin", label: "Address", value: `${site.address} · ${site.landmark}` },
+  { icon: "clock", label: "Hours", value: site.hours },
+  { icon: "phone", label: "Phone", value: site.phone.display, href: site.phone.href },
+  { icon: "instagram", label: "Instagram", value: site.instagram.handle, href: site.instagram.href },
+];
+const infoLink = (row) =>
+  row.href
+    ? `<a class="u-link" href="${row.href}"${row.href.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : ""}>${row.value}</a>`
+    : `<span>${row.value}</span>`;
+
+// ---------- Home page content ----------
+const perks = [
+  { title: "A plan for your skin", text: "Every skin treatment starts with a consultation, so we treat what your skin actually needs." },
+  { title: "Professional products", text: "We use professional salon products and are happy to tell you exactly what goes on your skin or hair." },
+  { title: "Clean and quiet", text: "Fresh towels for every client and tools cleaned between appointments, in a studio that's never crowded." },
+  { title: "Strictly by appointment", text: "No queues and no rushing: your specialist's full attention, every visit." },
+];
+
+// Treatments in the home page slider.
+const signature = ["anti-aging-facial", "highlights-balayage", "kera-box-smoothing", "skin-fade", "gel-polish", "lash-extensions", "hydrating-facial"];
+// Slider photos that differ from their category's, so no photo shows twice in the row.
+const signatureImages = { "hydrating-facial": "gallery2" };
+
+// Photos in the looping studio reel.
+const studioReel = [
+  { image: "darkQuote1", caption: "Precision cut" },
+  { image: "gallery8", caption: "Minimal nail art" },
+  { image: "darkHeroSlice", caption: "Skin" },
+  { image: "gallery5", caption: "The styling floor" },
+  { image: "darkQuote2", caption: "Marbled nails" },
+  { image: "homeHeroDetail", caption: "Clay mask facial" },
+  { image: "galleryHero", caption: "Makeup" },
+  { image: "gallery12", caption: "Reception" },
+];
+
+const concernQuestions = ["Fine lines starting to show?", "Uneven or dull skin tone?", "Breakouts that won't settle?", "Dry, frizzy or damaged hair?"];
+
+const star = () => `<svg class="star" aria-hidden="true"><use href="#i-star4"/></svg>`;
+const sliceLine = `<svg class="slice-line" viewBox="0 0 100 100" aria-hidden="true"><path pathLength="1" d="M24.9 6.7A50 50 0 0 0 6.7 75.1A50 50 0 0 0 75.1 93.3Z"/></svg>`;
+
+function serviceSection(category, index) {
+  const rows = category.services.map((service) => `
+    <li class="svc-row">
+      <div>
+        <h3>${service.name}</h3>
+        <p>${service.description}</p>
+        <p class="meta"><b>${formatPrice(service)}</b> · ${formatDuration(service.duration)}</p>
+      </div>
+      <a href="#/book?service=${service.slug}" class="row-book" aria-label="Book ${service.name}">Book ${icon("up")}</a>
+    </li>`).join("");
+  // Categories alternate between an oval photo and a half-moon slice.
+  const media = index % 2
+    ? `<div class="slice flip" data-reveal="slice">${slot(category.image)}${sliceLine}</div>`
+    : slot(category.image, "oval", 'data-reveal="oval" data-parallax');
+
+  return `
+    <section id="services-${category.slug}" class="svc-cat${index % 2 ? " alt" : ""}">
+      <div class="svc-media">${media}</div>
+      <div class="svc-body" data-reveal>
+        <p class="num">/${pad(index + 1)} · ${category.tagline}</p>
+        <h2 class="h-lg">${category.name}</h2>
+        <p class="lead">${category.description}</p>
+        <ul class="svc-list">${rows}</ul>
+      </div>
+    </section>`;
+}
+
+// Static sections built from the data above.
+const renderers = {
+  perks: () => perks.map((perk) => `<li class="perk" data-reveal>${star()}<h3>${perk.title}</h3><p>${perk.text}</p></li>`).join(""),
+
+  signature: () =>
+    signature.map((slug) => {
+      const { service, category } = findService(slug);
+      return `
+        <li class="sig-card">
+          <a href="#/book?service=${slug}" class="group">
+            ${slot(signatureImages[slug] ?? category.image, "zoom")}
+            <div class="sig-cap">
+              <h3>${service.name}</h3>
+              <p class="meta"><b>${formatPrice(service)}</b> · ${formatDuration(service.duration)}</p>
+            </div>
+          </a>
+        </li>`;
+    }).join(""),
+
+  rangeCards: () =>
+    categories.map((category, index) => `
+      <li class="rc" data-rc="${index}">
+        <a href="#/services/${category.slug}" class="group" tabindex="-1" aria-hidden="true">${slot(category.image, "zoom")}</a>
+        <h3>${category.name}</h3>
+        <p>${category.tagline}</p>
+        <a href="#/services/${category.slug}" class="ulink">View the menu</a>
+      </li>`).join(""),
+
+  asks: () => concernQuestions.map((question) => `<li data-reveal>${star()}${question}</li>`).join(""),
+
+  // Listed twice so the reel can loop without a gap; the copy is hidden from screen readers.
+  reel: () =>
+    [false, true].map((copy) => studioReel.map((item) =>
+      `<li${copy ? ' aria-hidden="true"' : ""}>${slot(item.image)}<p>${item.caption}</p></li>`).join("")).join(""),
+
+  memberTeaser: () => membershipBenefits.slice(0, 3).map((benefit) => `<li>${benefit.text}</li>`).join(""),
+
+  bandCircles: () => {
+    const items = ["gallery2", "gallery6", "gallery4", "gallery9", "gallery1", "gallery8"].map((key) => `<li>${slot(key, "slot-bare")}</li>`).join("");
+    return items + items;
+  },
+
+  contactCols: () =>
+    [
+      { label: "Address", value: `${site.address}<br>${site.landmark}` },
+      { label: "Hours", value: `${site.hours}<br>Book online or on WhatsApp` },
+      { label: "Phone", value: `<a href="${site.phone.href}">${site.phone.display}</a><a href="${whatsappLink("Hi Xcosmopolitan, I'd like to book an appointment.")}" target="_blank" rel="noopener noreferrer">WhatsApp us</a>` },
+    ].map((col) => `<div class="ct-col" data-reveal>${star()}<small>${col.label}</small><p>${col.value}</p></div>`).join(""),
+
+  infoCols: () =>
+    infoRows().map((row) => `<div class="ct-col" data-reveal>${star()}<small>${row.label}</small><p>${infoLink(row)}</p></div>`).join(""),
+
+  serviceSections: () => categories.map(serviceSection).join(""),
+
+  membershipSteps: () =>
+    membershipSteps.map((step, index) => `
+      <li class="step3" data-reveal><span class="n">${pad(index + 1)}</span><h3>${step.title}</h3><p>${step.text}</p></li>`).join(""),
+
+  memberBenefits: () => membershipBenefits.map((benefit) => `<li data-reveal>${star()}${benefit.text}</li>`).join(""),
+
+  membershipFaq: () => accordion(membershipFaqs),
+  contactFaq: () => accordion(contactFaqs),
+  aftercare: () => accordion(aftercare),
+
+  values: () => values.map((value) => `<li class="perk" data-reveal>${star()}<h3>${value.title}</h3><p>${value.text}</p></li>`).join(""),
+
+  team: () =>
+    specialists.map((specialist) => `
+      <li data-reveal>
+        ${slot(specialist.image)}
+        <h3>${specialist.role}</h3>
+        <p>${specialist.bio}</p>
+      </li>`).join(""),
+
+  policyNav: () => policies.map((section) => `<a href="#/policies/${section.id}">${section.title}</a>`).join(""),
+  policyBody: () =>
+    policies.map((section, index) => `
+      <section id="policies-${section.id}" class="policy-card" data-reveal>
+        <p class="num">/${pad(index + 1)}</p>
+        <h2 class="h-md">${section.title}</h2>
+        <ul>${section.points.map((point) => `<li>${star()}<span>${point}</span></li>`).join("")}</ul>
+      </section>`).join(""),
+};
+
+for (const el of $$("[data-render]")) el.innerHTML = renderers[el.dataset.render]();
+for (const el of $$("[data-wa]")) el.href = whatsappLink(el.dataset.wa);
+for (const el of $$("[data-maps]")) el.href = site.mapsHref;
+
+// Google map of the salon. The iframe is lazy, so it only loads once it nears the screen.
+for (const el of $$("[data-map]")) {
+  el.innerHTML = `<span class="map-ph" aria-hidden="true"><img src="assets/emblem.png" alt="">Loading map</span>
+    <iframe src="${site.mapEmbed}" title="Map showing ${site.name} in ${site.address}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  $("iframe", el).addEventListener("load", () => el.classList.add("loaded"));
+}
+$("[data-year]").textContent = new Date().getFullYear();
+
+
+// ---------- Opening ----------
+// A short opening plays on the first visit to the home page in a session.
+const intro = $(".intro");
+let introDelay = 0;
+(() => {
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem("xc-intro") === "1";
+    sessionStorage.setItem("xc-intro", "1");
+  } catch {
+    seen = false;
+  }
+  const landingHome = !location.hash || location.hash === "#/" || location.hash === "#";
+  if (seen || reduceMotion || !landingHome) {
+    intro.remove();
+    return;
+  }
+  introDelay = 1100;
+  setTimeout(() => intro.classList.add("leave"), 1100);
+  setTimeout(() => intro.remove(), 2100);
+})();
+
+// ---------- Motion ----------
+const revealOnView = (entries, observer) => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    entry.target.classList.add("in");
+    observer.unobserve(entry.target);
+  }
+};
+// The area reaches far above the screen, so anything already scrolled past (after a jump or a
+// reload part-way down) still reveals; masked photos otherwise only count once their top edge shows.
+const revealObserver = new IntersectionObserver(revealOnView, { rootMargin: "100000px 0px -8% 0px" });
+// The hero fills the first screen, so it reveals as soon as any of it shows.
+const heroRevealObserver = new IntersectionObserver(revealOnView);
+
+function animateIn(root = document) {
+  for (const group of $$("[data-stagger]", root)) {
+    const step = Number(group.dataset.stagger) || 80;
+    [...group.children].filter((child) => child.hasAttribute("data-reveal")).forEach((child, index) => {
+      child.style.setProperty("--d", `${index * step}ms`);
+    });
+  }
+  // Each heading line gets an inner span so it can rise from behind its own mask.
+  for (const heading of $$('[data-reveal="lines"]', root)) {
+    $$(".ln", heading).forEach((line, index) => {
+      if (!line.firstElementChild?.classList.contains("lw")) line.innerHTML = `<span class="lw">${line.innerHTML}</span>`;
+      line.style.setProperty("--li", index);
+    });
+  }
+  for (const el of $$("[data-reveal]:not(.in)", root)) {
+    if (reduceMotion) el.classList.add("in");
+    else if (el.closest(".hero")) setTimeout(() => heroRevealObserver.observe(el), introDelay);
+    else revealObserver.observe(el);
+  }
+}
+
+// Sliding underline under the selected category or filter.
+function moveIndicator(container, target) {
+  const indicator = container.querySelector(":scope > .ind");
+  if (!indicator) return;
+  if (!target) {
+    indicator.style.opacity = "0";
+    return;
+  }
+  indicator.style.width = `${target.offsetWidth}px`;
+  indicator.style.translate = `${target.offsetLeft}px 0`;
+  indicator.style.opacity = "1";
+}
+
+// Buttons lean slightly towards the cursor.
+if (finePointer && !reduceMotion) {
+  let magnet = null;
+  document.addEventListener("pointermove", (event) => {
+    const el = event.target.closest?.("[data-magnetic]");
+    if (magnet && magnet !== el) magnet.style.transform = "";
+    magnet = el;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (event.clientX - rect.left - rect.width / 2) * 0.25;
+    const y = (event.clientY - rect.top - rect.height / 2) * 0.25;
+    el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+  });
+  document.addEventListener("pointerleave", () => {
+    if (magnet) magnet.style.transform = "";
+    magnet = null;
+  });
+}
+
+// Scroll effects: image parallax, floating shapes, drifting band text and a header that tucks away.
+const header = $(".hdr");
+const mobileBar = $(".mbar");
+const homePage = $('[data-page="home"]');
+const bookPage = $('[data-page="book"]');
+let lastScroll = 0;
+let scrollQueued = false;
+
+function onScrollFrame() {
+  scrollQueued = false;
+  const y = scrollY;
+  header.classList.toggle("scrolled", y > 8);
+  // The hero has its own book button, so the floating one waits until the visitor scrolls on.
+  mobileBar.classList.toggle("away", !bookPage.hidden || (!homePage.hidden && y < innerHeight * 0.6));
+  const away = y > 500 && y > lastScroll && !document.body.classList.contains("menu-open");
+  if (Math.abs(y - lastScroll) > 4) {
+    header.classList.toggle("away", away);
+    document.body.classList.toggle("hdr-away", away);
+  }
+  lastScroll = y;
+
+  if (reduceMotion) return;
+  const viewport = innerHeight;
+  for (const el of $$(".page:not([hidden]) [data-parallax]")) {
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < -50 || rect.top > viewport + 50) continue;
+    const limit = rect.height * 0.06;
+    const offset = Math.max(-limit, Math.min(limit, (rect.top + rect.height / 2 - viewport / 2) * -0.08));
+    el.style.setProperty("--py", `${offset.toFixed(1)}px`);
+  }
+  // Floating pieces move at their own pace, measured against their section so they don't feed back.
+  for (const el of $$(".page:not([hidden]) [data-float]")) {
+    const rect = el.closest("section").getBoundingClientRect();
+    if (rect.bottom < -200 || rect.top > viewport + 200) continue;
+    const offset = (rect.top + rect.height / 2 - viewport / 2) * -Number(el.dataset.float);
+    el.style.setProperty("--fy", `${offset.toFixed(1)}px`);
+  }
+  for (const band of $$(".page:not([hidden]) [data-drift]")) {
+    const rect = band.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > viewport) continue;
+    const progress = (viewport - rect.top) / (viewport + rect.height) - 0.5;
+    $$(".ln", band).forEach((line, index) => line.style.setProperty("--dx", `${(progress * (index % 2 ? -180 : 180)).toFixed(1)}px`));
+  }
+}
+addEventListener("scroll", () => {
+  if (scrollQueued) return;
+  scrollQueued = true;
+  requestAnimationFrame(onScrollFrame);
+}, { passive: true });
+
+// Accordions open with an animated height.
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".acc-btn");
+  if (!button) return;
+  const item = button.closest(".acc-item");
+  const open = !item.classList.contains("open");
+  item.classList.toggle("open", open);
+  button.setAttribute("aria-expanded", String(open));
+});
+
+$("[data-top]").addEventListener("click", (event) => {
+  event.preventDefault();
+  scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+});
+
+
+// ---------- Home: signature slider ----------
+const sigViewport = $("[data-sig-viewport]");
+for (const button of $$("[data-sig]")) {
+  button.addEventListener("click", () => {
+    const card = $(".sig-card", sigViewport);
+    const step = card ? card.offsetWidth + (parseFloat(getComputedStyle(card.parentElement).columnGap) || 0) : 280;
+    sigViewport.scrollBy({ left: step * Number(button.dataset.sig), behavior: reduceMotion ? "auto" : "smooth" });
+  });
+}
+
+// ---------- Services page: category bar ----------
+const catBar = $("[data-catbar]");
+catBar.innerHTML = `<span class="ind" aria-hidden="true"></span>${categories
+  .map((category) => `<a href="#/services/${category.slug}" data-cat="${category.slug}">${category.name}</a>`)
+  .join("")}`;
+
+function setActiveCategory(slug) {
+  const link = $(`[data-cat="${slug}"]`, catBar);
+  for (const item of $$("[data-cat]", catBar)) item.classList.toggle("is-active", item === link);
+  moveIndicator(catBar, link);
+  if (link) catBar.scrollTo({ left: link.offsetLeft - catBar.clientWidth / 2 + link.offsetWidth / 2, behavior: reduceMotion ? "auto" : "smooth" });
+}
+
+// Highlights the category currently in the middle of the screen.
+const categorySpy = new IntersectionObserver((entries) => {
+  for (const entry of entries) if (entry.isIntersecting) setActiveCategory(entry.target.id.replace("services-", ""));
+}, { rootMargin: "-45% 0px -50% 0px" });
+for (const section of $$(".svc-cat")) categorySpy.observe(section);
+
+// ---------- Gallery ----------
+let galleryFilter = "all";
+const galleryChips = $("[data-gallery-filters]");
+const galleryGrid = $("[data-gallery-grid]");
+
+galleryChips.innerHTML = `<span class="ind" aria-hidden="true"></span>${galleryFilters
+  .map((item) => `<button type="button" data-filter="${item.id}" aria-pressed="${item.id === galleryFilter}">${item.label}</button>`)
+  .join("")}`;
+
+function renderGallery() {
+  galleryGrid.innerHTML = galleryItems
+    .filter((item) => galleryFilter === "all" || item.filter === galleryFilter)
+    .map((item, index) => `
+      <li class="group" style="--i: ${index}">
+        <figure>
+          ${slot(item.image, `zoom shape-${item.shape}`)}
+          <figcaption>${images[item.image].alt}</figcaption>
+        </figure>
+      </li>`).join("");
+  fillSlots(galleryGrid);
+}
+
+galleryChips.addEventListener("click", (event) => {
+  const chip = event.target.closest("[data-filter]");
+  if (!chip) return;
+  galleryFilter = chip.dataset.filter;
+  for (const item of $$("[data-filter]", galleryChips)) item.setAttribute("aria-pressed", String(item === chip));
+  moveIndicator(galleryChips, chip);
+  renderGallery();
+});
+renderGallery();
+
+// ---------- Contact form ----------
+$("[data-contact-form]").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const text = `Hi ${site.name}, this is ${form.name.value.trim()}. ${form.message.value.trim()}`;
+  window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
+});
+
+// ---------- Booking ----------
+const bookingSteps = [
+  { id: "service", label: "Service" },
+  { id: "specialist", label: "Specialist" },
+  { id: "time", label: "Date & time" },
+  { id: "details", label: "Your details" },
+  { id: "payment", label: "Payment" },
+];
+const stepOrder = bookingSteps.map((step) => step.id);
+const paymentMethods = [
+  { id: "esewa", label: "eSewa", text: "Pay now with your eSewa wallet." },
+  { id: "khalti", label: "Khalti", text: "Pay now with your Khalti wallet." },
+  { id: "salon", label: "Pay at the salon", text: "Pay by cash, card or QR on the day." },
+];
+const dayParts = [
+  { label: "Morning", from: 0, to: 12 * 60 },
+  { label: "Afternoon", from: 12 * 60, to: 17 * 60 },
+  { label: "Evening", from: 17 * 60, to: 24 * 60 },
+];
+
+// How long the chosen time is held while the customer pays.
+const HOLD_SECONDS = 10 * 60;
+
+const bookingRoot = $("#booking");
+let booking = null;
+let holdInterval;
+let payTimeout;
+let stepMotion = null;
+
+function startBooking(params) {
+  stopHold();
+  const preselected = findService(params.get("service"));
+  booking = {
+    step: preselected ? "specialist" : "service",
+    categorySlug: preselected?.category.slug ?? findCategory(params.get("category"))?.slug ?? categories[0].slug,
+    serviceSlug: preselected?.service.slug ?? null,
+    specialistId: "any",
+    date: null,
+    time: null,
+    details: { name: "", phone: "", email: "", notes: "", agreed: false },
+    showErrors: false,
+    notice: null,
+    confirmation: null,
+    method: "esewa",
+    remaining: HOLD_SECONDS,
+    processing: false,
+  };
+  stepMotion = null;
+  renderBooking();
+}
+
+const currentService = () => findService(booking.serviceSlug);
+const currentSpecialist = () => specialists.find((item) => item.id === booking.specialistId);
+
+function goTo(next, message = null) {
+  const from = stepOrder.indexOf(booking.step);
+  const to = stepOrder.indexOf(next);
+  stepMotion = to >= from || next === "done" ? "fwd" : "back";
+  if (booking.step === "payment" && next !== "payment") stopHold();
+  booking.step = next;
+  booking.notice = message;
+  if (next === "payment") startHold();
+  renderBooking();
+  stepMotion = null;
+  $(".bk-top", bookingRoot)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+}
+
+function chooseService(slug) {
+  const next = findService(slug);
+  if (!next) return;
+  booking.serviceSlug = slug;
+  booking.time = null;
+  const specialist = currentSpecialist();
+  if (specialist && !specialist.categories.includes(next.category.slug)) booking.specialistId = "any";
+}
+
+function nextStep() {
+  if (booking.step === "details" && !isValidDetails(booking.details)) {
+    booking.showErrors = true;
+    renderBooking();
+    return;
+  }
+  goTo(stepOrder[stepOrder.indexOf(booking.step) + 1]);
+}
+
+function previousStep() {
+  if (booking.step === "service") return;
+  goTo(stepOrder[stepOrder.indexOf(booking.step) - 1]);
+}
+
+function startHold() {
+  const free = currentService().service.price === 0;
+  booking.method = free ? "salon" : "esewa";
+  booking.remaining = HOLD_SECONDS;
+  booking.processing = false;
+  holdInterval = setInterval(() => {
+    booking.remaining -= 1;
+    const clock = $("[data-clock]", bookingRoot);
+    if (clock) clock.textContent = holdClock();
+    if (booking.remaining <= 0) expireHold();
+  }, 1000);
+}
+
+function stopHold() {
+  clearInterval(holdInterval);
+  clearTimeout(payTimeout);
+}
+
+function expireHold() {
+  booking.time = null;
+  goTo("time", "Your held time was released after 10 minutes. Please choose a time again.");
+}
+
+const holdClock = () => `${Math.floor(booking.remaining / 60)}:${pad(Math.max(booking.remaining, 0) % 60)}`;
+
+function confirmBooking() {
+  const free = currentService().service.price === 0;
+  const online = !free && booking.method !== "salon";
+  booking.processing = true;
+  renderBooking();
+  // Demo only: stands in for the eSewa/Khalti redirect and verification.
+  payTimeout = setTimeout(() => {
+    booking.confirmation = { reference: bookingReference(), payment: booking.method };
+    goTo("done");
+  }, online ? 1800 : 900);
+}
+
+function resetBooking() {
+  Object.assign(booking, {
+    serviceSlug: null,
+    specialistId: "any",
+    date: null,
+    time: null,
+    details: { name: "", phone: "", email: "", notes: "", agreed: false },
+    showErrors: false,
+    confirmation: null,
+  });
+  goTo("service");
+}
+
+function detailErrors(details) {
+  return {
+    name: details.name.trim().length < 2 ? "Please enter your full name." : "",
+    phone: /^9\d{9}$/.test(details.phone) ? "" : "Enter a 10-digit mobile number starting with 9.",
+    email: details.email && !/^\S+@\S+\.\S+$/.test(details.email) ? "Enter a valid email address." : "",
+    agreed: details.agreed ? "" : "Please accept the booking policy to continue.",
+  };
+}
+
+const isValidDetails = (details) => Object.values(detailErrors(details)).every((error) => !error);
+
+// Accepts pasted numbers like "+977 981-234 5678" and keeps the 10-digit mobile number.
+function normalisePhone(value) {
+  let digits = value.replace(/\D/g, "");
+  if (digits.length > 10 && digits.startsWith("977")) digits = digits.slice(3);
+  return digits.slice(0, 10);
+}
+
+const stepHeading = (title, text) => `<div class="bk-h"><h2>${title}</h2>${text ? `<p>${text}</p>` : ""}</div>`;
+
+// A large selectable tile used for treatments, specialists and payment methods.
+const optionCard = ({ selected, action, value, content, key }) => `
+  <button type="button" class="opt" aria-pressed="${selected}" data-action="${action}" data-value="${value}" data-key="${key}">
+    <span class="opt-check" aria-hidden="true">${icon("check")}</span>
+    ${content}
+  </button>`;
+
+function progressView() {
+  const current = stepOrder.indexOf(booking.step);
+  const steps = bookingSteps.map((step, index) => {
+    const done = index < current;
+    const active = index === current;
+    return `
+      <li class="${done ? "done" : ""}${active ? "active" : ""}">
+        <span class="bar"><span${active && stepMotion === "fwd" ? ' class="grow"' : ""}></span></span>
+        <button type="button" data-action="step" data-value="${step.id}" data-key="step:${step.id}"${done ? "" : " disabled"}${active ? ' aria-current="step"' : ""}>
+          <span class="n">${done ? icon("check") : index + 1}</span><span>${step.label}</span>
+        </button>
+      </li>`;
+  }).join("");
+  return `
+    <nav class="bk-prog" aria-label="Booking progress">
+      <p class="bk-prog-label">Step ${current + 1} of ${bookingSteps.length} · <b>${bookingSteps[current].label}</b></p>
+      <ol>${steps}</ol>
+    </nav>`;
+}
+
+function summaryWhen() {
+  if (!booking.date || booking.time === null) return null;
+  return `${formatDate(booking.date, { weekday: "short", day: "numeric", month: "short" })} · ${formatTime(booking.time)}`;
+}
+
+function summaryMini(service) {
+  const when = summaryWhen();
+  return `
+    <div class="bk-sum-mini">
+      <div><strong>${service?.name ?? "No treatment selected yet"}</strong>${when ? `<span>${when}</span>` : ""}</div>
+      ${service ? `<span class="price">${formatPrice(service)}</span>` : ""}
+    </div>`;
+}
+
+function summaryFull(match, specialist) {
+  const service = match?.service;
+  const rows = [
+    { label: "Treatment", value: service?.name },
+    { label: "Duration", value: service && formatDuration(service.duration) },
+    { label: "Specialist", value: service && (specialist?.role ?? "Any available") },
+    { label: "Date", value: booking.date && formatDate(booking.date, { weekday: "long", day: "numeric", month: "long" }) },
+    { label: "Time", value: booking.time !== null ? `${formatTime(booking.time)} NPT` : undefined },
+  ];
+  return `
+    <div class="bk-sum">
+      ${match ? slot(match.category.image, "bk-sum-img") : `<div class="bk-sum-empty"><img src="assets/emblem.png" alt=""></div>`}
+      <div class="bk-sum-body">
+        <p class="eyebrow">Your booking</p>
+        <dl>${rows.map((row) => `<div><dt>${row.label}</dt><dd${row.value ? "" : ' class="empty"'}>${row.value || "—"}</dd></div>`).join("")}</dl>
+        <div class="total"><span>Total</span><strong>${service ? formatPrice(service) : "—"}</strong></div>
+        <p class="secure">${icon("shield")}No account needed. Your time is held while you pay.</p>
+      </div>
+    </div>`;
+}
+
+function serviceStepView() {
+  const category = findCategory(booking.categorySlug) ?? categories[0];
+  const chips = categories.map((item) => `
+    <button type="button" class="pill" aria-pressed="${item.slug === category.slug}" data-action="category" data-value="${item.slug}" data-key="cat:${item.slug}">${item.name}</button>`).join("");
+  const cards = category.services.map((service) => `<li>${optionCard({
+    selected: booking.serviceSlug === service.slug,
+    action: "service",
+    value: service.slug,
+    key: `svc:${service.slug}`,
+    content: `
+      <span class="opt-title">${service.name}</span>
+      <span class="opt-text">${service.description}</span>
+      <span class="opt-meta"><span class="tagpill">${formatPrice(service)}</span><span class="tagpill soft">${formatDuration(service.duration)}</span></span>`,
+  })}</li>`).join("");
+
+  return `
+    ${stepHeading("Choose a treatment", "Pick a category, then the treatment you'd like.")}
+    <div class="pill-row">${chips}</div>
+    <ul class="opt-grid gap-top">${cards}</ul>`;
+}
+
+function specialistStepView(categorySlug) {
+  const any = optionCard({
+    selected: booking.specialistId === "any",
+    action: "specialist",
+    value: "any",
+    key: "spec:any",
+    content: `
+      <span class="person">
+        <span class="avatar-any"><img src="assets/emblem.png" alt=""></span>
+        <span><span class="opt-title">Any available</span><span class="opt-text">The widest choice of times</span></span>
+      </span>`,
+  });
+  const people = specialists
+    .filter((specialist) => specialist.categories.includes(categorySlug))
+    .map((specialist) => `<li>${optionCard({
+      selected: booking.specialistId === specialist.id,
+      action: "specialist",
+      value: specialist.id,
+      key: `spec:${specialist.id}`,
+      content: `
+        <span class="person">
+          ${slot(specialist.image, "slot-bare")}
+          <span><span class="opt-title">${specialist.role}</span><span class="opt-text">${specialist.bio}</span></span>
+        </span>`,
+    })}</li>`).join("");
+
+  return `
+    ${stepHeading("Choose your specialist", "Pick a specialist, or let us match you with the first available expert.")}
+    <ul class="opt-grid"><li>${any}</li>${people}</ul>`;
+}
+
+// The day strip scrolls sideways with its scrollbar hidden, so it gets arrows for mouse users.
+const daysStrip = (days, dayButtons) => `
+  <div class="days-bar">
+    <span class="days-range">${formatDate(days[0].iso, { day: "numeric", month: "short" })} – ${formatDate(days[days.length - 1].iso, { day: "numeric", month: "short" })}</span>
+    <span class="days-arrows">
+      <button type="button" class="days-nav prev" data-action="days" data-value="-1" aria-label="Earlier days">${icon("arrow")}</button>
+      <button type="button" class="days-nav" data-action="days" data-value="1" aria-label="Later days">${icon("arrow")}</button>
+    </span>
+  </div>
+  <div class="days">${dayButtons}</div>`;
+
+function timeStepView(duration) {
+  const days = upcomingDays(14, duration);
+  const selectedDay = days.find((day) => day.iso === booking.date) ?? days.find((day) => day.times.length > 0);
+  const dayButtons = days.map((day) => {
+    const closed = day.times.length === 0;
+    return `
+      <button type="button" class="day" data-action="day" data-value="${day.iso}" data-key="day:${day.iso}" aria-pressed="${day.iso === selectedDay?.iso}"${closed ? " disabled" : ""}>
+        <span class="wd">${formatDate(day.iso, { weekday: "short" })}</span>
+        <span class="dn">${formatDate(day.iso, { day: "numeric" })}</span>
+        <span class="mo">${closed ? "Full" : formatDate(day.iso, { month: "short" })}</span>
+      </button>`;
+  }).join("");
+
+  if (!selectedDay) {
+    return `
+      ${stepHeading("Pick a date & time", "Choose a day, then a time that suits you.")}
+      ${daysStrip(days, dayButtons)}
+      <p class="full-note">We're fully booked for the next two weeks. Please message us on WhatsApp.</p>`;
+  }
+
+  const parts = dayParts.map((part) => {
+    const times = selectedDay.times.filter((t) => t >= part.from && t < part.to);
+    if (!times.length) return "";
+    return `
+      <div>
+        <p class="eyebrow">${part.label}</p>
+        <div class="times">${times.map((t) => `
+          <button type="button" class="time" data-action="time" data-value="${selectedDay.iso}|${t}" data-key="time:${selectedDay.iso}|${t}" aria-pressed="${booking.date === selectedDay.iso && booking.time === t}">${formatTime(t)}</button>`).join("")}
+        </div>
+      </div>`;
+  }).join("");
+
+  return `
+    ${stepHeading("Pick a date & time", "Choose a day, then a time that suits you.")}
+    ${daysStrip(days, dayButtons)}
+    <div class="day-detail">
+      <p class="day-title">${formatDate(selectedDay.iso, { weekday: "long", day: "numeric", month: "long" })}</p>
+      ${parts}
+      <p class="tz-note">${icon("clock")}All times are Nepal time (NPT).</p>
+    </div>`;
+}
+
+function detailsStepView() {
+  const { details, showErrors } = booking;
+  const errors = showErrors ? detailErrors(details) : {};
+  const error = (field) => `<p class="err" data-error="${field}"${errors[field] ? "" : " hidden"}>${errors[field] ?? ""}</p>`;
+  const value = (field) => escapeHtml(details[field]);
+
+  return `
+    ${stepHeading("Your details", "We'll use these to confirm your appointment. No account needed.")}
+    <div class="form-grid">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" class="input" autocomplete="name" data-field="name" value="${value("name")}">
+        ${error("name")}
+      </div>
+      <div class="field">
+        <label for="phone">Mobile number</label>
+        <div class="phone">
+          <span class="prefix">+977</span>
+          <input id="phone" class="input" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98XXXXXXXX" data-field="phone" value="${value("phone")}">
+        </div>
+        ${error("phone")}
+      </div>
+      <div class="field">
+        <label for="email">Email (optional)</label>
+        <input id="email" class="input" type="email" autocomplete="email" data-field="email" value="${value("email")}">
+        ${error("email")}
+      </div>
+      <div class="field span-2">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" class="input" rows="3" placeholder="Anything we should know: allergies, hair length, preferences…" data-field="notes">${value("notes")}</textarea>
+      </div>
+    </div>
+    <label class="agree">
+      <input type="checkbox" data-field="agreed"${details.agreed ? " checked" : ""}>
+      <span>I agree to the <a href="#/policies" target="_blank" class="u-link">booking &amp; cancellation policy</a>.</span>
+    </label>
+    ${error("agreed")}`;
+}
+
+function showDetailErrors() {
+  const errors = detailErrors(booking.details);
+  for (const el of $$("[data-error]", bookingRoot)) {
+    const message = errors[el.dataset.error];
+    el.textContent = message;
+    el.hidden = !message;
+  }
+}
+
+function paymentStepView(service) {
+  const free = service.price === 0;
+  const chosen = paymentMethods.find((item) => item.id === booking.method) ?? paymentMethods[0];
+  const online = !free && booking.method !== "salon";
+  const amount = `NPR ${service.price.toLocaleString("en-IN")}`;
+  const busy = booking.processing;
+  const methods = paymentMethods.map((item) => `<li>${optionCard({
+    selected: booking.method === item.id,
+    action: "method",
+    value: item.id,
+    key: `pay:${item.id}`,
+    content: `<span class="opt-title">${item.label}</span><span class="opt-text">${item.text}</span>`,
+  })}</li>`).join("");
+  const label = busy
+    ? online ? `Connecting to ${chosen.label}…` : "Confirming…"
+    : online ? `Pay ${amount}` : "Confirm booking";
+
+  return `
+    ${stepHeading(
+      free ? "Confirm your booking" : "Confirm &amp; pay",
+      free ? "This consultation is complimentary. Confirm to secure your time." : "Choose how you'd like to pay to secure your appointment.",
+    )}
+    <p class="hold"><span class="pulse" aria-hidden="true"></span><span>We're holding your time for <span class="clock" data-clock>${holdClock()}</span></span></p>
+    ${free ? "" : `<ul class="opt-grid three gap-top">${methods}</ul>`}
+    <div class="pay-total"><span>${online ? "Total due now" : "Total"}</span><strong>${free ? "Complimentary" : amount}</strong></div>
+    ${service.priceFrom ? `<p class="from-note">This is a starting price. Your final price is confirmed at your consultation.</p>` : ""}
+    <p class="demo-note">Demo: no real payment is taken. eSewa and Khalti will be connected before launch.</p>
+    <div class="bk-nav">
+      <button type="button" class="back-btn" data-action="back" data-key="back"${busy ? " disabled" : ""}>${icon("arrow")}Back</button>
+      <button type="button" class="btn btn-ink${busy ? " is-busy" : ""}" data-action="confirm" data-key="confirm"${busy ? " disabled" : ""}>
+        ${busy ? '<span class="spinner" aria-hidden="true"></span>' : ""}${label}${busy ? "" : ` <span class="arr">${icon("up")}</span>`}
+      </button>
+    </div>`;
+}
+
+function confirmationView(service, specialist) {
+  const { reference, payment } = booking.confirmation;
+  const longDate = formatDate(booking.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const paymentLabel = service.price === 0
+    ? "No payment needed"
+    : payment === "salon" ? "Pay at the salon" : `Paid with ${paymentMethods.find((item) => item.id === payment).label}`;
+  const rows = [
+    { label: "Treatment", value: `${service.name} · ${formatDuration(service.duration)}` },
+    { label: "Specialist", value: specialist?.role ?? "Any available" },
+    { label: "Date", value: longDate },
+    { label: "Time", value: `${formatTime(booking.time)} NPT` },
+    { label: "Payment", value: paymentLabel },
+  ];
+  const message = `Hi ${site.name}, I've booked ${service.name} on ${longDate} at ${formatTime(booking.time)}. Reference ${reference}.`;
+  const firstName = booking.details.name.trim().split(" ")[0];
+
+  return `
+    <div class="done">
+      <div class="done-badge"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 21l6 6 12-13"/></svg></div>
+      <p class="eyebrow rise-in" style="--d: 300ms">Booking confirmed</p>
+      <h2 class="rise-in" style="--d: 380ms">Thank you, <b>${escapeHtml(firstName)}</b></h2>
+      <p class="lead rise-in" style="--d: 460ms">Your appointment is booked. Keep your reference handy and show it when you arrive.</p>
+      <div class="rise-in" style="--d: 540ms"><span class="ref">Reference ${reference}<button type="button" data-action="copy" data-value="${reference}">Copy</button></span></div>
+      <dl class="rise-in" style="--d: 620ms">${rows.map((row) => `<div><dt>${row.label}</dt><dd>${row.value}</dd></div>`).join("")}</dl>
+      <div class="actions rise-in" style="--d: 700ms">
+        <button type="button" class="btn btn-ink" data-action="calendar">${icon("calendar")}Add to calendar</button>
+        <a href="${whatsappLink(message)}" target="_blank" rel="noopener noreferrer" class="btn btn-light">${icon("chat")}WhatsApp us</a>
+        <a href="${site.mapsHref}" target="_blank" rel="noopener noreferrer" class="btn btn-light">${icon("pin")}Directions</a>
+      </div>
+      <button type="button" class="again rise-in" style="--d: 780ms" data-action="reset">Book another appointment</button>
+    </div>`;
+}
+
+function addToCalendar() {
+  const { service } = currentService();
+  const { reference } = booking.confirmation;
+  const file = calendarFile({
+    title: `${service.name} at ${site.name}`,
+    description: `Booking reference ${reference}`,
+    location: `${site.name}, ${site.address}`,
+    date: booking.date,
+    start: booking.time,
+    duration: service.duration,
+  });
+  const url = URL.createObjectURL(new Blob([file], { type: "text/calendar" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `xcosmopolitan-${reference}.ics`;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// Arrows are disabled at either end of the strip, and hidden when every day already fits.
+function syncDays() {
+  const strip = $(".days", bookingRoot);
+  if (!strip) return;
+  const fits = strip.scrollWidth <= strip.clientWidth + 1;
+  $(".days-bar", bookingRoot)?.classList.toggle("fits", fits);
+  const prev = $('[data-action="days"][data-value="-1"]', bookingRoot);
+  const next = $('[data-action="days"][data-value="1"]', bookingRoot);
+  if (prev) prev.disabled = strip.scrollLeft <= 2;
+  if (next) next.disabled = strip.scrollLeft >= strip.scrollWidth - strip.clientWidth - 2;
+}
+
+// Re-rendering rebuilds the strip, so put it back where it was (or centre the chosen day the first time).
+function placeDays(keep) {
+  const strip = $(".days", bookingRoot);
+  if (!strip) return;
+  const selected = $('.day[aria-pressed="true"]', strip);
+  if (keep !== null) strip.scrollLeft = keep;
+  else if (selected) strip.scrollLeft = selected.getBoundingClientRect().left - strip.getBoundingClientRect().left + strip.scrollLeft - (strip.clientWidth - selected.offsetWidth) / 2;
+  syncDays();
+}
+
+function renderBooking(pressedKey = null) {
+  // Re-rendering replaces the buttons, so keep keyboard focus on the same control.
+  const focusKey = bookingRoot.contains(document.activeElement) ? document.activeElement.dataset.key : null;
+  const keepDays = $(".days", bookingRoot)?.scrollLeft ?? null;
+  const match = currentService();
+  const specialist = currentSpecialist();
+
+  if (booking.step === "done" && booking.confirmation && match) {
+    bookingRoot.innerHTML = `<div class="container done-wrap"><div class="bk-top">${confirmationView(match.service, specialist)}</div></div>`;
+    return;
+  }
+
+  const { step } = booking;
+  const canContinue =
+    (step === "service" && Boolean(match)) ||
+    step === "specialist" ||
+    (step === "time" && booking.date !== null && booking.time !== null) ||
+    step === "details";
+
+  let body = "";
+  if (step === "service") body = serviceStepView();
+  if (step === "specialist" && match) body = specialistStepView(match.category.slug);
+  if (step === "time" && match) body = timeStepView(match.service.duration);
+  if (step === "details") body = detailsStepView();
+  if (step === "payment" && match) body = paymentStepView(match.service);
+
+  const nav = step === "payment" ? "" : `
+    <div class="bk-nav">
+      ${step === "service" ? "<span></span>" : `<button type="button" class="back-btn" data-action="back" data-key="back">${icon("arrow")}Back</button>`}
+      <button type="button" class="btn btn-ink" data-action="next" data-key="next"${canContinue ? "" : " disabled"}>Continue <span class="arr">${icon("up")}</span></button>
+    </div>`;
+
+  bookingRoot.innerHTML = `
+    <div class="container bk">
+      <div class="bk-main bk-top">
+        ${progressView()}
+        ${summaryMini(match?.service)}
+        ${booking.notice ? `<p role="status" class="notice">${icon("clock")}${booking.notice}</p>` : ""}
+        <div class="bk-step${stepMotion && !reduceMotion ? ` ${stepMotion}` : ""}">${body}</div>
+        ${nav}
+      </div>
+      <aside class="bk-aside">${summaryFull(match, specialist)}</aside>
+    </div>`;
+  fillSlots(bookingRoot);
+  placeDays(keepDays);
+
+  if (focusKey) bookingRoot.querySelector(`[data-key="${CSS.escape(focusKey)}"]`)?.focus({ preventScroll: true });
+  if (pressedKey && !reduceMotion) bookingRoot.querySelector(`[data-key="${CSS.escape(pressedKey)}"]`)?.classList.add("pop");
+}
+
+bookingRoot.addEventListener("click", (event) => {
+  const el = event.target.closest("[data-action]");
+  if (!el || el.disabled || !booking) return;
+  const { action, value, key } = el.dataset;
+
+  if (action === "step") return goTo(value);
+  if (action === "next") return nextStep();
+  if (action === "back") return previousStep();
+  if (action === "confirm") return confirmBooking();
+  if (action === "calendar") return addToCalendar();
+  if (action === "reset") return resetBooking();
+  if (action === "days") {
+    const strip = $(".days", bookingRoot);
+    strip?.scrollBy({ left: Number(value) * strip.clientWidth * 0.8, behavior: reduceMotion ? "auto" : "smooth" });
+    return;
+  }
+  if (action === "copy") {
+    navigator.clipboard?.writeText(value).then(() => { el.textContent = "Copied"; }, () => {});
+    return;
+  }
+
+  if (action === "category") booking.categorySlug = value;
+  if (action === "service") chooseService(value);
+  if (action === "specialist") booking.specialistId = value;
+  if (action === "method") booking.method = value;
+  if (action === "day") {
+    booking.date = value;
+    booking.time = null;
+  }
+  if (action === "time") {
+    const [date, minutes] = value.split("|");
+    booking.date = date;
+    booking.time = Number(minutes);
+  }
+  renderBooking(key);
+});
+
+// Typing updates the details without re-rendering, so inputs keep focus.
+function updateDetail(event) {
+  const field = event.target.dataset.field;
+  if (!field || !booking) return;
+  if (field === "agreed") booking.details.agreed = event.target.checked;
+  else if (field === "phone") {
+    const phone = normalisePhone(event.target.value);
+    if (phone !== event.target.value) event.target.value = phone;
+    booking.details.phone = phone;
+  } else booking.details[field] = event.target.value;
+  if (booking.showErrors) showDetailErrors();
+}
+bookingRoot.addEventListener("scroll", (event) => { if (event.target.classList?.contains("days")) syncDays(); }, true);
+addEventListener("resize", syncDays);
+bookingRoot.addEventListener("input", updateDetail);
+bookingRoot.addEventListener("change", updateDetail);
+
+// ---------- Navigation ----------
+// Each page lives in this file; the part of the URL after # picks which one shows,
+// e.g. #/services, #/services/skin or #/book?service=hydrating-facial.
+const pages = Object.fromEntries($$("[data-page]").map((el) => [el.dataset.page, el]));
+const metaDescription = $('meta[name="description"]');
+const defaultDescription = metaDescription.content;
+const burger = $(".burger");
+const mobileMenu = $("#mnav");
+let currentPage = null;
+
+function setMenu(open) {
+  mobileMenu.classList.toggle("open", open);
+  mobileMenu.inert = !open;
+  document.body.classList.toggle("menu-open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  if (open) $(".mnav-close").focus();
+}
+
+burger.addEventListener("click", () => setMenu(true));
+$(".mnav-close").addEventListener("click", () => {
+  setMenu(false);
+  burger.focus();
+});
+mobileMenu.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setMenu(false);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+    setMenu(false);
+    burger.focus();
+  }
+});
+
+$(".skip").addEventListener("click", (event) => {
+  event.preventDefault();
+  $("#main").focus();
+});
+
+function applyRoute(page, anchor, query, changed) {
+  if (changed) {
+    if (currentPage === "book") stopHold();
+    for (const [key, el] of Object.entries(pages)) el.hidden = key !== page;
+    currentPage = page;
+    document.title = pages[page].dataset.title;
+    metaDescription.content = pages[page].dataset.description ?? defaultDescription;
+    for (const link of $$("[data-nav]")) {
+      const active = link.dataset.nav === page;
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+    header.classList.remove("away");
+    document.body.classList.remove("hdr-away");
+  }
+
+  if (page === "book") startBooking(new URLSearchParams(query));
+  setMenu(false);
+
+  const target = anchor && document.getElementById(`${page}-${anchor}`);
+  if (target) {
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: changed || reduceMotion ? "instant" : "smooth" }));
+  } else {
+    window.scrollTo({ top: 0, behavior: changed || reduceMotion ? "instant" : "smooth" });
+  }
+  if (changed) {
+    requestAnimationFrame(() => {
+      if (page === "gallery") moveIndicator(galleryChips, $(`[aria-pressed="true"]`, galleryChips));
+      onScrollFrame();
+    });
+  }
+}
+
+function route() {
+  const hash = location.hash.slice(1);
+  if (hash && !hash.startsWith("/")) return;
+  const [path, query = ""] = (hash || "/").split("?");
+  const [name = "home", anchor] = path.split("/").filter(Boolean);
+  const page = pages[name] ? name : "404";
+  const changed = page !== currentPage;
+
+  if (changed && currentPage && document.startViewTransition && !reduceMotion) {
+    document.startViewTransition(() => applyRoute(page, anchor, query, true));
+  } else {
+    applyRoute(page, anchor, query, changed);
+  }
+}
+
+window.addEventListener("hashchange", route);
+addEventListener("resize", () => {
+  moveIndicator(galleryChips, $(`[aria-pressed="true"]`, galleryChips));
+  const activeCat = $("[data-cat].is-active", catBar);
+  if (activeCat) moveIndicator(catBar, activeCat);
+});
+document.fonts?.ready.then(() => moveIndicator(galleryChips, $(`[aria-pressed="true"]`, galleryChips)));
+
+fillSlots();
+animateIn();
+route();
+
+</script>
+</body>
+</html>

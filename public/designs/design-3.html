@@ -94,7 +94,8 @@ table { border-collapse: collapse; }
 
 /* ---------- Photo slots ---------- */
 .slot { position: relative; overflow: hidden; background: var(--bg-2); }
-.slot .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; translate: 0 var(--py, 0px); scale: var(--s, 1); transition: opacity .9s ease, scale 1.6s var(--ease); }
+/* A light shared grade so photos from different shoots sit together; still full colour. */
+.slot .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: saturate(.93) contrast(.97); translate: 0 var(--py, 0px); scale: var(--s, 1); transition: opacity .9s ease, scale 1.6s var(--ease); }
 .slot.has-photo .photo { opacity: 1; }
 .slot.no-fade .photo { transition: scale 1.6s var(--ease); }
 .slot.has-photo .ph { opacity: 0; }
@@ -111,15 +112,16 @@ table { border-collapse: collapse; }
 .slice-line { display: none; }
 
 /* ---------- Header ---------- */
-.hdr { position: sticky; top: 0; z-index: 50; display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: clamp(3rem, 6vw, 6rem); height: var(--hdr); padding-inline: var(--gutter); background: var(--bg); color: var(--ink); transition: background-color .45s ease, color .45s ease; }
+.hdr { position: sticky; top: 0; z-index: 50; display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: clamp(3rem, 6vw, 6rem); height: var(--hdr); padding-inline: var(--gutter); background: var(--bg); color: var(--ink); box-shadow: 0 1px 0 var(--line); transition: background-color .45s ease, color .45s ease, box-shadow .45s ease; }
 /* On the home page the bar starts across the middle of the first photo and sticks once it reaches the top. */
 .on-home .hdr { margin-top: calc(50svh - var(--hdr) / 2); margin-bottom: calc(-50svh - var(--hdr) / 2); }
-.on-home .hdr:not(.past) { background: transparent; color: var(--white); }
+.on-home .hdr:not(.past) { background: transparent; color: var(--white); box-shadow: none; }
+.on-home .hdr:not(.past) .hdr-tag { opacity: 0; }
 .brand { display: inline-flex; align-items: center; width: fit-content; }
 .brand .wordmark { height: 1.15rem; width: auto; fill: currentColor; }
-.hdr-tag { display: none; font-family: var(--serif); font-size: 1.1rem; line-height: 1; }
+.hdr-tag { display: none; font-family: var(--serif); font-size: 1.1rem; line-height: 1; transition: opacity .45s ease; }
 .hdr-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(1.1rem, 3.2vw, 3rem); }
-.hdr-nav > * { font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; transition: opacity .3s; }
+.hdr-nav > * { padding-block: 1rem; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; transition: opacity .3s; }
 .hdr-nav > :hover { opacity: .6; }
 .hdr-nav .is-active { text-decoration: underline; text-underline-offset: 4px; }
 .hdr-nav .hide-s, .hdr-nav .hide-m { display: none; }
@@ -150,16 +152,36 @@ body.menu-open { overflow: hidden; }
 @keyframes intro-word { from { opacity: 0; translate: 0 1rem; } }
 
 /* ---------- Home: stacked photos ---------- */
-/* Two full-screen photos; the second slides up over the first. */
-.hero-stack { position: relative; }
-.hs-panel { position: sticky; top: 0; height: 100svh; min-height: 30rem; overflow: hidden; }
+/* Two full-screen photos; the second slides up over the first, which dims and deepens beneath it. */
+.hero-stack { position: relative; --hp: 0; }
+.hs-panel { position: sticky; top: 0; height: 100svh; min-height: 32rem; overflow: hidden; color: var(--white); }
 .hs-panel .slot { position: absolute; inset: 0; }
-.hs-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(20, 22, 40, .3), transparent 24%, transparent 40%, rgba(20, 22, 40, .12) 50%, transparent 60%, transparent 80%, rgba(20, 22, 40, .16)); }
+.hs-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(20, 22, 40, .34), transparent 22%, transparent 56%, rgba(20, 22, 40, .5)); }
+.hs-panel:first-of-type .slot { scale: calc(1 + var(--hp) * .08); filter: brightness(calc(1 - var(--hp) * .45)); transform-origin: 50% 80%; }
 .hs-panel:first-of-type .photo { object-position: 58% 30%; }
-.hs-panel:first-of-type::after { background: linear-gradient(180deg, rgba(20, 22, 40, .3), transparent 24%, transparent 40%, rgba(20, 22, 40, .12) 50%, transparent 60%, transparent 62%, rgba(20, 22, 40, .38)); }
-/* The hero line sits low on the left of the first photo, under the menu bar. */
-.hs-title { position: absolute; left: var(--gutter); bottom: clamp(1.5rem, 5vh, 3rem); z-index: 1; color: var(--white); font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 6.4vw, 6.25rem); line-height: .95; letter-spacing: -.015em; text-shadow: 0 2px 30px rgba(20, 22, 40, .25); }
+/* The photo settles in with a slow zoom once it has loaded. */
+.hs-panel .slot.has-photo .photo { animation: settle 2.8s var(--ease) both; }
+@keyframes settle { from { scale: 1.12; } }
+.hs-corners { position: absolute; inset: clamp(1rem, 2.4vh, 1.5rem) var(--gutter) auto; z-index: 1; display: none; justify-content: space-between; }
+/* Corner labels and the scroll cue fade as the page moves, before the menu bar reaches the top. */
+:is(.hs-corners, .hs-cue) { opacity: clamp(0, 1 - var(--hp) * 2.6, 1); }
+.hs-bottom { position: absolute; inset: auto var(--gutter) clamp(1.5rem, 5vh, 3rem); z-index: 1; display: grid; gap: 1.5rem; align-items: end; }
+.hs-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.7rem, 6.4vw, 6.5rem); line-height: .93; letter-spacing: -.02em; text-shadow: 0 2px 30px rgba(20, 22, 40, .2); }
 .hs-title em { font-style: italic; }
+.hs-side { display: grid; gap: 1.1rem; justify-items: start; }
+.hs-side p { display: none; max-width: 19rem; font-size: .875rem; line-height: 1.5; color: rgba(255, 253, 249, .88); }
+.hs-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
+.hs-btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--white); color: var(--ink); padding: .95rem 1.4rem; font-size: .6875rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: background-color .35s, color .35s; }
+.hs-btn:hover { background: var(--ink); color: var(--white); }
+.hs-btn .i { width: .75rem; height: .75rem; }
+.hs-cue { position: absolute; left: 50%; bottom: clamp(1.5rem, 5vh, 3rem); z-index: 1; display: none; justify-items: center; gap: .6rem; translate: -50% 0; }
+.hs-cue i { position: relative; width: 1px; height: 2.75rem; overflow: hidden; background: rgba(255, 253, 249, .3); }
+.hs-cue i::after { content: ""; position: absolute; inset: 0; background: var(--white); animation: cue 2.2s var(--ease-io) infinite; }
+@keyframes cue { 0% { translate: 0 -100%; } 60%, 100% { translate: 0 100%; } }
+/* The second photo carries the promise, low on the right. */
+.hs-promise { position: absolute; right: var(--gutter); bottom: clamp(1.5rem, 5vh, 3rem); z-index: 1; display: grid; gap: 1rem; justify-items: end; text-align: right; }
+.hs-quote { font-family: var(--serif); font-size: clamp(2.3rem, 5vw, 5rem); line-height: .95; letter-spacing: -.015em; text-shadow: 0 2px 30px rgba(20, 22, 40, .25); }
+.hs-quote em { font-style: italic; }
 
 /* ---------- Home: intro ---------- */
 .intro-sec { padding: clamp(1.75rem, 3vw, 2.25rem) 0 clamp(5rem, 14vh, 9rem); }
@@ -171,26 +193,24 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- Home: why us ---------- */
 .why-top { display: flex; align-items: baseline; gap: 2.5rem; }
-.why-top [data-why-count], .why-bar { display: none; }
-.why-bar { position: relative; height: 1px; margin-top: .85rem; background: var(--line); }
-.why-bar span { position: absolute; left: 0; top: -.5px; height: 2px; width: 25%; background: var(--ink); }
+.why-rule { height: 1px; margin-top: .85rem; background: var(--line); transform-origin: left; }
 .why-list { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(15rem, 80%); gap: var(--gutter); margin: 1.25rem calc(var(--gutter) * -1) 0; padding-inline: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
 .why-list::-webkit-scrollbar { display: none; }
-.why-item { position: relative; scroll-snap-align: start; }
+.why-item { scroll-snap-align: start; }
 .why-item .slot { aspect-ratio: 4 / 3; }
-.why-item h3 { margin-top: .9rem; padding-right: 1rem; font-family: var(--serif); font-weight: 400; font-size: 1.25rem; line-height: 1.15; }
-.why-btn { display: flex; gap: 1rem; text-align: left; }
-.why-btn::after { content: ""; position: absolute; inset: 0; }
-.why-btn span { min-width: 1.75rem; padding-top: .3rem; font-family: var(--sans); font-size: .75rem; }
+.why-item h3 { display: flex; gap: 1rem; margin-top: .9rem; padding-right: 1rem; font-family: var(--serif); font-weight: 400; font-size: 1.25rem; line-height: 1.15; }
+.why-item h3 span { min-width: 1.75rem; padding-top: .3rem; font-family: var(--sans); font-size: .75rem; }
 .why-item p { margin-top: .6rem; max-width: 16rem; padding: 0 1rem 0 2.75rem; font-size: .8125rem; line-height: 1.5; }
 
 /* ---------- Home: two photo links ---------- */
 .duo { display: grid; grid-template-columns: 1fr 1fr; }
 .duo-panel { position: relative; display: block; height: clamp(24rem, 72svh, 58rem); overflow: hidden; color: var(--white); }
 .duo-panel .slot { position: absolute; inset: 0; }
-.duo-panel::after { content: ""; position: absolute; inset: 0; background: rgba(20, 22, 40, .1); transition: background-color .6s ease; }
-.duo-panel:hover::after { background: rgba(20, 22, 40, .22); }
-.duo-panel .t-label { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; }
+.duo-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 22, 40, .08), rgba(20, 22, 40, .26)); transition: background-color .6s ease; }
+.duo-panel:hover::after { background: rgba(20, 22, 40, .3); }
+.duo-label { position: absolute; inset: 0; z-index: 1; display: grid; place-content: center; justify-items: center; gap: .9rem; text-align: center; }
+.duo-word { font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 4.5rem); line-height: 1; letter-spacing: -.01em; transition: letter-spacing .6s var(--ease); }
+.duo-panel:hover .duo-word { font-style: italic; }
 
 /* ---------- Home: philosophy ---------- */
 .philo { padding-top: clamp(5rem, 14vh, 9rem); }
@@ -202,12 +222,16 @@ body.menu-open { overflow: hidden; }
 .philo-small figcaption { margin-top: .75rem; font-size: .8125rem; line-height: 1.45; }
 .philo-large .slot { aspect-ratio: 4 / 5; }
 
-/* ---------- Home: three words ---------- */
-.words { position: relative; display: flex; align-items: flex-end; height: 100svh; min-height: 30rem; margin-top: clamp(4.5rem, 13vh, 8.5rem); overflow: hidden; color: var(--white); }
-.words .slot { position: absolute; inset: 0; }
-.words .photo { object-position: 72% 50%; }
-.words::after { content: ""; position: absolute; inset: auto 0 0; height: 30%; background: linear-gradient(transparent, rgba(20, 22, 40, .32)); }
-.words p { position: relative; z-index: 1; display: flex; justify-content: space-between; width: 100%; padding: 0 var(--gutter) clamp(1.25rem, 3vh, 2rem); }
+/* ---------- Home: skin, hair, nails ---------- */
+/* Three tall photos side by side; the one under the pointer widens. */
+.trio { display: grid; margin-top: clamp(4.5rem, 13vh, 8.5rem); }
+.trio-item { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 62svh; min-height: 22rem; padding: clamp(1rem, 2vw, 1.5rem) var(--gutter); overflow: hidden; isolation: isolate; color: var(--white); }
+.trio-item .slot { position: absolute; inset: 0; z-index: -1; }
+.trio-item::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20, 22, 40, .18), transparent 30%, transparent 55%, rgba(20, 22, 40, .42)); }
+.trio-word { font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 5.5rem); line-height: .95; letter-spacing: -.015em; }
+.trio-item:hover .trio-word { font-style: italic; }
+.trio-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.trio-foot .t-label { opacity: .85; }
 
 /* ---------- Home: approach & studio ---------- */
 .approach { padding-block: clamp(4.5rem, 13vh, 8.5rem); }
@@ -220,6 +244,46 @@ body.menu-open { overflow: hidden; }
 .approach-links a::after { content: ""; position: absolute; inset: 0; background: rgba(20, 22, 40, .1); transition: background-color .6s ease; }
 .approach-links a:hover::after { background: rgba(20, 22, 40, .24); }
 .approach-links .t-label { position: absolute; inset: 0; z-index: 1; display: grid; place-items: start center; padding-top: 1.25rem; }
+
+/* ---------- Home: client words ---------- */
+.voices { padding-block: clamp(4.5rem, 13vh, 8.5rem); background: var(--bg-2); }
+.voices-grid { display: grid; gap: 2.5rem var(--gutter); }
+.voices-side { display: grid; gap: 1.1rem; align-content: start; }
+.voices-ctrl { display: flex; align-items: center; gap: 1rem; margin-top: .75rem; }
+.voices-ctrl span { min-width: 3rem; font-size: .75rem; text-align: center; font-variant-numeric: tabular-nums; }
+.v-btn { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid var(--line-2); border-radius: 50%; transition: background-color .35s, color .35s, border-color .35s; }
+.v-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.v-btn.prev .i { rotate: 180deg; }
+.voices-stage { display: grid; }
+.voice { grid-area: 1 / 1; opacity: 0; visibility: hidden; translate: 0 1rem; transition: opacity .8s ease, translate 1s var(--ease), visibility 0s .8s; }
+.voice.on { opacity: 1; visibility: visible; translate: none; transition: opacity .8s ease .15s, translate 1s var(--ease) .15s; }
+.voice blockquote { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.75rem); line-height: 1.12; letter-spacing: -.005em; text-indent: clamp(1.5rem, 6vw, 5rem); }
+.voice figcaption { display: flex; align-items: center; gap: .9rem; margin-top: 2rem; font-size: .8125rem; }
+.voice figcaption .slot { width: 2.75rem; height: 2.75rem; border-radius: 50%; flex-shrink: 0; }
+.voice figcaption b { font-weight: 500; }
+.voice figcaption span { color: var(--ink-2); }
+
+/* ---------- Desktop cursor ---------- */
+/* A small ring follows the pointer and opens with a word over photo links. */
+.cursor { position: fixed; left: 0; top: 0; z-index: 80; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-radius: 50%; pointer-events: none; opacity: 0; scale: .25; background: var(--white); color: var(--ink); mix-blend-mode: difference; transition: opacity .3s ease, scale .5s var(--ease), width .5s var(--ease), height .5s var(--ease), margin .5s var(--ease); }
+.cursor.on { opacity: 1; }
+.cursor span { font-size: .625rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; opacity: 0; transition: opacity .3s ease; }
+.cursor.big { width: 5.5rem; height: 5.5rem; margin: -2.75rem 0 0 -2.75rem; scale: 1; mix-blend-mode: normal; }
+.cursor.big span { opacity: 1; }
+
+/* ---------- Home: not sure what to book ---------- */
+.concerns { padding-block: clamp(4.5rem, 13vh, 8.5rem); }
+.cn-top { display: grid; gap: 1.5rem var(--gutter); margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.cn-side { display: grid; gap: 1.1rem; align-content: end; }
+.cn-list { border-top: 1px solid var(--line); }
+.cn-list a { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: .45rem 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+.cn-n { grid-row: span 3; padding-top: .5rem; font-size: .75rem; color: var(--ink-3); }
+.cn-title { font-family: var(--serif); font-size: clamp(1.75rem, 3vw, 2.6rem); line-height: 1.05; transition: padding-left .5s var(--ease); }
+.cn-text { max-width: 26rem; font-size: .8125rem; line-height: 1.55; color: var(--ink-2); }
+.cn-go { display: inline-flex; align-items: center; gap: .4rem; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; }
+.cn-go .i { width: .8rem; height: .8rem; transition: translate .4s var(--ease); }
+.cn-list a:hover .cn-title { font-style: italic; padding-left: .4rem; }
+.cn-list a:hover .cn-go .i { translate: .15rem -.15rem; }
 
 /* ---------- Home: most booked ---------- */
 .booked { padding-block: clamp(4.5rem, 13vh, 8.5rem); border-top: 1px solid var(--line); }
@@ -270,9 +334,9 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- Services page ---------- */
 .cat-bar-wrap { position: sticky; top: var(--hdr); z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); }
-.cat-bar { position: relative; display: flex; gap: 1.75rem; overflow-x: auto; scrollbar-width: none; padding-block: 1rem; }
+.cat-bar { position: relative; display: flex; gap: 1.75rem; overflow-x: auto; scrollbar-width: none; }
 .cat-bar::-webkit-scrollbar { display: none; }
-.cat-bar a { flex-shrink: 0; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); transition: color .3s; }
+.cat-bar a { flex-shrink: 0; padding-block: 1rem; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); transition: color .3s; }
 .cat-bar a:hover, .cat-bar a.is-active { color: var(--ink); }
 :is(.cat-bar, .filters) .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--ink); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
 .svc-cat { display: grid; gap: 2rem var(--gutter); padding-block: clamp(3.5rem, 10vh, 6.5rem); border-bottom: 1px solid var(--line); scroll-margin-top: 7rem; }
@@ -306,9 +370,9 @@ body.menu-open { overflow: hidden; }
 .split-media .slot { aspect-ratio: 4 / 5; }
 .split-body .h-lg, .split-body .small { margin-top: 1rem; }
 
-.filters { position: relative; display: flex; gap: 1.75rem; overflow-x: auto; scrollbar-width: none; padding-block: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.filters { position: relative; display: flex; gap: 1.75rem; overflow-x: auto; scrollbar-width: none; margin-bottom: 2rem; border-bottom: 1px solid var(--line); }
 .filters::-webkit-scrollbar { display: none; }
-.filters button { flex-shrink: 0; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); transition: color .3s; }
+.filters button { flex-shrink: 0; padding-block: 1rem; font-size: .6875rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); transition: color .3s; }
 .filters button:hover, .filters button[aria-pressed="true"] { color: var(--ink); }
 .gal { columns: 2; gap: var(--gutter); }
 .gal li { break-inside: avoid; margin-bottom: var(--gutter); }
@@ -383,7 +447,7 @@ textarea.input { min-height: 6rem; resize: vertical; }
 .ft-clock i { width: .4rem; height: .4rem; border-radius: 50%; background: var(--dot); animation: blink 2.4s ease-in-out infinite; }
 @keyframes blink { 50% { opacity: .3; } }
 .ft-legal { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; color: var(--ink-3); }
-.ft-legal a { transition: color .3s; }
+.ft-legal a { padding-block: .6rem; margin-block: -.6rem; transition: color .3s; }
 .ft-legal a:hover { color: var(--ink); }
 .ft-sign { position: relative; display: grid; place-items: center; height: clamp(22rem, 80vh, 48rem); overflow: hidden; color: var(--white); }
 .ft-sign .slot { position: absolute; inset: 0; }
@@ -549,6 +613,11 @@ textarea.input { min-height: 6rem; resize: vertical; }
 /* Photos open from the top. */
 .js :is([data-reveal="img"], [data-reveal="oval"], [data-reveal="slice"]) { opacity: 1; translate: none; clip-path: inset(0 0 100% 0); }
 .js :is([data-reveal="img"], [data-reveal="oval"], [data-reveal="slice"]).in { clip-path: inset(0); }
+/* Quick entrance: a short rise with the photo settling from a slight zoom, so it reads at once. */
+.js [data-reveal="card"] { translate: 0 2rem; transition: opacity .6s ease, translate .9s var(--ease); transition-delay: var(--d, 0ms); }
+.js [data-reveal="card"]:not(.in) .slot { --s: 1.12; }
+.js [data-reveal="rule"] { opacity: 1; translate: none; scale: 0 1; transition: scale .9s var(--ease-io); }
+.js [data-reveal="rule"].in { scale: 1; }
 [data-float] { transform: translateY(var(--fy, 0px)); }
 
 ::view-transition-old(root) { animation: vt-out .3s var(--ease) both; }
@@ -559,6 +628,7 @@ textarea.input { min-height: 6rem; resize: vertical; }
 /* ---------- Breakpoints ---------- */
 @media (min-width: 640px) {
   .hdr-nav .hide-s { display: inline; }
+  .hs-corners { display: flex; }
   .opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .opt-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -586,21 +656,25 @@ textarea.input { min-height: 6rem; resize: vertical; }
   .mnav-media { display: block; position: relative; }
   .mnav-media .slot { position: absolute; inset: 0; }
 
-  .intro-grid, .why-top, .philo-top, .philo-pics, .approach-grid, .booked-grid, .phero-grid, .svc-cat, .split-grid, .faq-wrap, .story, .contact-grid, .ft-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .intro-grid, .voices-grid, .why-top, .philo-top, .philo-pics, .approach-grid, .booked-grid, .phero-grid, .svc-cat, .split-grid, .faq-wrap, .story, .contact-grid, .ft-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
   .intro-pic { grid-column: 1 / span 2; width: auto; }
   .intro-body { grid-column: 3 / span 6; }
 
   .why-top { display: grid; gap: var(--gutter); }
-  .why-top [data-why-count] { display: block; grid-column: 1 / span 2; }
+  .why-top > .t-label:first-child { grid-column: 1 / span 2; }
   .why-top h2 { grid-column: 3 / span 4; }
-  .why-bar { display: block; }
-  .why-list { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-inline: 0; padding-inline: 0; overflow: visible; }
-  .why-item .slot, .why-item h3 { opacity: .22; transition: opacity .7s ease; }
-  .why-item p { opacity: 0; translate: 0 .5rem; transition: opacity .6s ease, translate .8s var(--ease); }
-  .why-item.on .slot, .why-item.on h3 { opacity: 1; }
-  .why-item.on p { opacity: 1; translate: none; }
-  .why-item:not(.on):hover :is(.slot, h3) { opacity: .5; }
+  .why-list { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-inline: 0; padding-inline: 0; overflow: visible; }
   .duo-panel { height: clamp(26rem, 92svh, 58rem); }
+  .hs-bottom { grid-template-columns: minmax(0, 1fr) auto; }
+  .hs-side { justify-items: start; padding-bottom: .4rem; }
+  .hs-side p { display: block; }
+  .hs-cue { display: grid; }
+  .trio { display: flex; height: 100svh; min-height: 34rem; }
+  .trio-item { flex: 1; height: auto; min-height: 0; transition: flex-grow .9s var(--ease); }
+  .trio:hover .trio-item { flex-grow: .8; }
+  .trio .trio-item:hover { flex-grow: 1.6; }
+  .voices-side { grid-column: 1 / span 4; }
+  .voices-stage { grid-column: 6 / span 7; }
 
   .philo-top > .t-label { grid-column: 1 / span 6; }
   .philo-text { grid-column: 7 / span 6; }
@@ -613,6 +687,12 @@ textarea.input { min-height: 6rem; resize: vertical; }
   .approach-text { grid-column: 3 / span 3; }
   .approach-links { grid-column: 7 / span 6; margin-top: 0; }
 
+  .cn-top { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .cn-top h2 { grid-column: 1 / span 6; }
+  .cn-side { grid-column: 8 / span 4; }
+  .cn-list a { grid-template-columns: 2.5rem minmax(0, 5fr) minmax(0, 4fr) minmax(0, 2.5fr); align-items: center; gap: 1.25rem; padding-block: 1.5rem; }
+  .cn-n { grid-row: auto; padding-top: 0; }
+  .cn-go { justify-self: end; text-align: right; }
   .booked-side { grid-column: 1 / span 4; position: sticky; top: calc(var(--hdr) + 2rem); }
   .booked-list { grid-column: 6 / span 7; }
   .booked-list a { grid-template-columns: 2.5rem 3.75rem minmax(0, 1fr) 7.5rem 8.5rem; gap: 1.25rem; }
@@ -662,14 +742,33 @@ textarea.input { min-height: 6rem; resize: vertical; }
   .hdr-tag { display: block; }
   .gal { columns: 4; }
 }
+@media (max-width: 899px) {
+  /* Clear of the floating book bar on phones and tablets. */
+  .hs-promise { bottom: 6rem; }
+}
 @media (max-width: 639px) {
   .duo-panel { height: 70svh; }
+  /* A tighter rhythm on phones, so sections don't float in empty space. */
+  .sec, .approach, .voices, .concerns, .booked { padding-block: 4rem; }
+  .trio { margin-top: 4rem; }
+  .philo-pics, .approach-grid { margin-top: 2.75rem; }
+  .intro-pic { width: 62%; }
+  .philo-small { width: 70%; }
+  .cn-title { font-size: 1.85rem; }
+  /* Footer: details across the top, hours and links side by side. */
+  .ft-tag { padding-top: 3.5rem; }
+  .ft-grid { grid-template-columns: minmax(0, 1fr) auto; gap: 2.25rem 1.5rem; margin-top: 2.5rem; }
+  .ft-contact { grid-column: 1 / -1; }
+  .ft-hours th { padding-right: 1.25rem; }
+  .ft-bottom { margin-top: 2.5rem; }
+  .ft-sign { height: 58svh; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; }
-  .js [data-reveal] { opacity: 1; translate: none; clip-path: none; }
+  .js [data-reveal] { opacity: 1; translate: none; clip-path: none; scale: none; }
   .js [data-reveal="lines"] .lw { translate: none; }
   .hs-panel { position: relative; }
+  .hs-cue i::after { animation: none; }
 }
 </style>
 </head>
@@ -748,9 +847,26 @@ textarea.input { min-height: 6rem; resize: vertical; }
   <section class="hero hero-stack">
     <div class="hs-panel">
       <div class="slot" data-slot="homeHeroWide" data-eager></div>
-      <h1 class="hs-title" data-reveal="lines"><span class="ln">Feel Proud And</span><span class="ln">Confident In</span><span class="ln"><em>Your Own Skin!</em></span></h1>
+      <div class="hs-corners t-label" aria-hidden="true"><span>Nagpokhari, Naxal · Kathmandu</span><span>Strictly by appointment</span></div>
+      <div class="hs-bottom">
+        <h1 class="hs-title" data-reveal="lines"><span class="ln">Feel Proud And</span><span class="ln">Confident In</span><span class="ln"><em>Your Own Skin!</em></span></h1>
+        <div class="hs-side" data-reveal style="--d: 700ms">
+          <p>A unisex salon for skin, hair and nails in Naxal, Kathmandu, with specialists who take their time.</p>
+          <div class="hs-ctas">
+            <a href="#/book" class="hs-btn">Book an appointment <svg class="i"><use href="#i-up"/></svg></a>
+            <a href="#/book?service=skin-consultation" class="t-link">Free consultation</a>
+          </div>
+        </div>
+      </div>
+      <span class="hs-cue t-label" aria-hidden="true">Scroll<i></i></span>
     </div>
-    <div class="hs-panel"><div class="slot" data-slot="membershipHero"></div></div>
+    <div class="hs-panel">
+      <div class="slot" data-slot="membershipHero"></div>
+      <div class="hs-promise" data-reveal>
+        <p class="t-label">Our promise</p>
+        <p class="hs-quote">One client at a time,<br><em>never rushed.</em></p>
+      </div>
+    </div>
   </section>
 
   <section class="intro-sec">
@@ -767,29 +883,29 @@ textarea.input { min-height: 6rem; resize: vertical; }
   <section class="sec why">
     <div class="wrap">
       <div class="why-top">
-        <span class="t-label" data-why-count>1 : 4</span>
+        <span class="t-label">(04)</span>
         <h2 class="t-label">Why Xcosmopolitan?</h2>
       </div>
-      <div class="why-bar" aria-hidden="true"><span data-why-bar></span></div>
-      <ol class="why-list" data-why>
-        <li class="why-item on">
+      <div class="why-rule" data-reveal="rule" aria-hidden="true"></div>
+      <ol class="why-list" data-stagger="90">
+        <li class="why-item" data-reveal="card">
           <div class="slot" data-slot="gallery5"></div>
-          <h3><button type="button" class="why-btn" aria-pressed="true"><span>(1.)</span>Strictly by appointment</button></h3>
+          <h3><span>(1.)</span>Strictly by appointment</h3>
           <p>No queues and no rushing: one client at a time, with your specialist's full attention.</p>
         </li>
-        <li class="why-item">
+        <li class="why-item" data-reveal="card">
           <div class="slot" data-slot="gallery9"></div>
-          <h3><button type="button" class="why-btn" aria-pressed="false"><span>(2.)</span>A plan for your skin</button></h3>
+          <h3><span>(2.)</span>A plan for your skin</h3>
           <p>Skin treatments start with a short consultation, so we treat what your skin actually needs.</p>
         </li>
-        <li class="why-item">
+        <li class="why-item" data-reveal="card">
           <div class="slot" data-slot="categoryHairStyling"></div>
-          <h3><button type="button" class="why-btn" aria-pressed="false"><span>(3.)</span>A specialist for each craft</button></h3>
+          <h3><span>(3.)</span>A specialist for each craft</h3>
           <p>Skin, hair, colour, grooming, nails and makeup, each with someone who focuses on it.</p>
         </li>
-        <li class="why-item">
+        <li class="why-item" data-reveal="card">
           <div class="slot" data-slot="gallery12"></div>
-          <h3><button type="button" class="why-btn" aria-pressed="false"><span>(4.)</span>Clean and quiet</button></h3>
+          <h3><span>(4.)</span>Clean and quiet</h3>
           <p>Fresh towels for every client, tools cleaned between appointments, and a studio that's never crowded.</p>
         </li>
       </ol>
@@ -797,8 +913,8 @@ textarea.input { min-height: 6rem; resize: vertical; }
   </section>
 
   <section class="duo">
-    <a href="#/services" class="duo-panel group"><div class="slot zoom" data-slot="homeHero"></div><span class="t-label">Treatments</span></a>
-    <a href="#/membership" class="duo-panel group"><div class="slot zoom" data-slot="homeMembership"></div><span class="t-label">Membership</span></a>
+    <a href="#/services" class="duo-panel group" data-cursor="Explore"><div class="slot zoom" data-slot="homeHero"></div><span class="duo-label"><span class="t-label">(01)</span><span class="duo-word">Treatments</span></span></a>
+    <a href="#/membership" class="duo-panel group" data-cursor="Explore"><div class="slot zoom" data-slot="homeMembership"></div><span class="duo-label"><span class="t-label">(02)</span><span class="duo-word">Membership</span></span></a>
   </section>
 
   <section class="philo">
@@ -816,9 +932,23 @@ textarea.input { min-height: 6rem; resize: vertical; }
     </div>
   </section>
 
-  <section class="words">
-    <div class="slot" data-slot="aboutHero" data-parallax></div>
-    <p class="t-label"><span>Skin</span><span>Hair</span><span>Nails</span></p>
+  <section class="trio" aria-label="Skin, hair and nails">
+    <a href="#/services/skin" class="trio-item group" data-cursor="View"><div class="slot zoom" data-slot="gallery2"></div><span class="t-label">(01)</span><span class="trio-foot"><span class="trio-word">Skin</span><span class="t-label">Facials &amp; consultations</span></span></a>
+    <a href="#/services/hair-styling" class="trio-item group" data-cursor="View"><div class="slot zoom" data-slot="gallery7"></div><span class="t-label">(02)</span><span class="trio-foot"><span class="trio-word">Hair</span><span class="t-label">Cuts, colour &amp; care</span></span></a>
+    <a href="#/services/nails" class="trio-item group" data-cursor="View"><div class="slot zoom" data-slot="gallery8"></div><span class="t-label">(03)</span><span class="trio-foot"><span class="trio-word">Nails</span><span class="t-label">Manicures &amp; nail art</span></span></a>
+  </section>
+
+  <section class="concerns">
+    <div class="wrap">
+      <div class="cn-top">
+        <h2 class="display" data-reveal="lines"><span class="ln">Not sure</span><span class="ln"><em>what to book?</em></span></h2>
+        <div class="cn-side">
+          <p class="small" data-reveal>Start with what's bothering you. Each one shows where we'd usually begin, or book a free 20-minute consultation and we'll take a look first.</p>
+          <a href="#/book?service=skin-consultation" class="t-link" data-reveal>Book a free consultation</a>
+        </div>
+      </div>
+      <ol class="cn-list" data-render="concerns" data-stagger="70"></ol>
+    </div>
   </section>
 
   <section class="approach">
@@ -831,10 +961,25 @@ textarea.input { min-height: 6rem; resize: vertical; }
           <p>Meet the team behind each treatment, or take a look at our recent work.</p>
         </div>
         <div class="approach-links" data-stagger="120">
-          <a href="#/about" class="group" data-reveal="img"><div class="slot zoom" data-slot="aboutSpace1"></div><span class="t-label">About</span></a>
-          <a href="#/gallery" class="group" data-reveal="img"><div class="slot zoom" data-slot="gallery6"></div><span class="t-label">Gallery</span></a>
+          <a href="#/about" class="group" data-reveal="img" data-cursor="View"><div class="slot zoom" data-slot="aboutSpace1"></div><span class="t-label">About</span></a>
+          <a href="#/gallery" class="group" data-reveal="img" data-cursor="View"><div class="slot zoom" data-slot="gallery6"></div><span class="t-label">Gallery</span></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="voices">
+    <div class="wrap voices-grid">
+      <div class="voices-side">
+        <h2 class="t-label" data-reveal="fade">Client words</h2>
+        <p class="small" data-reveal>From people who've visited the studio.</p>
+        <div class="voices-ctrl" data-reveal>
+          <button type="button" class="v-btn prev" data-voice="-1" aria-label="Previous review"><svg class="i"><use href="#i-arrow"/></svg></button>
+          <span data-voice-count>1 / 6</span>
+          <button type="button" class="v-btn" data-voice="1" aria-label="Next review"><svg class="i"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="voices-stage" data-render="voices" data-voices aria-live="polite" data-reveal></div>
     </div>
   </section>
 
@@ -864,6 +1009,15 @@ textarea.input { min-height: 6rem; resize: vertical; }
   </section>
   <div class="cat-bar-wrap"><div class="wrap"><nav class="cat-bar" aria-label="Service categories" data-catbar></nav></div></div>
   <div class="wrap" data-render="serviceSections"></div>
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div>
+        <h2 class="h-lg" data-reveal="lines"><span class="ln">After your</span><span class="ln"><em>appointment</em></span></h2>
+        <p class="small" data-reveal style="margin-top: 1.25rem">A little care at home helps results last. Your specialist will add anything specific to you.</p>
+      </div>
+      <div data-reveal data-render="aftercare"></div>
+    </div>
+  </section>
   <section class="sec">
     <div class="wrap consult" data-reveal>
       <p class="t-label">Free 20-minute consultation</p>
@@ -1144,6 +1298,12 @@ const whatsappLink = (message) => `${site.whatsapp}?text=${encodeURIComponent(me
 const image = (file, alt, note) => ({ file, alt, note });
 const images = {
   homeExperience: image("home-experience.jpg", "The Xcosmopolitan salon interior", "Hero left · wide"),
+  review1: image("review-1.jpg", "", "Avatar"),
+  review2: image("review-2.jpg", "", "Avatar"),
+  review3: image("review-3.jpg", "", "Avatar"),
+  review4: image("review-4.jpg", "", "Avatar"),
+  review5: image("review-5.jpg", "", "Avatar"),
+  review6: image("review-6.jpg", "", "Avatar"),
   homeHeroWide: image("home-hero-wide.jpg", "Client with a body polish on her shoulder, eyes closed", "Hero portrait · oval"),
   homeHero: image("home-hero.jpg", "Face mask brushed on during a facial", "Skin & facials · 4:5"),
   homeHeroDetail: image("home-hero-detail.jpg", "Clay mask brushed onto a client's cheek", "Skin · 4:5"),
@@ -1294,10 +1454,12 @@ const membershipSteps = [
 ];
 const membershipBenefits = [
   { text: "One treatment every month", icon: "calendar" },
+  { text: "Extra treatments that month at a member price", icon: "sparkle" },
   { text: "Priority booking", icon: "clock" },
   { text: "Free skincare consultation", icon: "sparkle" },
   { text: "One guest pass each membership year", icon: "user" },
   { text: "Complimentary samples with every visit", icon: "gift" },
+  { text: "15% off products bought at the salon (20% off when you join)", icon: "gift" },
   { text: "Invitations to member events", icon: "star" },
   { text: "Rewards for referring friends", icon: "leaf" },
 ];
@@ -1306,6 +1468,7 @@ const membershipFaqs = [
   { question: "When does my membership renew?", answer: "Membership renews on the 1st of each month." },
   { question: "When can I use my monthly treatment?", answer: "Book your treatment any time within the month. Just mention your membership when you book." },
   { question: "Can I bring a friend?", answer: "Yes. Every membership year includes one guest pass." },
+  { question: "What if I want more than one treatment a month?", answer: "Book as many as you like. Extra treatments that month are charged at a member price, and we'll confirm it when you book." },
 ];
 const contactFaqs = [
   { question: "Do I need an appointment?", answer: "Yes. We work strictly by appointment so every client gets our full attention. Book online or message us on WhatsApp." },
@@ -1316,10 +1479,30 @@ const contactFaqs = [
   { question: "Is Xcosmopolitan for men too?", answer: "Yes. We're a unisex salon with a full men's menu: cuts, fades, beard shaping and grey coverage." },
 ];
 
+// General care after common treatments; the specialist adds anything specific to the client.
+const aftercare = [
+  { question: "Facials", answer: "Skip makeup for the rest of the day if you can, and wear sunscreen every morning. Leave out scrubs, retinol and strong acids for two days. If your skin stays red or stings for more than a day, message us." },
+  { question: "Hair colour", answer: "Wait two days before the first wash so the colour can settle. Use a colour-safe, sulphate-free shampoo and lukewarm water, and protect your hair from heat. Roots usually need a touch-up every four to six weeks." },
+  { question: "Kera Box smoothing", answer: "Your stylist will tell you when you can first wash and tie your hair, as it depends on the treatment used. After that, a sulphate-free shampoo keeps the results going longer. Pools and sea water fade it faster." },
+  { question: "Lash extensions", answer: "Keep them dry for the first 24 hours and avoid oil-based removers around the eyes. Brush them gently each morning and try not to rub or pull them. Book a refill every two to three weeks." },
+  { question: "Gel polish", answer: "Wear gloves for cleaning and washing up, and try not to use your nails as tools. Don't peel the gel off, as it takes layers of nail with it; come in and we'll remove it properly. It usually lasts two to three weeks." },
+  { question: "Waxing & threading", answer: "For the next 24 hours, skip hot showers, saunas, direct sun and tight clothing on waxed areas, and avoid perfumed lotions. A couple of days later, gentle exfoliation helps prevent ingrown hairs." },
+];
+
 const values = [
   { title: "Honest advice", text: "We'll explain what a treatment can and can't do, and tell you when you don't need one.", icon: "chat" },
   { title: "Clean and careful", text: "Fresh towels for every client, tools cleaned between appointments and patch tests before colour.", icon: "shield" },
   { title: "Time for you", text: "Appointments are booked with room to spare, so nobody cuts corners to stay on schedule.", icon: "clock" },
+];
+
+// Sample testimonials for the demo, to be replaced with real Google reviews.
+const reviews = [
+  { text: "My skin was so dry this winter. Had the hydrating facial, they explained each step and didn't push products on me. Much better the next day.", name: "Aarati S.", rating: "5.0", image: "review1" },
+  { text: "I showed a photo and my stylist said it would take two sessions to get there without damaging my hair. Glad they were honest. Looks really natural.", name: "Nisha G.", rating: "5.0", image: "review6" },
+  { text: "Good fade and a sharp beard line, done in under an hour with no waiting. Parking around Naxal is a bit of a struggle though.", name: "Pratik K.", rating: "4.0", image: "review5" },
+  { text: "Got Kera Box about six weeks ago and my hair still dries in half the time. Not cheap, but worth it for me.", name: "Kriti M.", rating: "5.0", image: "review3" },
+  { text: "Clean and quiet inside. The consultation was really useful, they even told me which of my products to stop using.", name: "Anisha R.", rating: "5.0", image: "review4" },
+  { text: "Booking online was quick. Started about ten minutes late, but the cut was exactly what I asked for. Will be back.", name: "Sujan T.", rating: "4.0", image: "review2" },
 ];
 
 const galleryFilters = [
@@ -1572,7 +1755,14 @@ const signature = ["anti-aging-facial", "highlights-balayage", "kera-box-smoothi
 // List photos that differ from their category's, so no photo shows twice.
 const signatureImages = { "hydrating-facial": "gallery2" };
 
-const concernQuestions = ["Fine lines starting to show?", "Uneven or dull skin tone?", "Breakouts that won't settle?", "Dry, frizzy or damaged hair?"];
+// Common reasons people get in touch, each with the treatment we'd usually start with.
+const concerns = [
+  { title: "Fine lines", text: "A firming facial with a simple routine for home. Expect gradual change, not overnight results.", service: "anti-aging-facial" },
+  { title: "Dull or uneven tone", text: "Exfoliation and brightening serums, plus daily sunscreen. Results build over a few sessions.", service: "brightening-facial" },
+  { title: "Breakouts", text: "Steam, extractions and a clay mask for congested skin. If acne needs medical care, we'll tell you to see a dermatologist.", service: "deep-cleansing-facial" },
+  { title: "Red, sensitive skin", text: "A calming facial for skin that reacts easily, with gentle products only.", service: "skin-repair-facial" },
+  { title: "Dry, frizzy hair", text: "Protein repair for hair that's dry or breaking after colour, straightening or heat.", service: "maximum-protein" },
+];
 
 const star = () => `<svg class="star" aria-hidden="true"><use href="#i-star4"/></svg>`;
 const sliceLine = `<svg class="slice-line" viewBox="0 0 100 100" aria-hidden="true"><path pathLength="1" d="M24.9 6.7A50 50 0 0 0 6.7 75.1A50 50 0 0 0 75.1 93.3Z"/></svg>`;
@@ -1608,12 +1798,19 @@ function serviceSection(category, index) {
 const renderers = {
   perks: () => perks.map((perk) => `<li class="perk" data-reveal>${star()}<h3>${perk.title}</h3><p>${perk.text}</p></li>`).join(""),
 
+  voices: () =>
+    reviews.map((review, index) => `
+      <figure class="voice${index ? "" : " on"}"${index ? ' aria-hidden="true"' : ""}>
+        <blockquote>&ldquo;${review.text}&rdquo;</blockquote>
+        <figcaption>${slot(review.image, "slot-bare")}<b>${review.name}</b><span>${review.rating} / 5</span></figcaption>
+      </figure>`).join(""),
+
   booked: () =>
     signature.map((slug, index) => {
       const { service, category } = findService(slug);
       return `
         <li data-reveal>
-          <a href="#/book?service=${slug}" class="group">
+          <a href="#/book?service=${slug}" class="group" data-cursor="Book">
             <span class="mb-n">(${pad(index + 1)})</span>
             ${slot(signatureImages[slug] ?? category.image, "zoom")}
             <span class="mb-name">${service.name}</span>
@@ -1632,7 +1829,16 @@ const renderers = {
         <a href="#/services/${category.slug}" class="ulink">View the menu</a>
       </li>`).join(""),
 
-  asks: () => concernQuestions.map((question) => `<li data-reveal>${star()}${question}</li>`).join(""),
+  concerns: () =>
+    concerns.map((concern, index) => `
+      <li data-reveal>
+        <a href="#/book?service=${concern.service}" data-cursor="Book">
+          <span class="cn-n">(${pad(index + 1)})</span>
+          <span class="cn-title">${concern.title}</span>
+          <span class="cn-text">${concern.text}</span>
+          <span class="cn-go">${findService(concern.service).service.name}${icon("up")}</span>
+        </a>
+      </li>`).join(""),
 
   memberTeaser: () => membershipBenefits.slice(0, 3).map((benefit) => `<li>${benefit.text}</li>`).join(""),
 
@@ -1661,6 +1867,7 @@ const renderers = {
 
   membershipFaq: () => accordion(membershipFaqs),
   contactFaq: () => accordion(contactFaqs),
+  aftercare: () => accordion(aftercare),
 
   values: () => values.map((value) => `<li class="perk" data-reveal>${star()}<h3>${value.title}</h3><p>${value.text}</p></li>`).join(""),
 
@@ -1802,6 +2009,7 @@ function onScrollFrame() {
 
   if (reduceMotion) return;
   const viewport = innerHeight;
+  if (!homePage.hidden) heroStack.style.setProperty("--hp", Math.min(1, Math.max(0, y / viewport)).toFixed(3));
   for (const el of $$(".page:not([hidden]) [data-parallax]")) {
     const rect = el.getBoundingClientRect();
     if (rect.bottom < -50 || rect.top > viewport + 50) continue;
@@ -1845,58 +2053,75 @@ $("[data-top]").addEventListener("click", (event) => {
 });
 
 
-// ---------- Home: why us ----------
-// On wide screens one reason shows at a time and moves on by itself, the line filling as it goes.
-const whyList = $("[data-why]");
-if (whyList) {
-  const items = $$(".why-item", whyList);
-  const count = $("[data-why-count]");
-  const bar = $("[data-why-bar]");
-  const wide = matchMedia("(min-width: 900px)");
-  const STEP_MS = 6000;
-  let active = 0;
-  let elapsed = 0;
-  let last = 0;
-  let paused = false;
-  let visible = false;
-  let frame = 0;
-
-  const show = (index) => {
-    active = (index + items.length) % items.length;
-    elapsed = 0;
-    items.forEach((item, i) => {
-      item.classList.toggle("on", i === active);
-      $(".why-btn", item).setAttribute("aria-pressed", String(i === active));
+// ---------- Home: client words ----------
+// One review at a time; moves on by itself while on screen, and waits while hovered.
+const voiceStage = $("[data-voices]");
+if (voiceStage) {
+  const voices = $$(".voice", voiceStage);
+  const voiceCount = $("[data-voice-count]");
+  let current = 0;
+  let voiceTimer = 0;
+  let voiceVisible = false;
+  let voicePaused = false;
+  const showVoice = (index) => {
+    current = (index + voices.length) % voices.length;
+    voices.forEach((voice, i) => {
+      voice.classList.toggle("on", i === current);
+      voice.toggleAttribute("aria-hidden", i !== current);
     });
-    count.textContent = `${active + 1} : ${items.length}`;
+    voiceCount.textContent = `${current + 1} / ${voices.length}`;
   };
-
-  const tick = (now) => {
-    if (wide.matches && !paused && !reduceMotion) elapsed += now - last;
-    last = now;
-    if (elapsed >= STEP_MS) show(active + 1);
-    const fill = reduceMotion ? 1 : elapsed / STEP_MS;
-    bar.style.width = `${((active + fill) / items.length) * 100}%`;
-    frame = visible ? requestAnimationFrame(tick) : 0;
+  const schedule = () => {
+    clearInterval(voiceTimer);
+    if (voiceVisible && !voicePaused && !reduceMotion) voiceTimer = setInterval(() => showVoice(current + 1), 7000);
   };
-
-  // Only runs while the row is on screen.
+  for (const button of $$("[data-voice]")) {
+    button.addEventListener("click", () => {
+      showVoice(current + Number(button.dataset.voice));
+      schedule();
+    });
+  }
+  const voiceSection = voiceStage.closest("section");
+  voiceSection.addEventListener("pointerenter", () => { voicePaused = true; schedule(); });
+  voiceSection.addEventListener("pointerleave", () => { voicePaused = false; schedule(); });
   new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    if (visible && !frame) {
-      last = performance.now();
-      frame = requestAnimationFrame(tick);
-    }
-  }).observe(whyList);
+    voiceVisible = entry.isIntersecting;
+    schedule();
+  }).observe(voiceStage);
+}
 
-  whyList.addEventListener("click", (event) => {
-    const button = event.target.closest(".why-btn");
-    if (button) show(items.indexOf(button.closest(".why-item")));
+// ---------- Cursor ----------
+// On desktop a small ring follows the pointer and opens with a word over links marked data-cursor.
+if (finePointer && !reduceMotion) {
+  const cursor = document.createElement("div");
+  cursor.className = "cursor";
+  cursor.setAttribute("aria-hidden", "true");
+  cursor.innerHTML = "<span></span>";
+  document.body.append(cursor);
+  const label = $("span", cursor);
+  const goal = { x: -100, y: -100 };
+  const at = { x: -100, y: -100 };
+  let moving = 0;
+  const glide = () => {
+    at.x += (goal.x - at.x) * 0.2;
+    at.y += (goal.y - at.y) * 0.2;
+    cursor.style.translate = `${at.x.toFixed(1)}px ${at.y.toFixed(1)}px`;
+    moving = Math.abs(goal.x - at.x) + Math.abs(goal.y - at.y) > 0.3 ? requestAnimationFrame(glide) : 0;
+  };
+  document.addEventListener("pointermove", (event) => {
+    goal.x = event.clientX;
+    goal.y = event.clientY;
+    if (!cursor.classList.contains("on")) {
+      at.x = goal.x;
+      at.y = goal.y;
+      cursor.classList.add("on");
+    }
+    const target = event.target.closest?.("[data-cursor]");
+    cursor.classList.toggle("big", Boolean(target));
+    if (target) label.textContent = target.dataset.cursor;
+    if (!moving) moving = requestAnimationFrame(glide);
   });
-  whyList.addEventListener("pointerenter", () => { paused = true; });
-  whyList.addEventListener("pointerleave", () => { paused = false; });
-  whyList.addEventListener("focusin", () => { paused = true; });
-  whyList.addEventListener("focusout", () => { paused = false; });
+  document.addEventListener("pointerleave", () => cursor.classList.remove("on"));
 }
 
 // ---------- Footer: booking hours and the time in Kathmandu ----------

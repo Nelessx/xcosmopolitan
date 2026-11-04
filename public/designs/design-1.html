@@ -40,6 +40,8 @@
 html { height: 100%; font-family: var(--heavy); }
 body { min-height: 100%; background: var(--bg); color: var(--text); font-weight: 300; font-size: .9375rem; line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 ::selection { background: var(--text); color: var(--bg); }
+/* The browser's default focus ring disappears on the dark background. */
+:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
 img, svg, iframe { display: block; }
 a { color: inherit; text-decoration: none; }
 button { background: none; color: inherit; font: inherit; cursor: pointer; text-align: inherit; }
@@ -180,7 +182,8 @@ body.menu-open { overflow: hidden; }
 .hero-ph.right .slot .photo { filter: brightness(.8) contrast(1.06) saturate(.78); object-position: 70% 18%; }
 .hero-ph::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(12, 11, 10, .38), transparent 36%, transparent 58%, rgba(12, 11, 10, .54)); }
 .hero-in { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.25rem, 3.5vh, 2.1rem); padding: 1.5rem; text-align: center; }
-.hero-in .h-giant { text-shadow: 0 2px 44px rgba(0, 0, 0, .5); }
+/* Shadow on the whole heading: a text-shadow would be cut off by each line's reveal mask. */
+.hero-in .h-giant { filter: drop-shadow(0 2px 24px rgba(0, 0, 0, .45)); }
 .hero-in .mlabel { color: var(--text); opacity: .85; }
 .hero-tag { max-width: 34rem; font-family: var(--thin); font-size: clamp(1.1rem, 1.9vw, 1.6rem); font-weight: 300; line-height: 1.35; letter-spacing: .02em; text-shadow: 0 2px 24px rgba(0, 0, 0, .5); }
 
@@ -353,9 +356,9 @@ body.menu-open { overflow: hidden; }
 /* ---------- Services page ---------- */
 .cat-bar-wrap { position: sticky; top: var(--hdr); z-index: 30; background: var(--bg); border-block: 1px solid var(--line); transition: top .6s var(--ease); }
 body.hdr-away .cat-bar-wrap { top: 0; }
-.cat-bar { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; padding-block: .95rem; }
+.cat-bar { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; }
 .cat-bar::-webkit-scrollbar { display: none; }
-.cat-bar a { flex-shrink: 0; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.cat-bar a { flex-shrink: 0; padding-block: .95rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
 .cat-bar a:hover, .cat-bar a.is-active { color: var(--text); }
 .cat-bar .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--text); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
 .svc-cat:last-child { border-bottom: 0; }
@@ -388,9 +391,9 @@ body.hdr-away .cat-bar-wrap { top: 0; }
 .benefits li { display: flex; align-items: center; gap: 1rem; padding: 1rem .25rem; border-bottom: 1px solid var(--line); font-size: .9rem; }
 .benefits .star { color: var(--soft); }
 
-.filters { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; border-block: 1px solid var(--line); padding-block: .95rem; margin-bottom: 2rem; }
+.filters { position: relative; display: flex; gap: 1.6rem; overflow-x: auto; scrollbar-width: none; border-block: 1px solid var(--line); margin-bottom: 2rem; }
 .filters::-webkit-scrollbar { display: none; }
-.filters button { flex-shrink: 0; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.filters button { flex-shrink: 0; padding-block: .95rem; font-family: var(--mono); font-size: .6875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
 .filters button:hover, .filters button[aria-pressed="true"] { color: var(--text); }
 .filters .ind { position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--text); opacity: 0; transition: translate .5s var(--ease), width .5s var(--ease), opacity .3s; }
 .gal { columns: 2; gap: 1.25rem; }
@@ -712,6 +715,16 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   .ln.push { padding-left: clamp(1.25rem, 8vw, 4rem); }
 }
 @media (max-width: 639px) {
+  /* Hero label breaks into two even lines instead of leaving one word behind. */
+  .hero-in .mlabel { max-width: 17rem; text-wrap: balance; }
+  .hero-tag { max-width: 17rem; text-wrap: balance; }
+  /* The honesty band: each line sized to fit the screen, without the sideways drift. */
+  .stack { padding-block: clamp(5.5rem, 16vh, 8rem); }
+  .stack-lines .ln { font-size: 5.4vw; translate: none; }
+  .stack-lines .ln:nth-child(even) { letter-spacing: .03em; }
+  /* Footer: navigation and social side by side, visit details below. */
+  .ft-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.5rem; }
+  .ft-brand, .ft-links[aria-label="Visit"] { grid-column: 1 / -1; }
   .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gal { columns: 2; gap: .75rem; }
   .gal li { margin-bottom: .75rem; }
@@ -988,6 +1001,15 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   </section>
   <div class="cat-bar-wrap"><div class="wrap"><nav class="cat-bar" aria-label="Service categories" data-catbar></nav></div></div>
   <div class="wrap" data-render="serviceSections"></div>
+  <section class="sec">
+    <div class="wrap faq-wrap">
+      <div>
+        <h2 class="h-sec" data-reveal="lines"><span class="ln">After your</span><span class="ln"><em>appointment</em></span></h2>
+        <p class="small" data-reveal style="margin-top: 1.25rem">A little care at home helps results last. Your specialist will add anything specific to you.</p>
+      </div>
+      <div data-reveal data-render="aftercare"></div>
+    </div>
+  </section>
   <section class="sec" style="padding-top: clamp(3rem, 8vh, 5rem)">
     <div class="wrap">
       <div class="consult" data-reveal>
@@ -1427,10 +1449,12 @@ const membershipSteps = [
 ];
 const membershipBenefits = [
   { text: "One treatment every month", icon: "calendar" },
+  { text: "Extra treatments that month at a member price", icon: "sparkle" },
   { text: "Priority booking", icon: "clock" },
   { text: "Free skincare consultation", icon: "sparkle" },
   { text: "One guest pass each membership year", icon: "user" },
   { text: "Complimentary samples with every visit", icon: "gift" },
+  { text: "15% off products bought at the salon (20% off when you join)", icon: "gift" },
   { text: "Invitations to member events", icon: "star" },
   { text: "Rewards for referring friends", icon: "leaf" },
 ];
@@ -1439,6 +1463,7 @@ const membershipFaqs = [
   { question: "When does my membership renew?", answer: "Membership renews on the 1st of each month." },
   { question: "When can I use my monthly treatment?", answer: "Book your treatment any time within the month. Just mention your membership when you book." },
   { question: "Can I bring a friend?", answer: "Yes. Every membership year includes one guest pass." },
+  { question: "What if I want more than one treatment a month?", answer: "Book as many as you like. Extra treatments that month are charged at a member price, and we'll confirm it when you book." },
 ];
 const contactFaqs = [
   { question: "Do I need an appointment?", answer: "Yes. We work strictly by appointment so every client gets our full attention. Book online or message us on WhatsApp." },
@@ -1447,6 +1472,16 @@ const contactFaqs = [
   { question: "How can I pay?", answer: "Pay online with eSewa or Khalti when you book, or pay at the salon on the day." },
   { question: "Can I reschedule or cancel?", answer: "Yes. Please let us know at least 24 hours before your appointment so we can offer the time to someone else." },
   { question: "Is Xcosmopolitan for men too?", answer: "Yes. We're a unisex salon with a full men's menu: cuts, fades, beard shaping and grey coverage." },
+];
+
+// General care after common treatments; the specialist adds anything specific to the client.
+const aftercare = [
+  { question: "Facials", answer: "Skip makeup for the rest of the day if you can, and wear sunscreen every morning. Leave out scrubs, retinol and strong acids for two days. If your skin stays red or stings for more than a day, message us." },
+  { question: "Hair colour", answer: "Wait two days before the first wash so the colour can settle. Use a colour-safe, sulphate-free shampoo and lukewarm water, and protect your hair from heat. Roots usually need a touch-up every four to six weeks." },
+  { question: "Kera Box smoothing", answer: "Your stylist will tell you when you can first wash and tie your hair, as it depends on the treatment used. After that, a sulphate-free shampoo keeps the results going longer. Pools and sea water fade it faster." },
+  { question: "Lash extensions", answer: "Keep them dry for the first 24 hours and avoid oil-based removers around the eyes. Brush them gently each morning and try not to rub or pull them. Book a refill every two to three weeks." },
+  { question: "Gel polish", answer: "Wear gloves for cleaning and washing up, and try not to use your nails as tools. Don't peel the gel off, as it takes layers of nail with it; come in and we'll remove it properly. It usually lasts two to three weeks." },
+  { question: "Waxing & threading", answer: "For the next 24 hours, skip hot showers, saunas, direct sun and tight clothing on waxed areas, and avoid perfumed lotions. A couple of days later, gentle exfoliation helps prevent ingrown hairs." },
 ];
 
 const values = [
@@ -1811,6 +1846,7 @@ const renderers = {
 
   membershipFaq: () => accordion(membershipFaqs),
   contactFaq: () => accordion(contactFaqs),
+  aftercare: () => accordion(aftercare),
 
   values: () => values.map((value) => `<li class="perk" data-reveal>${star()}<h3>${value.title}</h3><p>${value.text}</p></li>`).join(""),
 

@@ -249,6 +249,8 @@ b, strong { font-weight: 700; }
   z-index: 60;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--ink);
   color: #fff;
   clip-path: circle(0 at calc(100% - 2.7rem) 2.4rem);
@@ -260,13 +262,14 @@ b, strong { font-weight: 700; }
 .mnav-top .brand { color: #fff; }
 .mnav-close { display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border-radius: 999px; background: rgba(255, 255, 255, .1); }
 .mnav-close .i { width: 1.15rem; height: 1.15rem; }
-.mnav-links { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+/* Links sit near the top with the book button straight after, so it never drops off a short screen. */
+.mnav-links { display: flex; flex-direction: column; padding-top: clamp(.5rem, 5vh, 3rem); }
 .mnav-links li { overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, .1); }
-.mnav-links a { display: flex; align-items: baseline; justify-content: space-between; padding-block: .9rem; font-size: clamp(2rem, 9vw, 3rem); font-weight: 300; letter-spacing: -.04em; translate: 0 100%; transition: translate .8s var(--ease), color .3s; }
+.mnav-links a { display: flex; align-items: baseline; justify-content: space-between; padding-block: clamp(.6rem, 1.6vh, .9rem); font-size: clamp(1.75rem, min(9vw, 6vh), 3rem); font-weight: 300; letter-spacing: -.04em; translate: 0 100%; transition: translate .8s var(--ease), color .3s; }
 .mnav-links a i { font-style: normal; font-size: .8rem; letter-spacing: .1em; color: rgba(255, 255, 255, .4); }
 .mnav-links a.is-active { color: var(--rose); }
 .mnav.open .mnav-links a { translate: none; transition-delay: calc(.25s + var(--i) * 60ms); }
-.mnav-foot { padding-block: 1.5rem 2rem; opacity: 0; transition: opacity .5s; }
+.mnav-foot { padding-block: 1.75rem 2rem; opacity: 0; transition: opacity .5s; }
 .mnav.open .mnav-foot { opacity: 1; transition-delay: .6s; }
 .mnav-foot p { margin-top: 1rem; font-size: .875rem; color: rgba(255, 255, 255, .55); }
 
@@ -911,7 +914,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   /* The services get their own frosted corner of the photo, cut away from the rest by a thin gap.
      The gap curves round them (sized in the script), and the small corner pieces round off each
      part where the gap meets the edge of the card. */
-  .hero-cut { --cut-gap: 5px; --cut-r: 1.75rem; --cut-c: 1.25rem; position: absolute; left: 0; bottom: 0; z-index: -1; display: block; width: var(--cut-w, 0); height: var(--cut-h, 0); border-radius: 0 var(--cut-r) 0 var(--r-xl); background: rgba(30, 18, 14, .34); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 0 0 var(--cut-gap) var(--bg), inset 0 0 0 1px rgba(255, 255, 255, .08); pointer-events: none; }
+  .hero-cut { --cut-gap: 1px; --cut-r: 1.75rem; --cut-c: 1.25rem; position: absolute; left: 0; bottom: 0; z-index: -1; display: block; width: var(--cut-w, 0); height: var(--cut-h, 0); border-radius: 0 var(--cut-r) 0 var(--r-xl); background: rgba(30, 18, 14, .34); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 0 0 var(--cut-gap) var(--bg), inset 0 0 0 1px rgba(255, 255, 255, .08); pointer-events: none; }
   .hero-cut::before, .hero-cut::after, .hero-cut i::before, .hero-cut i::after { content: ""; position: absolute; width: var(--cut-c); height: var(--cut-c); }
   .hero-cut::before { left: 0; top: 0; background: radial-gradient(circle at 100% 100%, transparent calc(var(--cut-c) - .5px), var(--bg) var(--cut-c)); }
   .hero-cut::after { right: 0; bottom: 0; background: radial-gradient(circle at 0 0, transparent calc(var(--cut-c) - .5px), var(--bg) var(--cut-c)); }
@@ -1031,6 +1034,16 @@ body.hdr-away .bk-sum { top: 1.5rem; }
   .nav-chev { display: none; }
 }
 
+@media (max-width: 639px) {
+  .section { padding-block: 4rem; }
+  /* Concern cards size to their text instead of leaving a gap above the heading. */
+  .concern { min-height: 0; padding: 1.4rem 1.4rem 1.5rem; }
+  .concern h3 { padding-top: 1.75rem; }
+  .way-step { padding: 1.4rem 1.4rem 1.5rem; }
+  .way-step .n { font-size: 2.25rem; }
+  .way-step h3 { margin-top: 1rem; }
+  .ft { padding-top: 2.75rem; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
@@ -1323,6 +1336,13 @@ body.hdr-away .bk-sum { top: 1.5rem; }
       <div class="slot phero-img" data-slot="servicesHero" data-eager data-reveal="img" data-parallax></div>
       <div class="cat-bar"><nav class="seg" aria-label="Service categories" data-catbar></nav></div>
       <div data-render="serviceSections"></div>
+      <div class="faq-wrap mt-l">
+        <div>
+          <h2 class="title" data-reveal="split" data-split>After your <b>appointment</b></h2>
+          <p class="sub" data-reveal style="margin-top: 1rem">A little care at home helps results last. Your specialist will add anything specific to you.</p>
+        </div>
+        <div data-reveal data-render="aftercare"></div>
+      </div>
       <div class="cta-dark mt-l" data-reveal>
         <div>
           <h2 class="title" style="font-size: clamp(1.9rem, 3.6vw, 2.75rem)">Not sure what to choose? <b>Start with a free consultation.</b></h2>
@@ -1792,10 +1812,12 @@ const membershipSteps = [
 ];
 const membershipBenefits = [
   { text: "One treatment every month", icon: "calendar" },
+  { text: "Extra treatments that month at a member price", icon: "sparkle" },
   { text: "Priority booking", icon: "clock" },
   { text: "Free skincare consultation", icon: "sparkle" },
   { text: "One guest pass each membership year", icon: "user" },
   { text: "Complimentary samples with every visit", icon: "gift" },
+  { text: "15% off products bought at the salon (20% off when you join)", icon: "gift" },
   { text: "Invitations to member events", icon: "star" },
   { text: "Rewards for referring friends", icon: "leaf" },
 ];
@@ -1804,6 +1826,7 @@ const membershipFaqs = [
   { question: "When does my membership renew?", answer: "Membership renews on the 1st of each month." },
   { question: "When can I use my monthly treatment?", answer: "Book your treatment any time within the month. Just mention your membership when you book." },
   { question: "Can I bring a friend?", answer: "Yes. Every membership year includes one guest pass." },
+  { question: "What if I want more than one treatment a month?", answer: "Book as many as you like. Extra treatments that month are charged at a member price, and we'll confirm it when you book." },
 ];
 const contactFaqs = [
   { question: "Do I need an appointment?", answer: "Yes. We work strictly by appointment so every client gets our full attention. Book online or message us on WhatsApp." },
@@ -1812,6 +1835,16 @@ const contactFaqs = [
   { question: "How can I pay?", answer: "Pay online with eSewa or Khalti when you book, or pay at the salon on the day." },
   { question: "Can I reschedule or cancel?", answer: "Yes. Please let us know at least 24 hours before your appointment so we can offer the time to someone else." },
   { question: "Is Xcosmopolitan for men too?", answer: "Yes. We're a unisex salon with a full men's menu: cuts, fades, beard shaping and grey coverage." },
+];
+
+// General care after common treatments; the specialist adds anything specific to the client.
+const aftercare = [
+  { question: "Facials", answer: "Skip makeup for the rest of the day if you can, and wear sunscreen every morning. Leave out scrubs, retinol and strong acids for two days. If your skin stays red or stings for more than a day, message us." },
+  { question: "Hair colour", answer: "Wait two days before the first wash so the colour can settle. Use a colour-safe, sulphate-free shampoo and lukewarm water, and protect your hair from heat. Roots usually need a touch-up every four to six weeks." },
+  { question: "Kera Box smoothing", answer: "Your stylist will tell you when you can first wash and tie your hair, as it depends on the treatment used. After that, a sulphate-free shampoo keeps the results going longer. Pools and sea water fade it faster." },
+  { question: "Lash extensions", answer: "Keep them dry for the first 24 hours and avoid oil-based removers around the eyes. Brush them gently each morning and try not to rub or pull them. Book a refill every two to three weeks." },
+  { question: "Gel polish", answer: "Wear gloves for cleaning and washing up, and try not to use your nails as tools. Don't peel the gel off, as it takes layers of nail with it; come in and we'll remove it properly. It usually lasts two to three weeks." },
+  { question: "Waxing & threading", answer: "For the next 24 hours, skip hot showers, saunas, direct sun and tight clothing on waxed areas, and avoid perfumed lotions. A couple of days later, gentle exfoliation helps prevent ingrown hairs." },
 ];
 
 const values = [
@@ -2216,6 +2249,7 @@ const renderers = {
 
   membershipFaq: () => accordion(membershipFaqs),
   contactFaq: () => accordion(contactFaqs),
+  aftercare: () => accordion(aftercare),
 
   values: () =>
     values.map((value) => `

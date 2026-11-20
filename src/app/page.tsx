@@ -2,6 +2,8 @@ const designs = [
   { label: "Design 1", href: "/designs/design-1.html" },
   { label: "Design 2", href: "/designs/design-2.html" },
   { label: "Design 3", href: "/designs/design-3.html" },
+  { label: "Design 4", href: "/designs/design-4.html" },
+  { label: "Design 5", href: "/designs/design-5.html" },
 ];
 
 export default function Home() {

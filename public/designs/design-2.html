@@ -806,7 +806,7 @@ body.hdr-away .bk-sum { top: 1.5rem; }
 .bk-sum .secure { margin-top: 1rem; display: flex; align-items: center; gap: .5rem; font-size: .75rem; color: var(--muted); }
 
 .done-wrap { padding-top: 2.5rem; padding-bottom: 6rem; }
-.done { margin-inline: auto; max-width: 40rem; text-align: center; }
+.done-wrap .done { margin-inline: auto; max-width: 40rem; text-align: center; }
 .done-badge { position: relative; margin-inline: auto; display: grid; place-items: center; width: 5.5rem; height: 5.5rem; border-radius: 999px; background: var(--ink); animation: badgeIn .8s var(--ease) both; }
 .done-badge::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--ink); animation: ring 1.6s var(--ease) .5s both; }
 .done-badge svg { width: 2.6rem; height: 2.6rem; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
@@ -814,22 +814,22 @@ body.hdr-away .bk-sum { top: 1.5rem; }
 @keyframes badgeIn { from { transform: scale(.3); opacity: 0; } }
 @keyframes ring { from { transform: scale(1); opacity: .5; } to { transform: scale(1.9); opacity: 0; } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-.done .eyebrow { margin-top: 2rem; }
-.done h2 { margin-top: .75rem; font-size: clamp(2.4rem, 6vw, 3.75rem); font-weight: 300; line-height: 1.05; letter-spacing: -.045em; }
-.done h2 b { font-weight: 700; }
-.done .lead { margin: 1rem auto 0; max-width: 28rem; font-size: 1rem; }
+.done-wrap .done .eyebrow { margin-top: 2rem; }
+.done-wrap .done h2 { margin-top: .75rem; font-size: clamp(2.4rem, 6vw, 3.75rem); font-weight: 300; line-height: 1.05; letter-spacing: -.045em; }
+.done-wrap .done h2 b { font-weight: 700; }
+.done-wrap .done .lead { margin: 1rem auto 0; max-width: 28rem; font-size: 1rem; }
 .ref { margin-top: 1.75rem; display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px; background: var(--blush); padding: .55rem .6rem .55rem 1.1rem; font-weight: 700; letter-spacing: .04em; }
 .ref button { border-radius: 999px; background: #fff; padding: .35rem .8rem; font-size: .75rem; font-weight: 600; letter-spacing: 0; transition: background-color .3s; }
 .ref button:hover { background: var(--gray); }
-.done dl { margin-top: 1.75rem; border-radius: 26px; background: var(--gray); padding: .5rem 1.5rem; text-align: left; font-size: .9rem; }
-.done dl div { display: flex; justify-content: space-between; gap: 1.5rem; padding-block: .9rem; }
-.done dl div + div { border-top: 1px solid var(--line); }
-.done dt { color: var(--muted); }
-.done dd { text-align: right; font-weight: 600; }
-.done .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .625rem; }
-.done .again { margin-top: 1.75rem; font-size: .9375rem; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--line); transition: color .3s; }
-.done .again:hover { color: var(--ink); }
-.done .rise-in { animation: rise .8s var(--ease) both; animation-delay: var(--d); }
+.done-wrap .done dl { margin-top: 1.75rem; border-radius: 26px; background: var(--gray); padding: .5rem 1.5rem; text-align: left; font-size: .9rem; }
+.done-wrap .done dl div { display: flex; justify-content: space-between; gap: 1.5rem; padding-block: .9rem; }
+.done-wrap .done dl div + div { border-top: 1px solid var(--line); }
+.done-wrap .done dt { color: var(--muted); }
+.done-wrap .done dd { text-align: right; font-weight: 600; }
+.done-wrap .done .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .625rem; }
+.done-wrap .done .again { margin-top: 1.75rem; font-size: .9375rem; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--line); transition: color .3s; }
+.done-wrap .done .again:hover { color: var(--ink); }
+.done-wrap .done .rise-in { animation: rise .8s var(--ease) both; animation-delay: var(--d); }
 
 /* ---------- Breakpoints ---------- */
 @media (min-width: 640px) {
